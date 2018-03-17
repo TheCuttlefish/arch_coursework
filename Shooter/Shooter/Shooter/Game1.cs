@@ -6,9 +6,8 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Input.Touch;
+
 
 
 namespace Shooter
@@ -17,24 +16,12 @@ namespace Shooter
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         Player player;
+        // Image used to display the static background
 
-
-
-        // Keyboard states used to determine key presses
-        KeyboardState currentKeyboardState;
-        KeyboardState previousKeyboardState;
-
-        // Gamepad states used to determine button presses
-        GamePadState currentGamePadState;
-        GamePadState previousGamePadState;
-
-        // A movement speed for the player
-        float playerMoveSpeed;
-
-
-
-
-
+        // Parallaxing Layers
+        Background bgLayer1;
+        Background bgLayer2;
+        Background bgLayer3;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -47,11 +34,16 @@ namespace Shooter
 
         protected override void Initialize()
         {
+            
+
             player = new Player();
+            player.ScreenLimitX = GraphicsDevice.Viewport.Width;
+            player.ScreenLimitY = GraphicsDevice.Viewport.Height;
 
-            // Set a constant player move speed
-            playerMoveSpeed = 8.0f;
 
+            bgLayer1 = new Background();
+            bgLayer2 = new Background();
+            bgLayer3 = new Background();
             base.Initialize();
         }
 
@@ -67,6 +59,11 @@ namespace Shooter
             player.Initialize(Content.Load<Texture2D>("ship"), playerPosition);
 
 
+            bgLayer1.Initialize(Content, "bg_4", GraphicsDevice.Viewport.Width, -0.2f);
+            bgLayer2.Initialize(Content, "bg_3", GraphicsDevice.Viewport.Width, -0.6f);
+            bgLayer3.Initialize(Content, "bg_5", GraphicsDevice.Viewport.Width, -1.6f);
+
+
         }
 
 
@@ -76,23 +73,19 @@ namespace Shooter
         }
 
 
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+       
         protected override void Update(GameTime gameTime)
         {
-            // Save the previous state of the keyboard and game pad so we can determinesingle key/button presses
-            previousGamePadState = currentGamePadState;
-            previousKeyboardState = currentKeyboardState;
 
-            // Read the current state of the keyboard and gamepad and store it
-            currentKeyboardState = Keyboard.GetState();
-            currentGamePadState = GamePad.GetState(PlayerIndex.One);
-
-
+            bgLayer1.Update();
+            bgLayer2.Update();
+            bgLayer3.Update();
+            PLAYER_INPUT.Update();
             //Update the player
-            UpdatePlayer(gameTime);
+            player.Update();
+          //  UpdatePlayer(gameTime);
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            if (PLAYER_INPUT.QUIT) this.Exit();
             base.Update(gameTime);
         }
 
@@ -100,47 +93,25 @@ namespace Shooter
         private void UpdatePlayer(GameTime gameTime)
         {
 
-            // Get Thumbstick Controls
-            player.Position.X += currentGamePadState.ThumbSticks.Left.X * playerMoveSpeed;
-            player.Position.Y -= currentGamePadState.ThumbSticks.Left.Y * playerMoveSpeed;
-
-            // Use the Keyboard / Dpad
-            if (currentKeyboardState.IsKeyDown(Keys.Left) ||
-            currentGamePadState.DPad.Left == ButtonState.Pressed)
-            {
-                player.Position.X -= playerMoveSpeed;
-            }
-            if (currentKeyboardState.IsKeyDown(Keys.Right) ||
-            currentGamePadState.DPad.Right == ButtonState.Pressed)
-            {
-                player.Position.X += playerMoveSpeed;
-            }
-            if (currentKeyboardState.IsKeyDown(Keys.Up) ||
-            currentGamePadState.DPad.Up == ButtonState.Pressed)
-            {
-                player.Position.Y -= playerMoveSpeed;
-            }
-            if (currentKeyboardState.IsKeyDown(Keys.Down) ||
-            currentGamePadState.DPad.Down == ButtonState.Pressed)
-            {
-                player.Position.Y += playerMoveSpeed;
-            }
-
-            // Make sure that the player does not go out of bounds
-            player.Position.X = MathHelper.Clamp(player.Position.X, 0, GraphicsDevice.Viewport.Width - player.Width);
-            player.Position.Y = MathHelper.Clamp(player.Position.Y, 0, GraphicsDevice.Viewport.Height - player.Height);
+            
         }
 
         protected override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.DarkCyan);
 
             // Start drawing
             spriteBatch.Begin();
 
+            // Draw the moving background
+            bgLayer1.Draw(spriteBatch);
+            bgLayer2.Draw(spriteBatch);
+            bgLayer3.Draw(spriteBatch);
             // Draw the Player
             player.Draw(spriteBatch);
+
+            
 
             // Stop drawing
             spriteBatch.End();

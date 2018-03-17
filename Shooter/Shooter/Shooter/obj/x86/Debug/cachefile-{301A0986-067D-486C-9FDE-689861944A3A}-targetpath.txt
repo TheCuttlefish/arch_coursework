@@ -17,3 +17,5 @@ Content\Sound\menuMusic.xnb
 Content\Sound\menuMusic.wma
 Content\gameFont.xnb
 Content\ship.xnb
+Content\enemy.xnb
+Content\bullet.xnb

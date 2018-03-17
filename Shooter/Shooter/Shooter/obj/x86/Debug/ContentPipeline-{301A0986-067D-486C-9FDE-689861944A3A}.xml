@@ -156,6 +156,24 @@
       <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\ship.xnb</Output>
       <Time>2018-03-17T12:52:55.3166045+00:00</Time>
     </Item>
+    <Item>
+      <Source>enemy.png</Source>
+      <Name>enemy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\enemy.xnb</Output>
+      <Time>2018-03-17T13:28:10.8004972+00:00</Time>
+    </Item>
+    <Item>
+      <Source>bullet.png</Source>
+      <Name>bullet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bullet.xnb</Output>
+      <Time>2018-03-17T13:30:08.3941141+00:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{301A0986-067D-486C-9FDE-689861944A3A}</ContentProjectGUID>

@@ -1,0 +1,2 @@
+- encapsulating player functionanilty into player made game class more clean and easy to read
+- making player input class - made code more clean

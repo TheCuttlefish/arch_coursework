@@ -25,3 +25,5 @@ F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\obj\x86\Debug\S
 F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
 F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\obj\x86\Debug\MyGame.csprojResolveAssemblyReference.cache
 F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\ship.xnb
+F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\enemy.xnb
+F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bullet.xnb
