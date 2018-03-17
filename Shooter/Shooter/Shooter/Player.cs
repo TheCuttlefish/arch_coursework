@@ -3,53 +3,28 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace Shooter
 {
-    class Player
+    class Player 
     {
         // Animation representing the player
         public Texture2D PlayerTexture;
 
         // Position of the Player relative to the upper left side of the screen
         public Vector2 Position;
-      
-        // State of the player
         public bool Active;
-
-        // Amount of hit points that player has
         public int Health;
-
-        // Get the width of the player ship
-        public int Width
-        {
-            get { return PlayerTexture.Width; }
-        }
-
-        // Get the height of the player ship
-        public int Height
-        {
-           
-            get { return PlayerTexture.Height; }
-
-            
-        }
-
-        float playerMoveSpeed = 8.0f;
+        public int Width { get { return PlayerTexture.Width; } }
+        public int Height { get { return PlayerTexture.Height; } }
+        float rotation = 0.0f;
+        float speed = 8.0f;
         public int ScreenLimitX;
         public int ScreenLimitY;
 
       
-        public void Initialize(Texture2D texture, Vector2 position)
-        {
-
-            
+        public void Initialize(Texture2D texture, Vector2 position) {
+ 
             PlayerTexture = texture;
-
-            // Set the starting position of the player around the middle of the screen and to the back
             Position = position;
-
-            // Set the player to be active
             Active = true;
-
-            // Set the player health
             Health = 100;
             
         }
@@ -59,32 +34,43 @@ namespace Shooter
         {
             Movement();
         }
-
+        float xSpeed = 0.0f;
+        float ySpeed = 0.0f;
+        const float MAX_SPEED = 15.0f;
+        const float ACCEL = 5.0f;
+        const float DEACCEL = 10.0f;
         public void Movement()
         {
-
-
              // Get Thumbstick Controls
-            Position.X += PLAYER_INPUT.THUMBSTICK_LEFT_X * playerMoveSpeed;
-            Position.Y -= PLAYER_INPUT.THUMBSTICK_LEFT_Y * playerMoveSpeed;
-            
-            // Use the Keyboard / Dpad
-            // - maybe make am iput class later
-            if ( PLAYER_INPUT.LEFT ) Position.X -= playerMoveSpeed; 
-            if (PLAYER_INPUT.RIGHT) Position.X += playerMoveSpeed;
-            if (PLAYER_INPUT.UP) Position.Y -= playerMoveSpeed;
-            if (PLAYER_INPUT.DOWN) Position.Y += playerMoveSpeed;
-            
+            Position.X += PLAYER_INPUT.THUMBSTICK_LEFT_X * speed;
+            Position.Y -= PLAYER_INPUT.THUMBSTICK_LEFT_Y * speed;
 
-            // Make sure that the player does not go out of bounds
-            Position.X = MathHelper.Clamp(Position.X, 0, ScreenLimitX - Width);
-            Position.Y = MathHelper.Clamp(Position.Y, 0, ScreenLimitY - Height);
+            // Use the Keyboard / Dpad
+            
+            //float ySpeed = 1.0f;
+            // - maybe make am iput class later
+            if (PLAYER_INPUT.LEFT) xSpeed -= (xSpeed - MAX_SPEED) / ACCEL;
+            if (PLAYER_INPUT.RIGHT) xSpeed -= (xSpeed + MAX_SPEED) / ACCEL;
+            if (PLAYER_INPUT.UP) ySpeed -= (ySpeed - MAX_SPEED) / ACCEL;
+            if (PLAYER_INPUT.DOWN) ySpeed -= (ySpeed + MAX_SPEED) / ACCEL;
+
+            xSpeed -= (xSpeed - 0) / DEACCEL;
+            Position.X -= xSpeed;
+            ySpeed -= (ySpeed - 0) / DEACCEL;
+            Position.Y -= ySpeed;
+
+            //rotation
+            rotation = -xSpeed / 50;
+
+            // Clamp to screen
+            Position.X = MathHelper.Clamp(Position.X, Width / 2, ScreenLimitX - Width/2);
+            Position.Y = MathHelper.Clamp(Position.Y, Height / 2, ScreenLimitY - Height/2);
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(PlayerTexture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(PlayerTexture, Position, null, Color.White, rotation, new Vector2(32,32), 1f, SpriteEffects.None, 0f);
         }
 
 

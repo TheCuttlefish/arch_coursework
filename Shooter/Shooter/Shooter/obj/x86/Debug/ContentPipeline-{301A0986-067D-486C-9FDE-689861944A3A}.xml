@@ -174,6 +174,51 @@
       <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bullet.xnb</Output>
       <Time>2018-03-17T13:30:08.3941141+00:00</Time>
     </Item>
+    <Item>
+      <Source>bg_1.png</Source>
+      <Name>bg_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bg_1.xnb</Output>
+      <Time>2018-03-17T18:59:18.7335203+00:00</Time>
+    </Item>
+    <Item>
+      <Source>bg_2.png</Source>
+      <Name>bg_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bg_2.xnb</Output>
+      <Time>2018-03-17T19:00:31.6638852+00:00</Time>
+    </Item>
+    <Item>
+      <Source>bg_3.png</Source>
+      <Name>bg_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bg_3.xnb</Output>
+      <Time>2018-03-17T19:01:14.5191554+00:00</Time>
+    </Item>
+    <Item>
+      <Source>bg_4.png</Source>
+      <Name>bg_4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bg_4.xnb</Output>
+      <Time>2018-03-17T20:01:51.6072104+00:00</Time>
+    </Item>
+    <Item>
+      <Source>bg_5.png</Source>
+      <Name>bg_5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bg_5.xnb</Output>
+      <Time>2018-03-17T20:08:12.2001911+00:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{301A0986-067D-486C-9FDE-689861944A3A}</ContentProjectGUID>
