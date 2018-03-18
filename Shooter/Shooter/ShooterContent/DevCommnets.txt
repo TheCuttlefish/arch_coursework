@@ -4,5 +4,6 @@
 - input is very useful
 - I'm trying to keep GAME class as empty as possible ( so that all data, functions are done else where), game is for main interaction.... if that makes sense
 - so I keep objects that I need to draw in a list, that simplifies the code a lot
-- I had to create Entity Base class to acieve that
+- I had to create Entity Abstract class to achieve that ( with virtual method)
 - which is useful , again entity class can hide some of the common funcitnality such as positions and texture and active etc.
+- I've places all the update objefcts in list so it's to manage them. do I need garbage collecttion ?

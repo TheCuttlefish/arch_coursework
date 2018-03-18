@@ -33,3 +33,7 @@ F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\C
 F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bg_4.xnb
 F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\bg_5.xnb
 F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\ship2.xnb
+F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\smoke.xnb
+F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\smoke2.xnb
+F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\smoke3.xnb
+F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\smoke4.xnb

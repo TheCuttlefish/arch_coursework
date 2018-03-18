@@ -8,7 +8,7 @@ namespace Shooter
     class Background : Entity
     {
 
-        Texture2D texture;
+        
 
         // An array of positions of the parallaxing background
         Vector2[] positions;
@@ -34,7 +34,7 @@ namespace Shooter
                 positions[i] = new Vector2(0, i * texture.Height);
             }
         }
-        public void Update()
+        public override void Update()
         {
             // Update the positions of the background
             for (int i = 0; i < positions.Length; i++)

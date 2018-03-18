@@ -6,36 +6,35 @@ namespace Shooter
 {
     class Bullet : Entity
     {
-        public Texture2D Texture;
+
         public int Damage;
         Viewport viewport;
-        float rotation;
-        public int Width { get { return Texture.Width; } }
-        public int Height { get { return Texture.Height; } }
+        public int Width { get { return texture.Width; } }
+        public int Height { get { return texture.Height; } }
         float projectileMoveSpeed;
 
 
         public void Initialize(Viewport viewport, Texture2D texture, Vector2 position, float angle)
         {
             rotation = angle;
-            Texture = texture;
-            Position = position;
+            this.texture = texture;
+            base.position = position;
             this.viewport = viewport;
-            Active = true;
+            active = true;
             Damage = 2;
             projectileMoveSpeed = 20f;
 
         }
-        public void Update()
+        public override void Update()
         {
 
-            Position.Y -= projectileMoveSpeed;
-            Position.X -= rotation;
-            if (Position.Y + Texture.Height / 2 < -50) Active = false;
+            position.Y -= projectileMoveSpeed;
+            position.X -= rotation;
+            if (position.Y + texture.Height / 2 < -50) active = false;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, null, Color.White, - rotation/40,
+            spriteBatch.Draw(texture, position, null, Color.White, - rotation/40,
             new Vector2(Width / 2, Height/2 ), 1f, SpriteEffects.None, 0f);
         }
     }

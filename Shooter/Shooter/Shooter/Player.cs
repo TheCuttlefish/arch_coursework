@@ -5,29 +5,27 @@ namespace Shooter
 {
     class Player : Entity
     {
-        // Animation representing the player
-        public Texture2D PlayerTexture;
 
         // Position of the Player relative to the upper left side of the screen
         public int Health;
-        public int Width { get { return PlayerTexture.Width; } }
-        public int Height { get { return PlayerTexture.Height; } }
-        float rotation = 0.0f;
-        public int ScreenLimitX;
-        public int ScreenLimitY;
+        public int Width { get { return texture.Width; } }
+        public int Height { get { return texture.Height; } }
+       
+        public int screenLimitX;
+        public int screenLimitY;
 
       
         public void Initialize(Texture2D texture, Vector2 position) {
  
-            PlayerTexture = texture;
-            Position = position;
-            Active = true;
+            this.texture = texture;
+            base.position = position;
+            active = true;
             Health = 100;
             
         }
 
 
-        public void Update()
+        public override void Update()
         {
             Movement();
         }
@@ -51,22 +49,22 @@ namespace Shooter
             if (PLAYER_INPUT.DOWN) ySpeed -= (ySpeed + MAX_SPEED) / ACCEL;
 
             xSpeed -= (xSpeed - 0) / DEACCEL;
-            Position.X -= xSpeed;
+            position.X -= xSpeed;
             ySpeed -= (ySpeed - 0) / DEACCEL;
-            Position.Y -= ySpeed;
+            position.Y -= ySpeed;
 
             //rotation
             rotation = -xSpeed / 50;
 
             // Clamp to screen
-            Position.X = MathHelper.Clamp(Position.X, Width / 2, ScreenLimitX - Width/2);
-            Position.Y = MathHelper.Clamp(Position.Y, Height / 2, ScreenLimitY - Height/2);
+            position.X = MathHelper.Clamp(position.X, Width / 2, screenLimitX - Width/2);
+            position.Y = MathHelper.Clamp(position.Y, Height / 2, screenLimitY - Height/2);
 
         }
 
           public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(PlayerTexture, Position, null, Color.White, rotation, new Vector2(32,32), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position, null, Color.White, rotation, new Vector2(32,32), 1f, SpriteEffects.None, 0f);
         }
 
 

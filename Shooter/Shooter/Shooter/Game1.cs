@@ -18,13 +18,13 @@ namespace Shooter
         Player player;
         // Image used to display the static background
         Texture2D projectileTexture;
-        List<Bullet> projectiles;
+        Texture2D smokeTexture;
         List<Entity> objectsToDraw;
+        List<Entity> updateList;
 
         // The rate of fire of the player laser
         TimeSpan fireTime;
         TimeSpan previousFireTime;
-
 
         // Parallaxing Layers
         Background bgLayer1;
@@ -43,18 +43,21 @@ namespace Shooter
         protected override void Initialize()
         {
             
+            objectsToDraw = new List<Entity>();
+            updateList = new List<Entity>();
 
             player = new Player();
-            player.ScreenLimitX = GraphicsDevice.Viewport.Width;
-            player.ScreenLimitY = GraphicsDevice.Viewport.Height;
-
-            projectiles = new List<Bullet>();
-            objectsToDraw = new List<Entity>();
+            updateList.Add(player);
+            player.screenLimitX = GraphicsDevice.Viewport.Width;
+            player.screenLimitY = GraphicsDevice.Viewport.Height;
             fireTime = TimeSpan.FromSeconds(.15f);
 
             bgLayer1 = new Background();
+            updateList.Add(bgLayer1);
             bgLayer2 = new Background();
+            updateList.Add(bgLayer2);
             bgLayer3 = new Background();
+            updateList.Add(bgLayer3);
             base.Initialize();
         }
 
@@ -63,21 +66,18 @@ namespace Shooter
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-            // Load the player resources 
+            //loadging my resourses
             Vector2 playerPosition = new Vector2((GraphicsDevice.Viewport.TitleSafeArea.Width / 2) -32, GraphicsDevice.Viewport.TitleSafeArea.Height -32);
             player.Initialize(Content.Load<Texture2D>("ship2"), playerPosition);
             objectsToDraw.Add(player);
-            //bullet
             projectileTexture = Content.Load<Texture2D>("bullet");
-
+            smokeTexture = Content.Load<Texture2D>("smoke2");
             bgLayer1.Initialize(Content, "bg_4", GraphicsDevice.Viewport.Width, -0.2f);
             objectsToDraw.Add(bgLayer1);
             bgLayer2.Initialize(Content, "bg_3", GraphicsDevice.Viewport.Width, -0.3f);
             objectsToDraw.Add(bgLayer2);
             bgLayer3.Initialize(Content, "bg_5", GraphicsDevice.Viewport.Width, -0.4f);
             objectsToDraw.Add(bgLayer3);
-
 
         }
 
@@ -87,89 +87,87 @@ namespace Shooter
             // TODO: Unload any non ContentManager content here
         }
 
-
-       
         protected override void Update(GameTime gameTime)
         {
+            PLAYER_INPUT.Update(); // update Input
+            UpdateEntities();
+            GameLogic(gameTime);
 
-            UpdateProjectiles();
-
-            // Fire only every interval we set as the fireTime
-            if (gameTime.TotalGameTime - previousFireTime > fireTime && PLAYER_INPUT.FIRE)
-            {
-                // Reset our current time
-                previousFireTime = gameTime.TotalGameTime;
-
-                // Add the projectile, but add it to the front and center of the player
-                AddProjectile(player.Position);
-
-            }
-
-           
-            //this can be a list
-            bgLayer1.Update();
-            bgLayer2.Update();
-            bgLayer3.Update();
-            PLAYER_INPUT.Update();
-            //Update the player
-            player.Update();
-          //  UpdatePlayer(gameTime);
-
-
-            // Allows the game to exit
-            if (PLAYER_INPUT.QUIT) this.Exit();
             base.Update(gameTime);
         }
 
 
         protected override void Draw(GameTime gameTime)
         {
-
             GraphicsDevice.Clear(Color.DarkCyan);
-
-            // Start drawing
             spriteBatch.Begin();
-
-           // draw objects
-            for (int i = objectsToDraw.Count - 1; i >= 0; i--)
-            {
-                objectsToDraw[i].Draw(spriteBatch);
-                if (objectsToDraw[i].Active == false)
-                { //remove unactive ones
-                    objectsToDraw.RemoveAt(i);
-                }
-            }
-
-            // Stop drawing
+            DrawEntities();
             spriteBatch.End();
-
             base.Draw(gameTime);
         }
 
         // other functions
+
+        private void DrawEntities()
+        {
+            for (int i = objectsToDraw.Count - 1; i >= 0; i--)
+            {
+                objectsToDraw[i].Draw(spriteBatch);
+                if (objectsToDraw[i].active == false)
+                { //remove unactive ones
+                    objectsToDraw.RemoveAt(i);
+                }
+            }
+        }
+
+        private void UpdateEntities()
+        {
+            for (int i = updateList.Count - 1; i >= 0; i--)
+            {
+                updateList[i].Update();
+                if (updateList[i].active == false)
+                {
+                   // updateList[i] = null; - garbage collection?
+                    updateList.RemoveAt(i);
+             
+                }
+            }
+        }
+
+        private void GameLogic(GameTime gameTime)
+        {
+            // Fire only every interval we set as the fireTime
+            if (gameTime.TotalGameTime - previousFireTime > fireTime && PLAYER_INPUT.FIRE)
+            {
+                previousFireTime = gameTime.TotalGameTime;
+                AddProjectile(player.position);
+            }
+
+            ShipTrail();
+
+            // Allows the game to exit
+            if (PLAYER_INPUT.QUIT) this.Exit();
+        }
+
         private void AddProjectile(Vector2 position)
         {
             Bullet projectile = new Bullet();
             projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position, player.xSpeed);
-            projectiles.Add(projectile);
+            updateList.Add(projectile);
             objectsToDraw.Add(projectile);
+
+
+
+
         }
 
-        private void UpdateProjectiles()
+        private void ShipTrail()
         {
-            // Update the Projectiles
-            for (int i = projectiles.Count - 1; i >= 0; i--)
-            {
-                projectiles[i].Update();
-
-                if (projectiles[i].Active == false)
-                {
-                    projectiles.RemoveAt(i);
-                }
-            }
-           
-
-
+            Smoke smokeParticle = new Smoke();
+            smokeParticle.Initialize(GraphicsDevice.Viewport, smokeTexture, player.position + new Vector2(0, 32));
+            updateList.Add(smokeParticle);
+            objectsToDraw.Add(smokeParticle);
         }
+
     }
 }
