@@ -24,3 +24,4 @@ Content\bg_2.xnb
 Content\bg_3.xnb
 Content\bg_4.xnb
 Content\bg_5.xnb
+Content\ship2.xnb

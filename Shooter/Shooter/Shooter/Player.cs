@@ -31,7 +31,7 @@ namespace Shooter
         {
             Movement();
         }
-        float xSpeed = 0.0f;
+       public  float xSpeed = 0.0f;
         float ySpeed = 0.0f;
         const float MAX_SPEED = 15.0f;
         const float ACCEL = 5.0f;

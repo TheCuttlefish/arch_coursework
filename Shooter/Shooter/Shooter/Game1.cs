@@ -66,7 +66,7 @@ namespace Shooter
 
             // Load the player resources 
             Vector2 playerPosition = new Vector2((GraphicsDevice.Viewport.TitleSafeArea.Width / 2) -32, GraphicsDevice.Viewport.TitleSafeArea.Height -32);
-            player.Initialize(Content.Load<Texture2D>("ship"), playerPosition);
+            player.Initialize(Content.Load<Texture2D>("ship2"), playerPosition);
             objectsToDraw.Add(player);
             //bullet
             projectileTexture = Content.Load<Texture2D>("bullet");
@@ -106,7 +106,7 @@ namespace Shooter
             }
 
            
-
+            //this can be a list
             bgLayer1.Update();
             bgLayer2.Update();
             bgLayer3.Update();
@@ -131,15 +131,17 @@ namespace Shooter
             spriteBatch.Begin();
 
            // draw objects
-            for (int i = 0; i < objectsToDraw.Count; i++)
+            for (int i = objectsToDraw.Count - 1; i >= 0; i--)
             {
-                   objectsToDraw[i].Draw(spriteBatch);
+                objectsToDraw[i].Draw(spriteBatch);
+                if (objectsToDraw[i].Active == false)
+                { //remove unactive ones
+                    objectsToDraw.RemoveAt(i);
+                }
             }
 
             // Stop drawing
             spriteBatch.End();
-
-
 
             base.Draw(gameTime);
         }
@@ -148,7 +150,7 @@ namespace Shooter
         private void AddProjectile(Vector2 position)
         {
             Bullet projectile = new Bullet();
-            projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position);
+            projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position, player.xSpeed);
             projectiles.Add(projectile);
             objectsToDraw.Add(projectile);
         }
@@ -165,15 +167,7 @@ namespace Shooter
                     projectiles.RemoveAt(i);
                 }
             }
-
-            for (int i = objectsToDraw.Count - 1; i >= 0; i--)
-            {
-             
-                if (objectsToDraw[i].Active == false)
-                {
-                    objectsToDraw.RemoveAt(i);
-                }
-            }
+           
 
 
         }

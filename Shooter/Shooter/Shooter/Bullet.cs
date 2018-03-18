@@ -9,13 +9,15 @@ namespace Shooter
         public Texture2D Texture;
         public int Damage;
         Viewport viewport;
+        float rotation;
         public int Width { get { return Texture.Width; } }
         public int Height { get { return Texture.Height; } }
         float projectileMoveSpeed;
 
 
-        public void Initialize(Viewport viewport, Texture2D texture, Vector2 position)
+        public void Initialize(Viewport viewport, Texture2D texture, Vector2 position, float angle)
         {
+            rotation = angle;
             Texture = texture;
             Position = position;
             this.viewport = viewport;
@@ -28,13 +30,13 @@ namespace Shooter
         {
 
             Position.Y -= projectileMoveSpeed;
-
-            if (Position.Y + Texture.Height / 2 < 50) Active = false;
+            Position.X -= rotation;
+            if (Position.Y + Texture.Height / 2 < -50) Active = false;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, null, Color.White, 0f,
-            new Vector2(Width / 2, Height / 2), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture, Position, null, Color.White, - rotation/40,
+            new Vector2(Width / 2, Height/2 ), 1f, SpriteEffects.None, 0f);
         }
     }
 }

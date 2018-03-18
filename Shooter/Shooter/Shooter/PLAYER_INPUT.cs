@@ -41,7 +41,7 @@ namespace Shooter
             UP = currentKeyboardState.IsKeyDown(Keys.Up) || currentKeyboardState.IsKeyDown(Keys.W) || currentGamePadState.DPad.Up == ButtonState.Pressed;
             DOWN = currentKeyboardState.IsKeyDown(Keys.Down) || currentKeyboardState.IsKeyDown(Keys.S) || currentGamePadState.DPad.Down == ButtonState.Pressed;
 
-            FIRE = currentKeyboardState.IsKeyDown(Keys.Space) || currentGamePadState.IsButtonDown(Buttons.A);
+            FIRE = currentKeyboardState.IsKeyDown(Keys.Space) || currentGamePadState.IsButtonDown(Buttons.A) || currentGamePadState.IsButtonDown(Buttons.RightTrigger);
 
             THUMBSTICK_LEFT_X = currentGamePadState.ThumbSticks.Left.X;
             THUMBSTICK_LEFT_Y = currentGamePadState.ThumbSticks.Left.Y;
