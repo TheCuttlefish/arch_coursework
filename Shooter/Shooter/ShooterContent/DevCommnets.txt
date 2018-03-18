@@ -8,4 +8,4 @@
 - which is useful , again entity class can hide some of the common funcitnality such as positions and texture and active etc.
 - I've places all the update objefcts in list so it's to manage them. do I need garbage collecttion ?
 - added pause - it was a bit diff, due to input , but that was easy because input class allows that
-- removed base.update not sure what that is doing
+- removed base.update(gameTime); and  base.Draw(gameTime); I'm not using XNA components

@@ -98,8 +98,6 @@ namespace Shooter
             if (paused) return;
                 UpdateEntities();
                 GameLogic(gameTime);
-               // base.Update(gameTime);// what is this??(game works without it)
-
         }
 
 
@@ -109,7 +107,6 @@ namespace Shooter
             spriteBatch.Begin();
             DrawEntities();
             spriteBatch.End();
-            base.Draw(gameTime);
         }
 
         // other functions
