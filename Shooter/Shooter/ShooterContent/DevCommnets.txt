@@ -1,2 +1,8 @@
 - encapsulating player functionanilty into player made game class more clean and easy to read
 - making player input class - made code more clean
+- thinking to add draw forloops so that objects can subscibe if they need to be drawn
+- input is very useful
+- I'm trying to keep GAME class as empty as possible ( so that all data, functions are done else where), game is for main interaction.... if that makes sense
+- so I keep objects that I need to draw in a list, that simplifies the code a lot
+- I had to create Entity Base class to acieve that
+- which is useful , again entity class can hide some of the common funcitnality such as positions and texture and active etc.

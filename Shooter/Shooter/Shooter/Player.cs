@@ -3,19 +3,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace Shooter
 {
-    class Player 
+    class Player : Entity
     {
         // Animation representing the player
         public Texture2D PlayerTexture;
 
         // Position of the Player relative to the upper left side of the screen
-        public Vector2 Position;
-        public bool Active;
         public int Health;
         public int Width { get { return PlayerTexture.Width; } }
         public int Height { get { return PlayerTexture.Height; } }
         float rotation = 0.0f;
-        float speed = 8.0f;
         public int ScreenLimitX;
         public int ScreenLimitY;
 
@@ -67,7 +64,7 @@ namespace Shooter
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+          public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(PlayerTexture, Position, null, Color.White, rotation, new Vector2(32,32), 1f, SpriteEffects.None, 0f);
         }

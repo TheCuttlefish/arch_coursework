@@ -19,6 +19,7 @@ namespace Shooter
         // Image used to display the static background
         Texture2D projectileTexture;
         List<Bullet> projectiles;
+        List<Entity> objectsToDraw;
 
         // The rate of fire of the player laser
         TimeSpan fireTime;
@@ -48,6 +49,7 @@ namespace Shooter
             player.ScreenLimitY = GraphicsDevice.Viewport.Height;
 
             projectiles = new List<Bullet>();
+            objectsToDraw = new List<Entity>();
             fireTime = TimeSpan.FromSeconds(.15f);
 
             bgLayer1 = new Background();
@@ -64,16 +66,17 @@ namespace Shooter
 
             // Load the player resources 
             Vector2 playerPosition = new Vector2((GraphicsDevice.Viewport.TitleSafeArea.Width / 2) -32, GraphicsDevice.Viewport.TitleSafeArea.Height -32);
-            //  Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
             player.Initialize(Content.Load<Texture2D>("ship"), playerPosition);
-
-
+            objectsToDraw.Add(player);
             //bullet
             projectileTexture = Content.Load<Texture2D>("bullet");
 
             bgLayer1.Initialize(Content, "bg_4", GraphicsDevice.Viewport.Width, -0.2f);
+            objectsToDraw.Add(bgLayer1);
             bgLayer2.Initialize(Content, "bg_3", GraphicsDevice.Viewport.Width, -0.3f);
+            objectsToDraw.Add(bgLayer2);
             bgLayer3.Initialize(Content, "bg_5", GraphicsDevice.Viewport.Width, -0.4f);
+            objectsToDraw.Add(bgLayer3);
 
 
         }
@@ -111,17 +114,13 @@ namespace Shooter
             //Update the player
             player.Update();
           //  UpdatePlayer(gameTime);
+
+
             // Allows the game to exit
             if (PLAYER_INPUT.QUIT) this.Exit();
             base.Update(gameTime);
         }
 
-
-        private void UpdatePlayer(GameTime gameTime)
-        {
-
-            
-        }
 
         protected override void Draw(GameTime gameTime)
         {
@@ -131,16 +130,10 @@ namespace Shooter
             // Start drawing
             spriteBatch.Begin();
 
-            // Draw the moving background
-            bgLayer1.Draw(spriteBatch);
-            bgLayer2.Draw(spriteBatch);
-            bgLayer3.Draw(spriteBatch);
-            // Draw the Player
-            player.Draw(spriteBatch);
-            //bullets
-            for (int i = 0; i < projectiles.Count; i++)
+           // draw objects
+            for (int i = 0; i < objectsToDraw.Count; i++)
             {
-                projectiles[i].Draw(spriteBatch);
+                   objectsToDraw[i].Draw(spriteBatch);
             }
 
             // Stop drawing
@@ -157,6 +150,7 @@ namespace Shooter
             Bullet projectile = new Bullet();
             projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position);
             projectiles.Add(projectile);
+            objectsToDraw.Add(projectile);
         }
 
         private void UpdateProjectiles()
@@ -171,6 +165,17 @@ namespace Shooter
                     projectiles.RemoveAt(i);
                 }
             }
+
+            for (int i = objectsToDraw.Count - 1; i >= 0; i--)
+            {
+             
+                if (objectsToDraw[i].Active == false)
+                {
+                    objectsToDraw.RemoveAt(i);
+                }
+            }
+
+
         }
     }
 }

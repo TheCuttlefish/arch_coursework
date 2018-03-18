@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shooter
 {
-    class Background
+    class Background : Entity
     {
 
         Texture2D texture;
@@ -62,7 +62,7 @@ namespace Shooter
                 }
             }
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < positions.Length; i++)
             {

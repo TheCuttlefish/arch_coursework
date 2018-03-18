@@ -4,11 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shooter
 {
-    class Bullet
+    class Bullet : Entity
     {
         public Texture2D Texture;
-        public Vector2 Position;
-        public bool Active;
         public int Damage;
         Viewport viewport;
         public int Width { get { return Texture.Width; } }
@@ -31,9 +29,9 @@ namespace Shooter
 
             Position.Y -= projectileMoveSpeed;
 
-            if (Position.Y + Texture.Height / 2 < 0) Active = false;
+            if (Position.Y + Texture.Height / 2 < 50) Active = false;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Position, null, Color.White, 0f,
             new Vector2(Width / 2, Height / 2), 1f, SpriteEffects.None, 0f);
