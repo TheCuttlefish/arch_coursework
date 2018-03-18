@@ -17,6 +17,13 @@ namespace Shooter
     {
         Player player;
         // Image used to display the static background
+        Texture2D projectileTexture;
+        List<Bullet> projectiles;
+
+        // The rate of fire of the player laser
+        TimeSpan fireTime;
+        TimeSpan previousFireTime;
+
 
         // Parallaxing Layers
         Background bgLayer1;
@@ -40,6 +47,8 @@ namespace Shooter
             player.ScreenLimitX = GraphicsDevice.Viewport.Width;
             player.ScreenLimitY = GraphicsDevice.Viewport.Height;
 
+            projectiles = new List<Bullet>();
+            fireTime = TimeSpan.FromSeconds(.15f);
 
             bgLayer1 = new Background();
             bgLayer2 = new Background();
@@ -59,6 +68,9 @@ namespace Shooter
             player.Initialize(Content.Load<Texture2D>("ship"), playerPosition);
 
 
+            //bullet
+            projectileTexture = Content.Load<Texture2D>("bullet");
+
             bgLayer1.Initialize(Content, "bg_4", GraphicsDevice.Viewport.Width, -0.2f);
             bgLayer2.Initialize(Content, "bg_3", GraphicsDevice.Viewport.Width, -0.3f);
             bgLayer3.Initialize(Content, "bg_5", GraphicsDevice.Viewport.Width, -0.4f);
@@ -76,6 +88,21 @@ namespace Shooter
        
         protected override void Update(GameTime gameTime)
         {
+
+            UpdateProjectiles();
+
+            // Fire only every interval we set as the fireTime
+            if (gameTime.TotalGameTime - previousFireTime > fireTime && PLAYER_INPUT.FIRE)
+            {
+                // Reset our current time
+                previousFireTime = gameTime.TotalGameTime;
+
+                // Add the projectile, but add it to the front and center of the player
+                AddProjectile(player.Position);
+
+            }
+
+           
 
             bgLayer1.Update();
             bgLayer2.Update();
@@ -110,8 +137,11 @@ namespace Shooter
             bgLayer3.Draw(spriteBatch);
             // Draw the Player
             player.Draw(spriteBatch);
-
-            
+            //bullets
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                projectiles[i].Draw(spriteBatch);
+            }
 
             // Stop drawing
             spriteBatch.End();
@@ -119,6 +149,28 @@ namespace Shooter
 
 
             base.Draw(gameTime);
+        }
+
+        // other functions
+        private void AddProjectile(Vector2 position)
+        {
+            Bullet projectile = new Bullet();
+            projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position);
+            projectiles.Add(projectile);
+        }
+
+        private void UpdateProjectiles()
+        {
+            // Update the Projectiles
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+            {
+                projectiles[i].Update();
+
+                if (projectiles[i].Active == false)
+                {
+                    projectiles.RemoveAt(i);
+                }
+            }
         }
     }
 }

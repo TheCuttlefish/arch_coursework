@@ -41,14 +41,13 @@ namespace Shooter
         const float DEACCEL = 10.0f;
         public void Movement()
         {
-             // Get Thumbstick Controls
-            Position.X += PLAYER_INPUT.THUMBSTICK_LEFT_X * speed;
-            Position.Y -= PLAYER_INPUT.THUMBSTICK_LEFT_Y * speed;
+             // Joystick
+            if (PLAYER_INPUT.THUMBSTICK_LEFT_X < -0.1f )xSpeed -= (xSpeed - MAX_SPEED) / ACCEL;
+            if (PLAYER_INPUT.THUMBSTICK_LEFT_X > 0.1f) xSpeed -= (xSpeed + MAX_SPEED) / ACCEL;
+            if (PLAYER_INPUT.THUMBSTICK_LEFT_Y < -0.1f) ySpeed -= (ySpeed + MAX_SPEED) / ACCEL;
+            if (PLAYER_INPUT.THUMBSTICK_LEFT_Y > 0.1f) ySpeed -= (ySpeed - MAX_SPEED) / ACCEL;
 
-            // Use the Keyboard / Dpad
-            
-            //float ySpeed = 1.0f;
-            // - maybe make am iput class later
+             // Keyboard
             if (PLAYER_INPUT.LEFT) xSpeed -= (xSpeed - MAX_SPEED) / ACCEL;
             if (PLAYER_INPUT.RIGHT) xSpeed -= (xSpeed + MAX_SPEED) / ACCEL;
             if (PLAYER_INPUT.UP) ySpeed -= (ySpeed - MAX_SPEED) / ACCEL;
