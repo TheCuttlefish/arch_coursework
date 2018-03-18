@@ -34,6 +34,9 @@ namespace Shooter
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+
+        bool paused = false;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -89,11 +92,14 @@ namespace Shooter
 
         protected override void Update(GameTime gameTime)
         {
+           
             PLAYER_INPUT.Update(); // update Input
-            UpdateEntities();
-            GameLogic(gameTime);
+            PauseLogic();
+            if (paused) return;
+                UpdateEntities();
+                GameLogic(gameTime);
+               // base.Update(gameTime);// what is this??(game works without it)
 
-            base.Update(gameTime);
         }
 
 
@@ -136,6 +142,9 @@ namespace Shooter
 
         private void GameLogic(GameTime gameTime)
         {
+
+            
+
             // Fire only every interval we set as the fireTime
             if (gameTime.TotalGameTime - previousFireTime > fireTime && PLAYER_INPUT.FIRE)
             {
@@ -152,7 +161,7 @@ namespace Shooter
         private void AddProjectile(Vector2 position)
         {
             Bullet projectile = new Bullet();
-            projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position, player.xSpeed);
+            projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position, player.speedX);
             updateList.Add(projectile);
             objectsToDraw.Add(projectile);
 
@@ -167,6 +176,14 @@ namespace Shooter
             smokeParticle.Initialize(GraphicsDevice.Viewport, smokeTexture, player.position + new Vector2(0, 32));
             updateList.Add(smokeParticle);
             objectsToDraw.Add(smokeParticle);
+        }
+
+        private void PauseLogic()
+        {
+            if (PLAYER_INPUT.PAUSE)
+            {
+                paused = !paused;
+            }
         }
 
     }

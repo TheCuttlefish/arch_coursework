@@ -26,6 +26,7 @@ namespace Shooter
         public static float THUMBSTICK_LEFT_Y;
         public static bool FIRE;
         public static bool QUIT;
+        public static bool PAUSE;
         
         static public void Update()
         {
@@ -47,6 +48,10 @@ namespace Shooter
             THUMBSTICK_LEFT_Y = currentGamePadState.ThumbSticks.Left.Y;
 
             QUIT =  GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.Back);
+            PAUSE = previousGamePadState.Buttons.Start == ButtonState.Pressed && currentGamePadState.Buttons.Start == ButtonState.Released || 
+                    previousKeyboardState.IsKeyDown(Keys.P) && currentKeyboardState.IsKeyUp(Keys.P);
+            
+
         }
 
 

@@ -7,6 +7,8 @@ namespace Shooter
     class Entity
     {
         public Texture2D texture;
+        public int width { get { return texture.Width; } }
+        public int height { get { return texture.Height; } }
         public Vector2 position;
         public bool active = true;
         public Color colour = Color.White;
