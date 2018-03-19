@@ -9,3 +9,8 @@
 - I've places all the update objefcts in list so it's to manage them. do I need garbage collecttion ?
 - added pause - it was a bit diff, due to input , but that was easy because input class allows that
 - removed base.update(gameTime); and  base.Draw(gameTime); I'm not using XNA components
+- distance collision
+- tags to distinguis the objects
+- refactored collision
+- maybe I should add canCollide true/false state, and only check collision for objects that can collide ( no particles )
+- or have collision List

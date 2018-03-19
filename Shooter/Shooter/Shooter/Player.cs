@@ -67,5 +67,11 @@ namespace Shooter
         }
 
 
+        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2))
+        {
+            alpha = 0.5f;
+        }
+
+
     }
 }

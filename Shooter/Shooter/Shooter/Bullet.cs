@@ -32,8 +32,14 @@ namespace Shooter
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, - rotation/80,
-            new Vector2(width / 2, height/2 ), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position, null, colour * alpha, - rotation/80,
+            new Vector2(width / 2, height/2 ), scale, SpriteEffects.None, 0f);
+        }
+
+        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2))
+        {
+            if(other_tag == "enemy")
+                active = false;
         }
     }
 }
