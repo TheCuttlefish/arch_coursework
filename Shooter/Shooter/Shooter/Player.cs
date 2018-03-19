@@ -12,7 +12,8 @@ namespace Shooter
         public int screenLimitY;
 
         public void Initialize(Texture2D texture, Vector2 position) {
- 
+
+            tag = "player";
             this.texture = texture;
             base.position = position;
             active = true;
@@ -62,7 +63,7 @@ namespace Shooter
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, rotation, new Vector2(32,32), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position, null, colour * alpha, rotation, new Vector2(32,32), 1f, SpriteEffects.None, 0f);
         }
 
 

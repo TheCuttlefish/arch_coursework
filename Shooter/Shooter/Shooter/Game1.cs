@@ -17,7 +17,8 @@ namespace Shooter
     {
         Player player;
         // Image used to display the static background
-        Texture2D projectileTexture;
+        Texture2D bulletTexture;
+        Texture2D enemyTexture;
         Texture2D smokeTexture;
         List<Entity> objectsToDraw;
         List<Entity> updateList;
@@ -34,7 +35,6 @@ namespace Shooter
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-
         bool paused = false;
 
         public Game1()
@@ -42,7 +42,7 @@ namespace Shooter
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
+   
         protected override void Initialize()
         {
             
@@ -62,9 +62,8 @@ namespace Shooter
             bgLayer3 = new Background();
             updateList.Add(bgLayer3);
             base.Initialize();
+            AddEnemies();
         }
-
-
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -73,7 +72,8 @@ namespace Shooter
             Vector2 playerPosition = new Vector2((GraphicsDevice.Viewport.TitleSafeArea.Width / 2) -32, GraphicsDevice.Viewport.TitleSafeArea.Height -32);
             player.Initialize(Content.Load<Texture2D>("ship2"), playerPosition);
             objectsToDraw.Add(player);
-            projectileTexture = Content.Load<Texture2D>("bullet");
+            bulletTexture = Content.Load<Texture2D>("bullet");
+            enemyTexture = Content.Load<Texture2D>("enemy2");
             smokeTexture = Content.Load<Texture2D>("smoke2");
             bgLayer1.Initialize(Content, "bg_4", GraphicsDevice.Viewport.Width, -0.2f);
             objectsToDraw.Add(bgLayer1);
@@ -83,13 +83,21 @@ namespace Shooter
             objectsToDraw.Add(bgLayer3);
 
         }
-
-
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
+        private static double GetDistance(Vector2 point1, Vector2 point2)
+        {
+            //pythagorean theorem c^2 = a^2 + b^2
+            //thus c = square root(a^2 + b^2)
+            double a = (double)(point2.X - point1.X);
+            double b = (double)(point2.Y - point1.Y);
 
+            return Math.Sqrt(a * a + b * b);
+        }
+
+        int timer = 0;
         protected override void Update(GameTime gameTime)
         {
            
@@ -97,10 +105,65 @@ namespace Shooter
             PauseLogic();
             if (paused) return;
                 UpdateEntities();
+            //collision
+            /*
+                        for (int i = updateList.Count - 1; i >= 0; i--)
+                        {
+
+
+                                Vector2 pos1 = updateList[i].position;
+                                Vector2 pos2 = player.position;
+                                if (GetDistance(pos1, pos2) < 45)
+                                    updateList[i].alpha = 0.1f;
+
+
+                        }
+                        */
+
+
+            for (int i = updateList.Count - 1; i >= 0; i--)
+            {
+                for (int j = updateList.Count - 1; j >= 0; j--)
+                {
+
+                   
+                    if (updateList[i].tag == "enemy" && updateList[j].tag == "bullet")
+                    {
+                        Vector2 pos1 = updateList[i].position;
+                        Vector2 pos2 = updateList[j].position;
+                        if (GetDistance(pos1, pos2) < 45)
+                        {
+                           Random rnd = new Random();
+                            updateList[i].alpha -= 0.5f;
+                            updateList[i].position = updateList[i].position + new Vector2(rnd.Next(-10, 10), -10);
+                            updateList[j].active = false;
+                        }
+                    }
+                    if (updateList[i].tag == "enemy" && updateList[j].tag == "player")
+                    {
+                        Vector2 pos1 = updateList[i].position;
+                        Vector2 pos2 = updateList[j].position;
+                        if (GetDistance(pos1, pos2) < 45)
+                        {
+                            updateList[i].alpha = 0.1f;
+                            updateList[j].alpha = 0.1f;
+                        }
+                    }
+
+                }
+            }
+            //
+
+            timer++;
+            if(timer> 250)
+            {
+                enemyNum = 7;
+                AddEnemies();
+                timer = 0;
+            }
+
                 GameLogic(gameTime);
         }
-
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkCyan);
@@ -108,9 +171,7 @@ namespace Shooter
             DrawEntities();
             spriteBatch.End();
         }
-
         // other functions
-
         private void DrawEntities()
         {
             for (int i = objectsToDraw.Count - 1; i >= 0; i--)
@@ -122,7 +183,6 @@ namespace Shooter
                 }
             }
         }
-
         private void UpdateEntities()
         {
             for (int i = updateList.Count - 1; i >= 0; i--)
@@ -136,7 +196,6 @@ namespace Shooter
                 }
             }
         }
-
         private void GameLogic(GameTime gameTime)
         {
 
@@ -154,19 +213,14 @@ namespace Shooter
             // Allows the game to exit
             if (PLAYER_INPUT.QUIT) this.Exit();
         }
-
         private void AddProjectile(Vector2 position)
         {
             Bullet projectile = new Bullet();
-            projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position, player.speedX);
+            projectile.Initialize(GraphicsDevice.Viewport, bulletTexture, position, player.speedX);
             updateList.Add(projectile);
             objectsToDraw.Add(projectile);
 
-
-
-
         }
-
         private void ShipTrail()
         {
             Smoke smokeParticle = new Smoke();
@@ -174,7 +228,20 @@ namespace Shooter
             updateList.Add(smokeParticle);
             objectsToDraw.Add(smokeParticle);
         }
+        int enemyNum = 7;
 
+        private void AddEnemies()
+        {
+           
+            while (enemyNum > 0)
+            {
+                Enemy e = new Enemy();
+                e.Initialize(GraphicsDevice.Viewport, enemyTexture, new Vector2((64+ 38) * enemyNum, -32 ));
+                updateList.Add(e);
+                objectsToDraw.Add(e);
+                enemyNum--;
+            }
+        }
         private void PauseLogic()
         {
             if (PLAYER_INPUT.PAUSE)

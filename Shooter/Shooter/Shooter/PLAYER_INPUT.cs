@@ -50,7 +50,6 @@ namespace Shooter
             QUIT =  GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.Back);
             PAUSE = previousGamePadState.Buttons.Start == ButtonState.Pressed && currentGamePadState.Buttons.Start == ButtonState.Released || 
                     previousKeyboardState.IsKeyDown(Keys.P) && currentKeyboardState.IsKeyUp(Keys.P);
-            
 
         }
 

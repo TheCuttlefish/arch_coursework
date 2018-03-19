@@ -20,7 +20,6 @@ namespace Shooter
             projectileMoveSpeed = 5f + rnd.Next(-2,2);
             rotation = rnd.Next(0, 360);
         }
-
         public override void Update()
         {
             if( alpha> 0.0f )
@@ -30,7 +29,6 @@ namespace Shooter
 
             position.Y += projectileMoveSpeed;
         }
-
         public override void Draw( SpriteBatch spriteBatch )
         {
             spriteBatch.Draw(texture, position, null, colour * alpha, rotation,
