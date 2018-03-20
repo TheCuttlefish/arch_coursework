@@ -11,6 +11,7 @@ namespace Shooter
         float projectileMoveSpeed;
         public void Initialize(Viewport viewport, Texture2D texture, Vector2 position)
         {
+            
             tag = "enemy";
             this.texture = texture;
             base.position = position + new Vector2(rnd.Next(-10, 10), 0);

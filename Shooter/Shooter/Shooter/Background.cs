@@ -13,7 +13,7 @@ namespace Shooter
         float speed;
         public void Initialize(ContentManager content, String texturePath, int screenWidth, float _speed)
         {
-
+            
             texture = content.Load<Texture2D>(texturePath);
             this.speed = _speed;
 

@@ -13,6 +13,7 @@ namespace Shooter
 
         public void Initialize(Viewport viewport, Texture2D texture, Vector2 position, float angle)
         {
+            
             tag = "bullet";
             rotation = angle;
             this.texture = texture;

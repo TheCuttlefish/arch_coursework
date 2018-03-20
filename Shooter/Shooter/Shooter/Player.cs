@@ -10,9 +10,12 @@ namespace Shooter
         public int health;
         public int screenLimitX;
         public int screenLimitY;
+       
+        public void Initialize(Texture2D texture, Vector2 position, Vector2 screenLimit) {
 
-        public void Initialize(Texture2D texture, Vector2 position) {
-
+            //change this into vector 2 later
+            screenLimitX = (int)screenLimit.X;
+            screenLimitY = (int)screenLimit.Y;
             tag = "player";
             this.texture = texture;
             base.position = position;

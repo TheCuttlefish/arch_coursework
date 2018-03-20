@@ -36,6 +36,8 @@ namespace Shooter
         SpriteBatch spriteBatch;
 
         bool paused = false;
+        int score;
+        SpriteFont font;
 
         public Game1()
         {
@@ -48,29 +50,30 @@ namespace Shooter
             
             objectsToDraw = new List<Entity>();
             updateList = new List<Entity>();
-
             player = new Player();
+            //start level function() - which needs resetLevel();
+            //initialising my main objects
             updateList.Add(player);
-            player.screenLimitX = GraphicsDevice.Viewport.Width;
-            player.screenLimitY = GraphicsDevice.Viewport.Height;
             fireTime = TimeSpan.FromSeconds(.15f);
-
             bgLayer1 = new Background();
             updateList.Add(bgLayer1);
             bgLayer2 = new Background();
             updateList.Add(bgLayer2);
             bgLayer3 = new Background();
             updateList.Add(bgLayer3);
+
+            score = 0;
             base.Initialize();
            
         }
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //loadging my resourses
             Vector2 playerPosition = new Vector2((GraphicsDevice.Viewport.TitleSafeArea.Width / 2) -32, GraphicsDevice.Viewport.TitleSafeArea.Height -32);
-            player.Initialize(Content.Load<Texture2D>("ship2"), playerPosition);
+            player.Initialize(Content.Load<Texture2D>("ship2"), playerPosition,new Vector2( GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             objectsToDraw.Add(player);
             bulletTexture = Content.Load<Texture2D>("bullet");
             enemyTexture = Content.Load<Texture2D>("enemy2");
@@ -81,6 +84,10 @@ namespace Shooter
             objectsToDraw.Add(bgLayer2);
             bgLayer3.Initialize(Content, "bg_5", GraphicsDevice.Viewport.Width, -0.4f);
             objectsToDraw.Add(bgLayer3);
+
+
+            //fonts
+            font = Content.Load<SpriteFont>("EightBitMadness");
 
         }
         protected override void UnloadContent()
@@ -105,6 +112,12 @@ namespace Shooter
             GraphicsDevice.Clear(backgroundColour);
             spriteBatch.Begin();
             DrawEntities();
+
+            //draw fonts
+            // Draw the score
+            spriteBatch.DrawString(font, "score " + "0000", new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y), Color.White);
+            // Draw the player health
+            spriteBatch.DrawString(font, "lives " + 3, new Vector2(0, 20), Color.White);
             spriteBatch.End();
         }
         // other functions
@@ -123,6 +136,7 @@ namespace Shooter
         {
             for (int i = updateList.Count - 1; i >= 0; i--)
             {
+                
                 updateList[i].Update();
                 if (updateList[i].active == false)
                 {
@@ -158,7 +172,7 @@ namespace Shooter
 
             return Math.Sqrt(a * a + b * b);
         }
-
+        
         private void CollisionDetection()
         {
             for (int i = updateList.Count - 1; i >= 0; i--)
@@ -215,10 +229,10 @@ namespace Shooter
                 enemyNum = 7;
                 while (enemyNum > 0)
                 {
-                    Enemy e = new Enemy();
-                    e.Initialize(GraphicsDevice.Viewport, enemyTexture, new Vector2((64+ 38) * enemyNum, -32 ));
-                    updateList.Add(e);
-                    objectsToDraw.Add(e);
+                    Enemy enemy = new Enemy();
+                    enemy.Initialize(GraphicsDevice.Viewport, enemyTexture, new Vector2((64+ 38) * enemyNum, -32 ));
+                    updateList.Add(enemy);
+                    objectsToDraw.Add(enemy);
                     enemyNum--;
                 }
                 enemyTimer = 0;
