@@ -31,3 +31,5 @@ Content\smoke3.xnb
 Content\smoke4.xnb
 Content\enemy2.xnb
 Content\EightBitMadness.xnb
+Content\EightBitMadnessMedium.xnb
+Content\EightBitMadnessLarge.xnb

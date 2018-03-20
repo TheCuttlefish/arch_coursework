@@ -36,7 +36,7 @@ namespace Shooter
         SpriteBatch spriteBatch;
 
         bool paused = false;
-        SpriteFont font;
+        Text text;
 
         public Game1()
         {
@@ -82,17 +82,15 @@ namespace Shooter
             bgLayer3.Initialize(Content, "bg_5", GraphicsDevice.Viewport.Width, -0.4f);
             objectsToDraw.Add(bgLayer3);
 
-
-            //fonts
-            font = Content.Load<SpriteFont>("EightBitMadness");
+            //text - ui
+            text = new Text(spriteBatch);
+            text.Load(Content);
 
         }
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
-
-
 
         protected override void Update(GameTime gameTime)
         {
@@ -111,11 +109,11 @@ namespace Shooter
             DrawEntities();
 
             //draw fonts
-            spriteBatch.DrawString(font, "score " + "0000", new Vector2(10, 10), Color.White);
-            spriteBatch.DrawString(font, "lives " + 3, new Vector2(10,30), Color.White);
+            text.Draw("LIVES 3", new Vector2 (10, 10));
+
             if (paused)
-                spriteBatch.DrawString(font, "PAUSED", new Vector2(GraphicsDevice.Viewport.Width/2 - 50, GraphicsDevice.Viewport.Height / 2), Color.White);
- 
+            text.Draw("Pause", new Vector2(GraphicsDevice.Viewport.Width/2 - 100, GraphicsDevice.Viewport.Height / 2), 2);
+
             spriteBatch.End();
         }
         // other functions
