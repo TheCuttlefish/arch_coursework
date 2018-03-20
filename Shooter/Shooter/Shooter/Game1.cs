@@ -36,7 +36,6 @@ namespace Shooter
         SpriteBatch spriteBatch;
 
         bool paused = false;
-        int score;
         SpriteFont font;
 
         public Game1()
@@ -61,8 +60,6 @@ namespace Shooter
             updateList.Add(bgLayer2);
             bgLayer3 = new Background();
             updateList.Add(bgLayer3);
-
-            score = 0;
             base.Initialize();
            
         }
@@ -72,7 +69,7 @@ namespace Shooter
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //loadging my resourses
-            Vector2 playerPosition = new Vector2((GraphicsDevice.Viewport.TitleSafeArea.Width / 2) -32, GraphicsDevice.Viewport.TitleSafeArea.Height -32);
+            Vector2 playerPosition = new Vector2((GraphicsDevice.Viewport.TitleSafeArea.Width / 2) , GraphicsDevice.Viewport.TitleSafeArea.Height -32);
             player.Initialize(Content.Load<Texture2D>("ship2"), playerPosition,new Vector2( GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             objectsToDraw.Add(player);
             bulletTexture = Content.Load<Texture2D>("bullet");
@@ -114,10 +111,11 @@ namespace Shooter
             DrawEntities();
 
             //draw fonts
-            // Draw the score
-            spriteBatch.DrawString(font, "score " + "0000", new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y), Color.White);
-            // Draw the player health
-            spriteBatch.DrawString(font, "lives " + 3, new Vector2(0, 20), Color.White);
+            spriteBatch.DrawString(font, "score " + "0000", new Vector2(10, 10), Color.White);
+            spriteBatch.DrawString(font, "lives " + 3, new Vector2(10,30), Color.White);
+            if (paused)
+                spriteBatch.DrawString(font, "PAUSED", new Vector2(GraphicsDevice.Viewport.Width/2 - 50, GraphicsDevice.Viewport.Height / 2), Color.White);
+ 
             spriteBatch.End();
         }
         // other functions
@@ -164,14 +162,7 @@ namespace Shooter
             // Allows the game to exit
             if (PLAYER_INPUT.QUIT) this.Exit();
         }
-        private static double GetDistance(Vector2 point1, Vector2 point2)
-        {
-
-            double a = (double)(point2.X - point1.X);
-            double b = (double)(point2.Y - point1.Y);
-
-            return Math.Sqrt(a * a + b * b);
-        }
+        
         
         private void CollisionDetection()
         {
@@ -183,7 +174,7 @@ namespace Shooter
                     {
                         Vector2 pos1 = updateList[i].position;
                         Vector2 pos2 = updateList[j].position;
-                        if (GetDistance(pos1, pos2) < 45)
+                        if (Mathf.Distance(pos1, pos2) < 45)
                         {
                             Random rnd = new Random();
                             updateList[i].OnCollision();
@@ -194,7 +185,7 @@ namespace Shooter
                     {
                         Vector2 pos1 = updateList[i].position;
                         Vector2 pos2 = updateList[j].position;
-                        if (GetDistance(pos1, pos2) < 45)
+                        if (Mathf.Distance(pos1, pos2) < 45)
                         {
                             updateList[i].OnCollision("player", updateList[j].position);
                             updateList[j].OnCollision();
@@ -206,6 +197,7 @@ namespace Shooter
 
         private void AddProjectile(Vector2 position)
         {
+            
             Bullet projectile = new Bullet();
             projectile.Initialize(GraphicsDevice.Viewport, bulletTexture, position, player.speedX);
             updateList.Add(projectile);
@@ -219,10 +211,12 @@ namespace Shooter
             updateList.Add(smokeParticle);
             objectsToDraw.Add(smokeParticle);
         }
+        
         int enemyNum = 7;
         int enemyTimer = 250;
         private void AddEnemies()
         {
+            
             enemyTimer++;
             if (enemyTimer > 250)
             {

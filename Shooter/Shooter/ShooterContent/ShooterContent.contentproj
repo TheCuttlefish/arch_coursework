@@ -220,13 +220,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpriteFont1.spritefont">
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="EightBitMadness.spritefont">
       <Name>EightBitMadness</Name>
       <Importer>FontDescriptionImporter</Importer>

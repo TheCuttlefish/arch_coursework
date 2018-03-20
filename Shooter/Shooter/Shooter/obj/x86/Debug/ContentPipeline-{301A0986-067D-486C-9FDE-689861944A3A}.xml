@@ -274,15 +274,6 @@
       <Time>2018-03-18T22:49:03.7202645+00:00</Time>
     </Item>
     <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2018-03-19T23:01:28.0291592+00:00</Time>
-    </Item>
-    <Item>
       <Source>EightBitMadness.spritefont</Source>
       <Name>EightBitMadness</Name>
       <Importer>FontDescriptionImporter</Importer>
