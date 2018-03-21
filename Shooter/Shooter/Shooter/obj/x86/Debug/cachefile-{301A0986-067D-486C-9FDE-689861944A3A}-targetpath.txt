@@ -33,3 +33,6 @@ Content\enemy2.xnb
 Content\EightBitMadness.xnb
 Content\EightBitMadnessMedium.xnb
 Content\EightBitMadnessLarge.xnb
+Content\EightBitMadness.spritefont
+Content\EightBitMadnessMedium.spritefont
+Content\EightBitMadnessLarge.spritefont

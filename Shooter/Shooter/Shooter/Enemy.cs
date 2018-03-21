@@ -14,7 +14,7 @@ namespace Shooter
             
             tag = "enemy";
             this.texture = texture;
-            base.position = position + new Vector2(rnd.Next(-10, 10), 0);
+            base.position = position + new Vector2(Mathf.RandomRange(-10, 10), 0);
             this.viewport = viewport;
             active = true;
             damage = 2;
@@ -64,7 +64,7 @@ namespace Shooter
 
                 default:
                     alpha -= 0.5f;
-                    position = position + new Vector2(rnd.Next(-10, 10), -10);
+                    position = position + new Vector2(Mathf.RandomRange(-10, 10), -10);
                 break;
 
                     

@@ -13,12 +13,12 @@ namespace Shooter
         public void Initialize(Viewport viewport, Texture2D texture, Vector2 position)
         {
             this.texture = texture;
-            base.position = position + new Vector2(rnd.Next(-10,10),0);
+            base.position = position + new Vector2(Mathf.RandomRange(-10,10),0);
             this.viewport = viewport;
             active = true;
             damage = 2;
-            projectileMoveSpeed = 5f + rnd.Next(-2,2);
-            rotation = rnd.Next(0, 360);
+            projectileMoveSpeed = 5f + Mathf.RandomRange(-2,2);
+            rotation = Mathf.RandomRange(0, 360);
         }
         public override void Update()
         {

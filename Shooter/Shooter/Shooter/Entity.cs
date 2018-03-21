@@ -15,7 +15,6 @@ namespace Shooter
         public float alpha = 1.0f;
         public float scale = 1.0f;
         public float rotation = 0.0f;
-        public Random rnd = new Random();
         public string tag = "none";
         
         public virtual void Draw(SpriteBatch spriteBatch)

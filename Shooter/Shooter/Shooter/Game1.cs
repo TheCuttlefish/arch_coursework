@@ -170,9 +170,7 @@ namespace Shooter
                 {
                     if (updateList[i].tag == "enemy" && updateList[j].tag == "bullet")
                     {
-                        Vector2 pos1 = updateList[i].position;
-                        Vector2 pos2 = updateList[j].position;
-                        if (Mathf.Distance(pos1, pos2) < 45)
+                        if (Mathf.Distance(updateList[i].position, updateList[j].position) < 45)
                         {
                             Random rnd = new Random();
                             updateList[i].OnCollision();
@@ -181,9 +179,7 @@ namespace Shooter
                     }
                     if (updateList[i].tag == "enemy" && updateList[j].tag == "player")
                     {
-                        Vector2 pos1 = updateList[i].position;
-                        Vector2 pos2 = updateList[j].position;
-                        if (Mathf.Distance(pos1, pos2) < 45)
+                        if (Mathf.Distance(updateList[i].position, updateList[j].position) < 45)
                         {
                             updateList[i].OnCollision("player", updateList[j].position);
                             updateList[j].OnCollision();

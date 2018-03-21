@@ -41,3 +41,6 @@ F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\C
 F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\EightBitMadness.xnb
 F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\EightBitMadnessMedium.xnb
 F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\EightBitMadnessLarge.xnb
+F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\EightBitMadness.spritefont
+F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\EightBitMadnessMedium.spritefont
+F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\Shooter\bin\x86\Debug\Content\EightBitMadnessLarge.spritefont
