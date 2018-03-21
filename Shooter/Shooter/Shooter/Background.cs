@@ -11,10 +11,10 @@ namespace Shooter
         Vector2[] positions;
 
         float speed;
-        public void Initialize(ContentManager content, String texturePath, int screenWidth, float _speed)
+        public void Initialize(Texture2D bg_texture, int screenWidth, float _speed)
         {
-            
-            texture = content.Load<Texture2D>(texturePath);
+
+            texture = bg_texture;
             this.speed = _speed;
 
             positions = new Vector2[480 / texture.Height + 1];

@@ -17,9 +17,7 @@ namespace Shooter
     {
         Player player;
         // Image used to display the static background
-        Texture2D bulletTexture;
-        Texture2D enemyTexture;
-        Texture2D smokeTexture;
+        TextureAsset sprite;
         List<Entity> objectsToDraw;
         List<Entity> updateList;
 
@@ -46,7 +44,7 @@ namespace Shooter
    
         protected override void Initialize()
         {
-            
+            sprite = new TextureAsset(Content);
             objectsToDraw = new List<Entity>();
             updateList = new List<Entity>();
             player = new Player();
@@ -70,16 +68,13 @@ namespace Shooter
 
             //loadging my resourses
             Vector2 playerPosition = new Vector2((GraphicsDevice.Viewport.TitleSafeArea.Width / 2) , GraphicsDevice.Viewport.TitleSafeArea.Height -32);
-            player.Initialize(Content.Load<Texture2D>("ship2"), playerPosition,new Vector2( GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+            player.Initialize(sprite.player, playerPosition,new Vector2( GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             objectsToDraw.Add(player);
-            bulletTexture = Content.Load<Texture2D>("bullet");
-            enemyTexture = Content.Load<Texture2D>("enemy2");
-            smokeTexture = Content.Load<Texture2D>("smoke2");
-            bgLayer1.Initialize(Content, "bg_4", GraphicsDevice.Viewport.Width, -0.2f);
+            bgLayer1.Initialize(sprite.bg1, GraphicsDevice.Viewport.Width, -0.2f);
             objectsToDraw.Add(bgLayer1);
-            bgLayer2.Initialize(Content, "bg_3", GraphicsDevice.Viewport.Width, -0.3f);
+            bgLayer2.Initialize(sprite.bg2, GraphicsDevice.Viewport.Width, -0.3f);
             objectsToDraw.Add(bgLayer2);
-            bgLayer3.Initialize(Content, "bg_5", GraphicsDevice.Viewport.Width, -0.4f);
+            bgLayer3.Initialize(sprite.bg3, GraphicsDevice.Viewport.Width, -0.4f);
             objectsToDraw.Add(bgLayer3);
 
             //text - ui
@@ -172,7 +167,6 @@ namespace Shooter
                     {
                         if (Mathf.Distance(updateList[i].position, updateList[j].position) < 45)
                         {
-                            Random rnd = new Random();
                             updateList[i].OnCollision();
                             updateList[j].OnCollision("enemy");
                         }
@@ -193,7 +187,7 @@ namespace Shooter
         {
             
             Bullet projectile = new Bullet();
-            projectile.Initialize(GraphicsDevice.Viewport, bulletTexture, position, player.speedX);
+            projectile.Initialize(GraphicsDevice.Viewport, sprite.bullet, position, player.speedX);
             updateList.Add(projectile);
             objectsToDraw.Add(projectile);
 
@@ -201,7 +195,7 @@ namespace Shooter
         private void ShipTrail()
         {
             Smoke smokeParticle = new Smoke();
-            smokeParticle.Initialize(GraphicsDevice.Viewport, smokeTexture, player.position + new Vector2(0, 32));
+            smokeParticle.Initialize(GraphicsDevice.Viewport, sprite.smoke, player.position + new Vector2(0, 32));
             updateList.Add(smokeParticle);
             objectsToDraw.Add(smokeParticle);
         }
@@ -218,7 +212,7 @@ namespace Shooter
                 while (enemyNum > 0)
                 {
                     Enemy enemy = new Enemy();
-                    enemy.Initialize(GraphicsDevice.Viewport, enemyTexture, new Vector2((64+ 38) * enemyNum, -32 ));
+                    enemy.Initialize(GraphicsDevice.Viewport, sprite.enemy, new Vector2((64+ 38) * enemyNum, -32 ));
                     updateList.Add(enemy);
                     objectsToDraw.Add(enemy);
                     enemyNum--;

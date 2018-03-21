@@ -121,6 +121,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Smoke.cs" />
     <Compile Include="Text.cs" />
+    <Compile Include="TextureAsset.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
