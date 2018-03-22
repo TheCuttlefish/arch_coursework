@@ -20,7 +20,7 @@ namespace Shooter
             this.texture = texture;
             base.position = position;
             active = true;
-            health = 100;
+            health = 0;
             
         }
 
@@ -72,7 +72,26 @@ namespace Shooter
 
         public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2))
         {
-            alpha = 0.5f;
+            switch (other_tag)
+            {
+
+                case "powerup":
+                    //fire bullets at X speed;
+                    if (Mathf.Distance(position, other_position) < 15)
+                    {
+                        alpha = 1;
+                        health++;
+                    }
+                    
+                    break;
+
+                default:
+                    alpha = 0.5f;
+                    position = position + new Vector2(Mathf.RandomRange(-10, 10), +10);
+                    break;
+
+
+            }
         }
 
 

@@ -7,15 +7,13 @@ namespace Shooter
     class Enemy : Entity
     {
         public int damage;
-        Viewport viewport;
         float projectileMoveSpeed;
-        public void Initialize(Viewport viewport, Texture2D texture, Vector2 position)
+        public void Initialize( Texture2D texture, Vector2 position)
         {
             
             tag = "enemy";
             this.texture = texture;
             base.position = position + new Vector2(Mathf.RandomRange(-10, 10), 0);
-            this.viewport = viewport;
             active = true;
             damage = 2;
             projectileMoveSpeed = -0.3f;
@@ -37,7 +35,7 @@ namespace Shooter
 
             if(position.Y > 300) active = false;
 
-            if (alpha<0.1f) { active = false; }
+            if (alpha<0.1f) { active = false;  }
            
             position.Y -= projectileMoveSpeed;
             if (projectileMoveSpeed > -0.3f) projectileMoveSpeed -= 0.001f;
@@ -57,9 +55,7 @@ namespace Shooter
                 
                 case "player":
                     projectileMoveSpeed = 0;
-                    position -= ( other_position - position) / 15;
-                    // position = position + new Vector2(0, 3);
-                  
+                   position =  Mathf.LerpVector2(position, other_position, 15.0f);
                     break;
 
                 default:

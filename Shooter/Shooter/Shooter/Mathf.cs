@@ -17,10 +17,9 @@ namespace Shooter
             Random rnd = new Random();
             return rnd.Next(min, max);
         }
-
-        public static float lerp(float v0, float v1, float t)
+        public static Vector2 LerpVector2(Vector2 from, Vector2 to, float steps)
         {
-            return v0 + t * (v1 - v0);
+            return from -= (to - from) / steps;
         }
 
 

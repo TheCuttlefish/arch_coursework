@@ -15,26 +15,23 @@ namespace Shooter
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        Player player;
-        // Image used to display the static background
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+
         TextureAsset sprite;
+        Text text;
         List<Entity> objectsToDraw;
         List<Entity> updateList;
 
-        // The rate of fire of the player laser
-        TimeSpan fireTime;
-        TimeSpan previousFireTime;
-
-        // Parallaxing Layers
+        Player player;
         Background bgLayer1;
         Background bgLayer2;
         Background bgLayer3;
 
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        TimeSpan fireTime;
+        TimeSpan previousFireTime;
 
         bool paused = false;
-        Text text;
 
         public Game1()
         {
@@ -58,6 +55,9 @@ namespace Shooter
             updateList.Add(bgLayer2);
             bgLayer3 = new Background();
             updateList.Add(bgLayer3);
+
+          
+
             base.Initialize();
            
         }
@@ -104,7 +104,7 @@ namespace Shooter
             DrawEntities();
 
             //draw fonts
-            text.Draw("LIVES 3", new Vector2 (10, 10));
+            text.Draw("LIVES "+ player.health, new Vector2 (10, 10));
 
             if (paused)
             text.Draw("Pause", new Vector2(GraphicsDevice.Viewport.Width/2 - 100, GraphicsDevice.Viewport.Height / 2), 2);
@@ -131,7 +131,12 @@ namespace Shooter
                 updateList[i].Update();
                 if (updateList[i].active == false)
                 {
-                   // updateList[i] = null; - garbage collection?
+                    // updateList[i] = null; - garbage collection?
+                    int rand = Mathf.RandomRange(0, 5);
+                    if (updateList[i].tag == "enemy" && rand == 0)
+                    {
+                        AddPowerUp(updateList[i].position);
+                    }
                     updateList.RemoveAt(i);
              
                 }
@@ -150,7 +155,7 @@ namespace Shooter
                 AddProjectile(player.position);
             }
 
-           // ShipTrail();
+            //ShipTrail();
 
             // Allows the game to exit
             if (PLAYER_INPUT.QUIT) this.Exit();
@@ -169,6 +174,7 @@ namespace Shooter
                         {
                             updateList[i].OnCollision();
                             updateList[j].OnCollision("enemy");
+                          
                         }
                     }
                     if (updateList[i].tag == "enemy" && updateList[j].tag == "player")
@@ -179,10 +185,27 @@ namespace Shooter
                             updateList[j].OnCollision();
                         }
                     }
+
+                    if (updateList[i].tag == "powerup" && updateList[j].tag == "player")
+                    {
+                        if (Mathf.Distance(updateList[i].position, updateList[j].position) < 90)
+                        {
+                            updateList[i].OnCollision("player", updateList[j].position);
+                            updateList[j].OnCollision("powerup", updateList[i].position);
+                        }
+                    }
                 }
             }
         }
 
+        private void AddPowerUp(Vector2 _position)
+        {
+            PowerUp p = new PowerUp();
+            p.Initialize(sprite.extraLife, _position);
+            updateList.Add(p);
+            objectsToDraw.Add(p);
+
+        }
         private void AddProjectile(Vector2 position)
         {
             
@@ -190,7 +213,6 @@ namespace Shooter
             projectile.Initialize(GraphicsDevice.Viewport, sprite.bullet, position, player.speedX);
             updateList.Add(projectile);
             objectsToDraw.Add(projectile);
-
         }
         private void ShipTrail()
         {
@@ -212,7 +234,8 @@ namespace Shooter
                 while (enemyNum > 0)
                 {
                     Enemy enemy = new Enemy();
-                    enemy.Initialize(GraphicsDevice.Viewport, sprite.enemy, new Vector2((64+ 38) * enemyNum, -32 ));
+                    enemy.Initialize( sprite.enemy, new Vector2((64 + 38) * enemyNum, -32));
+
                     updateList.Add(enemy);
                     objectsToDraw.Add(enemy);
                     enemyNum--;

@@ -16,4 +16,8 @@
 - or have collision List
 - fonts are working ( just need to import spritefont and that's all) XNA is not so flexible with font sizes, so I may make a class for that.
 - made a Mathf class for maths functions. Distance, lerp, clamp etc. ( c# already had Math class, but not enough functions)
-
+- I moved sprites into a seperate class, each texture can be referencef from there, it's good to keep all sprites in 1 place with vriable names
+- added poweups class, powers up can change player var on collision
+- player values can affect UI
+- powerups flashing animation
+- on active false = destroy function, events can happen on destoy.

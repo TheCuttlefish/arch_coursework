@@ -17,13 +17,14 @@ namespace Shooter
             this.viewport = viewport;
             active = true;
             damage = 2;
+            alpha = 0.5f;
             projectileMoveSpeed = 5f + Mathf.RandomRange(-2,2);
             rotation = Mathf.RandomRange(0, 360);
         }
         public override void Update()
         {
             if( alpha> 0.0f )
-               alpha -= 0.05f;
+               alpha -= 0.02f;
             else
                active = false;
 
@@ -32,7 +33,7 @@ namespace Shooter
         public override void Draw( SpriteBatch spriteBatch )
         {
             spriteBatch.Draw(texture, position, null, colour * alpha, rotation,
-            new Vector2(width / 2, height / 2), scale/2, SpriteEffects.None, 0f);
+            new Vector2(width / 2, height / 2), scale, SpriteEffects.None, 0f);
         }
 
     }
