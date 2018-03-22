@@ -37,7 +37,7 @@ namespace Shooter
             new Vector2(width / 2, height/2 ), scale, SpriteEffects.None, 0f);
         }
 
-        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2))
+        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name = "")
         {
             if(other_tag == "enemy")
                 active = false;

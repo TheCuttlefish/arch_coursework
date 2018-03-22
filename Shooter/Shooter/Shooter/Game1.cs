@@ -132,8 +132,10 @@ namespace Shooter
                 if (updateList[i].active == false)
                 {
                     // updateList[i] = null; - garbage collection?
-                    int rand = Mathf.RandomRange(0, 5);
-                    if (updateList[i].tag == "enemy" && rand == 0)
+
+
+                    int rndNum = Mathf.RandomRange(0, 7);
+                    if (updateList[i].tag == "enemy" && rndNum == 0)
                     {
                         AddPowerUp(updateList[i].position);
                     }
@@ -152,7 +154,32 @@ namespace Shooter
             if (gameTime.TotalGameTime - previousFireTime > fireTime && PLAYER_INPUT.FIRE)
             {
                 previousFireTime = gameTime.TotalGameTime;
+                if(player.bulletType == 0)
                 AddProjectile(player.position);
+                else if (player.bulletType == 1)
+                {
+                    AddProjectile(player.position + new Vector2(10,0));
+                    AddProjectile(player.position + new Vector2(-10, 0));
+                }
+                else if (player.bulletType == 2)
+                {
+                    AddProjectile(player.position + new Vector2(20, 0));
+                    AddProjectile(player.position);
+                    AddProjectile(player.position + new Vector2(-20, 0));
+                }
+
+                
+            }
+
+
+            if (player.clearAll ||  PLAYER_INPUT.CLEAR)
+            {
+                foreach (Entity e in updateList)
+                {
+                    if (e.tag == "enemy")
+                        e.active = false;
+                }
+                player.clearAll = false;
             }
 
             //ShipTrail();
@@ -191,7 +218,7 @@ namespace Shooter
                         if (Mathf.Distance(updateList[i].position, updateList[j].position) < 90)
                         {
                             updateList[i].OnCollision("player", updateList[j].position);
-                            updateList[j].OnCollision("powerup", updateList[i].position);
+                            updateList[j].OnCollision("powerup", updateList[i].position, updateList[i].name);
                         }
                     }
                 }
@@ -201,7 +228,7 @@ namespace Shooter
         private void AddPowerUp(Vector2 _position)
         {
             PowerUp p = new PowerUp();
-            p.Initialize(sprite.extraLife, _position);
+            p.Initialize(sprite.extraLife, _position, sprite);
             updateList.Add(p);
             objectsToDraw.Add(p);
 

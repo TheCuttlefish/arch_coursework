@@ -7,11 +7,38 @@ namespace Shooter
     class PowerUp : Entity
     {
 
-
-        public void Initialize(Texture2D texture, Vector2 _position)
+        
+        public void Initialize(Texture2D _texture, Vector2 _position, TextureAsset sprite)
         {
+            int rnd = 0;
+
+            rnd = Mathf.RandomRange(0, 5);
+            if (rnd == 0) {
+                name = "oneUp";
+                texture = sprite.extraLife;
+            } else if (rnd == 1)
+            {
+                name = "bulletx1";
+                texture = sprite.power1;
+            }
+            else if (rnd == 2)
+            {
+                name = "bulletx2";
+                texture = sprite.power2;
+            }
+            else if (rnd == 3)
+            {
+                name = "bulletx3";
+                texture = sprite.power3;
+            }
+            else if (rnd == 4)
+            {
+                name = "clear";
+                texture = sprite.clearScreen;
+            }
+
+
             tag = "powerup";
-            this.texture = texture;
             base.position = _position;
         }
         float alphaFlash;
@@ -29,7 +56,7 @@ namespace Shooter
             spriteBatch.Draw(texture, position, null, colour * alpha, rotation,
             new Vector2(width / 2, height / 2), scale, SpriteEffects.None, 0f);
         }
-        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2))
+        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name="")
         {
 
 

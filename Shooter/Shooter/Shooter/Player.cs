@@ -10,7 +10,9 @@ namespace Shooter
         public int health;
         public int screenLimitX;
         public int screenLimitY;
-       
+        public int bulletType = 0;
+        public bool clearAll = false;
+
         public void Initialize(Texture2D texture, Vector2 position, Vector2 screenLimit) {
 
             //change this into vector 2 later
@@ -70,17 +72,28 @@ namespace Shooter
         }
 
 
-        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2))
+        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name = "")
         {
             switch (other_tag)
             {
 
                 case "powerup":
-                    //fire bullets at X speed;
+
                     if (Mathf.Distance(position, other_position) < 15)
                     {
-                        alpha = 1;
-                        health++;
+                        if (other_name == "oneUp")
+                        {
+                            alpha = 1;
+                            health++;
+                        }
+                        else if (other_name == "bulletx1")
+                            bulletType = 0;
+                        else if (other_name == "bulletx2")
+                            bulletType = 1;
+                        else if (other_name == "bulletx3")
+                            bulletType = 2;
+                        else if (other_name == "clear")
+                            clearAll = true;
                     }
                     
                     break;

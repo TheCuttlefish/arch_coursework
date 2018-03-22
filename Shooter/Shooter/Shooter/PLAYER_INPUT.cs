@@ -27,7 +27,8 @@ namespace Shooter
         public static bool FIRE;
         public static bool QUIT;
         public static bool PAUSE;
-        
+        public static bool CLEAR;
+
         static public void Update()
         {
             previousGamePadState = currentGamePadState;
@@ -43,6 +44,8 @@ namespace Shooter
             DOWN = currentKeyboardState.IsKeyDown(Keys.Down) || currentKeyboardState.IsKeyDown(Keys.S) || currentGamePadState.DPad.Down == ButtonState.Pressed;
 
             FIRE = currentKeyboardState.IsKeyDown(Keys.Space) || currentGamePadState.IsButtonDown(Buttons.A) || currentGamePadState.IsButtonDown(Buttons.RightTrigger);
+
+            CLEAR = currentKeyboardState.IsKeyDown(Keys.C);
 
             THUMBSTICK_LEFT_X = currentGamePadState.ThumbSticks.Left.X;
             THUMBSTICK_LEFT_Y = currentGamePadState.ThumbSticks.Left.Y;
