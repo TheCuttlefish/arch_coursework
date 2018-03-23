@@ -12,6 +12,13 @@ namespace Shooter
         public int screenLimitY;
         public int bulletType = 0;
         public bool clearAll = false;
+        PlayerInput playerInput;
+        Game game;
+
+        public Player(Game game){
+            this.game = game;
+            playerInput = game.Services.GetService(typeof(PlayerInput)) as PlayerInput;
+        }
 
         public void Initialize(Texture2D texture, Vector2 position, Vector2 screenLimit) {
 
@@ -41,16 +48,16 @@ namespace Shooter
         public void Movement()
         {
              // Joystick
-            if (PLAYER_INPUT.THUMBSTICK_LEFT_X < -0.1f )speedX -= (speedX - MAX_SPEED) / ACCEL;
-            if (PLAYER_INPUT.THUMBSTICK_LEFT_X > 0.1f) speedX -= (speedX + MAX_SPEED) / ACCEL;
-            if (PLAYER_INPUT.THUMBSTICK_LEFT_Y < -0.1f) speedY -= (speedY + MAX_SPEED) / ACCEL;
-            if (PLAYER_INPUT.THUMBSTICK_LEFT_Y > 0.1f) speedY -= (speedY - MAX_SPEED) / ACCEL;
+            if (playerInput.THUMBSTICK_LEFT_X < -0.1f )speedX -= (speedX - MAX_SPEED) / ACCEL;
+            if (playerInput.THUMBSTICK_LEFT_X > 0.1f) speedX -= (speedX + MAX_SPEED) / ACCEL;
+            if (playerInput.THUMBSTICK_LEFT_Y < -0.1f) speedY -= (speedY + MAX_SPEED) / ACCEL;
+            if (playerInput.THUMBSTICK_LEFT_Y > 0.1f) speedY -= (speedY - MAX_SPEED) / ACCEL;
 
              // Keyboard
-            if (PLAYER_INPUT.LEFT) speedX -= (speedX - MAX_SPEED) / ACCEL;
-            if (PLAYER_INPUT.RIGHT) speedX -= (speedX + MAX_SPEED) / ACCEL;
-            if (PLAYER_INPUT.UP) speedY -= (speedY - MAX_SPEED) / ACCEL;
-            if (PLAYER_INPUT.DOWN) speedY -= (speedY + MAX_SPEED) / ACCEL;
+            if (playerInput.LEFT) speedX -= (speedX - MAX_SPEED) / ACCEL;
+            if (playerInput.RIGHT) speedX -= (speedX + MAX_SPEED) / ACCEL;
+            if (playerInput.UP) speedY -= (speedY - MAX_SPEED) / ACCEL;
+            if (playerInput.DOWN) speedY -= (speedY + MAX_SPEED) / ACCEL;
 
             speedX -= (speedX - 0) / DEACCEL;
             position.X -= speedX;

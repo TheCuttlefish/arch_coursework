@@ -1,1 +1,0 @@
-F:\GitHub\XNA-coursework\arch_coursework\Shooter\Shooter\ShooterContent\obj\x86\Debug\ShooterContent.contentprojResolveAssemblyReference.cache

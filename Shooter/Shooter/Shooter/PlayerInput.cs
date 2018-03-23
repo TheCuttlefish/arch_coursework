@@ -5,31 +5,30 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Shooter
 {
-    public static class PLAYER_INPUT
+    public class PlayerInput
     {
 
-
         //Keyboard
-       public static  KeyboardState currentKeyboardState;
-       public static KeyboardState previousKeyboardState;
+       public  KeyboardState currentKeyboardState;
+       public KeyboardState previousKeyboardState;
 
        // Joystick
-       public static GamePadState currentGamePadState;
-       public static  GamePadState previousGamePadState;
+       public GamePadState currentGamePadState;
+       public  GamePadState previousGamePadState;
 
         //Input names
-        public static bool LEFT;
-        public static bool RIGHT;
-        public static bool UP;
-        public static bool DOWN;
-        public static float THUMBSTICK_LEFT_X;
-        public static float THUMBSTICK_LEFT_Y;
-        public static bool FIRE;
-        public static bool QUIT;
-        public static bool PAUSE;
-        public static bool CLEAR;
+        public bool LEFT;
+        public bool RIGHT;
+        public bool UP;
+        public bool DOWN;
+        public float THUMBSTICK_LEFT_X;
+        public float THUMBSTICK_LEFT_Y;
+        public bool FIRE;
+        public bool QUIT;
+        public bool PAUSE;
+        public bool CLEAR;
 
-        static public void Update()
+        public void Update()
         {
             previousGamePadState = currentGamePadState;
             previousKeyboardState = currentKeyboardState;

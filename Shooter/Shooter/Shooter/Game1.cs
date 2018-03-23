@@ -30,6 +30,7 @@ namespace Shooter
 
         TimeSpan fireTime;
         TimeSpan previousFireTime;
+        PlayerInput playerInput;
 
         bool paused = false;
 
@@ -41,10 +42,13 @@ namespace Shooter
    
         protected override void Initialize()
         {
+            playerInput = new PlayerInput();
+            Services.AddService(typeof(PlayerInput), playerInput);
+
             sprite = new TextureAsset(Content);
             objectsToDraw = new List<Entity>();
             updateList = new List<Entity>();
-            player = new Player();
+            player = new Player(this);
             //start level function() - which needs resetLevel();
             //initialising my main objects
             updateList.Add(player);
@@ -55,8 +59,6 @@ namespace Shooter
             updateList.Add(bgLayer2);
             bgLayer3 = new Background();
             updateList.Add(bgLayer3);
-
-          
 
             base.Initialize();
            
@@ -90,7 +92,7 @@ namespace Shooter
         protected override void Update(GameTime gameTime)
         {
            
-            PLAYER_INPUT.Update(); // update Input
+            playerInput.Update(); // update Input
             PauseLogic();
             if (paused) return;
                 UpdateEntities();
@@ -151,7 +153,7 @@ namespace Shooter
             AddEnemies();
 
             // Fire only every interval we set as the fireTime
-            if (gameTime.TotalGameTime - previousFireTime > fireTime && PLAYER_INPUT.FIRE)
+            if (gameTime.TotalGameTime - previousFireTime > fireTime && playerInput.FIRE)
             {
                 previousFireTime = gameTime.TotalGameTime;
                 if(player.bulletType == 0)
@@ -172,7 +174,7 @@ namespace Shooter
             }
 
 
-            if (player.clearAll ||  PLAYER_INPUT.CLEAR)
+            if (player.clearAll ||  playerInput.CLEAR)
             {
                 foreach (Entity e in updateList)
                 {
@@ -185,7 +187,7 @@ namespace Shooter
             //ShipTrail();
 
             // Allows the game to exit
-            if (PLAYER_INPUT.QUIT) this.Exit();
+            if (playerInput.QUIT) this.Exit();
         }
         
         
@@ -272,7 +274,7 @@ namespace Shooter
         }
         private void PauseLogic()
         {
-            if (PLAYER_INPUT.PAUSE)
+            if (playerInput.PAUSE)
             {
                 paused = !paused;
                 if(paused) backgroundColour = Color.Gray;
