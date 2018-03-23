@@ -43,7 +43,7 @@ namespace Shooter
         protected override void Initialize()
         {
             playerInput = new PlayerInput();
-            playerInput.Load();
+            playerInput.Load(this);
             Services.AddService(typeof(PlayerInput), playerInput);
 
             sprite = new TextureAsset(Content);
@@ -185,7 +185,7 @@ namespace Shooter
                 player.clearAll = false;
             }
 
-            //ShipTrail();
+            ShipTrail();
 
             // Allows the game to exit
             if (playerInput.QUIT) this.Exit();
@@ -247,7 +247,7 @@ namespace Shooter
         private void ShipTrail()
         {
             Smoke smokeParticle = new Smoke();
-            smokeParticle.Initialize(GraphicsDevice.Viewport, sprite.smoke, player.position + new Vector2(0, 32));
+            smokeParticle.Initialize(GraphicsDevice.Viewport, sprite.smoke, new Vector2( playerInput.mouse.X, playerInput.mouse.Y) + new Vector2(0, 32));
             updateList.Add(smokeParticle);
             objectsToDraw.Add(smokeParticle);
         }

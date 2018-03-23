@@ -1,9 +1,35 @@
+//actions to buttons
 {
   "left": {
-    "keys": [
-      "left",
-      "a"
-    ],
-    "pad": "left"
+    "keys": [ "Left", "A" ],
+    "buttons": [ "Left" ]
+  },
+  "right": {
+    "keys": [ "Right", "D" ],
+    "buttons": [ "Right" ]
+  },
+  "up": {
+    "keys": [ "Up", "W" ],
+    "buttons": [ "Up" ]
+  },
+  "down": {
+    "keys": [ "Down", "S" ],
+    "buttons": [ "Down" ]
+  },
+  "fire": {
+    "keys": [ "Space" ],
+    "buttons": [ "A" , "RightTrigger" ]
+  },
+  "pause": {
+    "keys": [ "P" ],
+    "buttons": [ "Start" ]
+  },
+  "clear": {
+    "keys": [ "C" ],
+    "buttons": [ ]
+  },
+  "Quit": {
+    "keys" : [ "Back" ],
+    "buttons" :[ "Back" ]
   }
 }
