@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Shooter
 {
@@ -28,6 +30,13 @@ namespace Shooter
         public bool PAUSE;
         public bool CLEAR;
 
+        PlayerInputData data;
+
+        public void Load() {
+            var json = File.ReadAllText("Content/data/input.json");
+            data = JsonConvert.DeserializeObject<PlayerInputData>(json);
+        }
+
         public void Update()
         {
             previousGamePadState = currentGamePadState;
@@ -37,7 +46,7 @@ namespace Shooter
             currentKeyboardState = Keyboard.GetState();
             currentGamePadState = GamePad.GetState(PlayerIndex.One);
 
-            LEFT = currentKeyboardState.IsKeyDown(Keys.Left) || currentKeyboardState.IsKeyDown(Keys.A) || currentGamePadState.DPad.Left == ButtonState.Pressed;
+            LEFT = currentKeyboardState.IsKeyDown( data.keyMap[data.left.keys[0]]) || currentKeyboardState.IsKeyDown(data.keyMap[data.left.keys[1]]) || currentGamePadState.DPad.Left == ButtonState.Pressed;
             RIGHT = currentKeyboardState.IsKeyDown(Keys.Right) || currentKeyboardState.IsKeyDown(Keys.D) || currentGamePadState.DPad.Right == ButtonState.Pressed;
             UP = currentKeyboardState.IsKeyDown(Keys.Up) || currentKeyboardState.IsKeyDown(Keys.W) || currentGamePadState.DPad.Up == ButtonState.Pressed;
             DOWN = currentKeyboardState.IsKeyDown(Keys.Down) || currentKeyboardState.IsKeyDown(Keys.S) || currentGamePadState.DPad.Down == ButtonState.Pressed;

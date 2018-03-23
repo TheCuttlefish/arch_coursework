@@ -43,6 +43,7 @@ namespace Shooter
         protected override void Initialize()
         {
             playerInput = new PlayerInput();
+            playerInput.Load();
             Services.AddService(typeof(PlayerInput), playerInput);
 
             sprite = new TextureAsset(Content);
