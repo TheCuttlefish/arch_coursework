@@ -46,7 +46,7 @@ namespace GameEngine
             position.Y -= projectileMoveSpeed;
             if (projectileMoveSpeed > -0.3f) projectileMoveSpeed -= 0.001f;
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime)
         {
             spriteBatch.Draw(texture, position, null, colour * alpha, rotation,
             new Vector2(width / 2, height / 2), scale, SpriteEffects.None, 0f);

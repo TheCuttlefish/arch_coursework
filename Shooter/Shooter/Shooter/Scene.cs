@@ -11,13 +11,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GameEngine
 {
-    abstract class Scene : Microsoft.Xna.Framework.Game
+    abstract class Scene : GameComponent
     {
-        public Scene(MyGame engine)
+        public MyGame main;
+        public Scene(MyGame game) : base(game)
         {
+            main = game;
 
         }
-
 
 
 

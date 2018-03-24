@@ -15,19 +15,19 @@ namespace GameEngine
     
     public class MyGame : Microsoft.Xna.Framework.Game
     {
+
+        public PlayerInput playerInput;
+        public SpriteBatch spriteBatch;
+        public TextureAsset sprite;
+
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
-        TextureAsset sprite;
+        
         Text text;
-        List<Entity> objectsToDraw;
 
-        Player player;
+        
         Background bgLayer1;
         Background bgLayer2;
         Background bgLayer3;
-
-        PlayerInput playerInput;
 
         public MyGame()
         {
@@ -40,8 +40,12 @@ namespace GameEngine
 
         protected override void Initialize()
         {
+
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            Services.AddService(typeof(SpriteBatch), spriteBatch);
+
             //create a new game
-            spaceShooter = new SpaceShooter(this);
+
 
             //input
             playerInput = new PlayerInput();
@@ -49,9 +53,6 @@ namespace GameEngine
             Services.AddService(typeof(PlayerInput), playerInput);
 
             sprite = new TextureAsset(Content);
-            objectsToDraw = new List<Entity>();
-            player = new Player(this);
-
             //initialising my main objects
             bgLayer1 = new Background(this);
             bgLayer2 = new Background(this);
@@ -62,28 +63,25 @@ namespace GameEngine
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
             //loadging my resourses
-            Vector2 playerPosition = new Vector2((GraphicsDevice.Viewport.TitleSafeArea.Width / 2) , GraphicsDevice.Viewport.TitleSafeArea.Height -32);
-            player.Initialize(sprite.player, playerPosition,new Vector2( GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
-            objectsToDraw.Add(player);
+
             bgLayer1.Initialize(sprite.bg1, GraphicsDevice.Viewport.Width, -0.2f);
-            objectsToDraw.Add(bgLayer1);
+            
             bgLayer2.Initialize(sprite.bg2, GraphicsDevice.Viewport.Width, -0.3f);
-            objectsToDraw.Add(bgLayer2);
+            
             bgLayer3.Initialize(sprite.bg3, GraphicsDevice.Viewport.Width, -0.4f);
-            objectsToDraw.Add(bgLayer3);
+            
 
             //text - ui
             text = new Text(spriteBatch);
             text.Load(Content);
-        }
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
 
+            spaceShooter = new SpaceShooter(this);
+
+            base.LoadContent();
+            
+        }
+        
         protected override void Update(GameTime gameTime)
         {
             playerInput.Update();
@@ -92,25 +90,24 @@ namespace GameEngine
         }
 
         Color backgroundColour = Color.DarkCyan;
-        protected override void Draw(GameTime gameTime)
+
+        protected override bool BeginDraw()
         {
             GraphicsDevice.Clear(backgroundColour);
             spriteBatch.Begin();
-            DrawEntities();
-            text.Draw("LIVES ", new Vector2 (10, 10));
-            spriteBatch.End();
+            return base.BeginDraw();
         }
-        // other functions
-        private void DrawEntities()
+        protected override void Draw(GameTime gameTime)
+        {  
+           //DrawEntities();
+            //spaceShooter.extraDraw(spriteBatch);
+            //text.Draw("LIVES ", new Vector2 (10, 10));
+            base.Draw(gameTime);
+        }
+        protected override void EndDraw()
         {
-            for (int i = objectsToDraw.Count - 1; i >= 0; i--)
-            {
-                objectsToDraw[i].Draw(spriteBatch);
-                if (objectsToDraw[i].active == false)
-                { //remove unactive ones
-                    objectsToDraw.RemoveAt(i);
-                }
-            }
+            spriteBatch.End();
+            base.EndDraw();
         }
 
 

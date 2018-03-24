@@ -30,6 +30,8 @@ namespace GameEngine
             base.position = position;
             active = true;
             health = 0;
+
+            base.Initialize();
             
         }
 
@@ -37,6 +39,7 @@ namespace GameEngine
         public override void Update(GameTime gameTime)
         {
             Movement();
+            base.Update(gameTime);
         }
 
         public  float speedX = 0.0f;

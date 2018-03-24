@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine
 {
-    class TextureAsset : Microsoft.Xna.Framework.Game
+   public class TextureAsset : Microsoft.Xna.Framework.Game
     {
 
         public Texture2D player;

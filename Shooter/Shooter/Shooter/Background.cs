@@ -51,7 +51,7 @@ namespace GameEngine
                 }
             }
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime)
         {
             for (int i = 0; i < positions.Length; i++)
             {

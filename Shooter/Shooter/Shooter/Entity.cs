@@ -4,14 +4,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine
 {
-    class Entity :  GameComponent
+    class Entity :  DrawableGameComponent
     {
+
+        protected SpriteBatch spriteBatch;
 
         public Entity(Game game) : base(game)
         {
-            DrawableGameComponent draw = new DrawableGameComponent(game);
-            game.Components.Add(draw);
+
             game.Components.Add(this);
+            spriteBatch = game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
         }
 
         //graphics
@@ -29,7 +31,7 @@ namespace GameEngine
         public string tag = "none";
         public bool active = true;
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        override public void Draw(GameTime gameTime)
         {
             spriteBatch.Draw(texture, position, null, colour * alpha, rotation, new Vector2(32, 32), 1f, SpriteEffects.None, 0f);
         }
