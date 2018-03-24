@@ -2,10 +2,16 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Shooter
+namespace GameEngine
 {
     class Enemy : Entity
     {
+
+
+        public Enemy(Game game): base(game)
+        {
+
+        }
         public int damage;
         float projectileMoveSpeed;
         public void Initialize( Texture2D texture, Vector2 position)
@@ -21,7 +27,7 @@ namespace Shooter
         }
         float rotInc = 0.01f;
         int timer = 0;
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             timer++;
             if (timer > 30)

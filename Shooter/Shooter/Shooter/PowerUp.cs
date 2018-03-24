@@ -2,12 +2,15 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Shooter
+namespace GameEngine
 {
     class PowerUp : Entity
     {
+        public PowerUp(Game game): base(game)
+        {
 
-        
+        }
+
         public void Initialize(Texture2D _texture, Vector2 _position, TextureAsset sprite)
         {
             int rnd = 0;
@@ -42,7 +45,7 @@ namespace Shooter
             base.position = _position;
         }
         float alphaFlash;
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             position.Y += 2f;
             alphaFlash -= 0.01f;

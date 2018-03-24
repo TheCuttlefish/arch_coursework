@@ -10,10 +10,10 @@ using Microsoft.Xna.Framework.Media;
 
 
 
-namespace Shooter
+namespace GameEngine
 {
-
-    public class Game1 : Microsoft.Xna.Framework.Game
+    
+    public class MyGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -34,14 +34,22 @@ namespace Shooter
 
         bool paused = false;
 
-        public Game1()
+        public MyGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-   
+
+
+        SpaceShooter spaceShooter;
+
         protected override void Initialize()
         {
+
+            //create a new game
+            spaceShooter = new SpaceShooter(this);
+
+            //input
             playerInput = new PlayerInput();
             playerInput.Load(this);
             Services.AddService(typeof(PlayerInput), playerInput);
@@ -54,11 +62,11 @@ namespace Shooter
             //initialising my main objects
             updateList.Add(player);
             fireTime = TimeSpan.FromSeconds(.15f);
-            bgLayer1 = new Background();
+            bgLayer1 = new Background(this);
             updateList.Add(bgLayer1);
-            bgLayer2 = new Background();
+            bgLayer2 = new Background(this);
             updateList.Add(bgLayer2);
-            bgLayer3 = new Background();
+            bgLayer3 = new Background(this);
             updateList.Add(bgLayer3);
 
             base.Initialize();
@@ -92,12 +100,21 @@ namespace Shooter
 
         protected override void Update(GameTime gameTime)
         {
+            
+
+            PauseLogic();
+          //  if (paused) return;  - to fix
+            GameLogic(gameTime);
+            playerInput.Update();
+            base.Update(gameTime);
+            /*
            
-            playerInput.Update(); // update Input
+           // update Input
             PauseLogic();
             if (paused) return;
                 UpdateEntities();
                 GameLogic(gameTime);
+                */
         }
         Color backgroundColour = Color.DarkCyan;
         protected override void Draw(GameTime gameTime)
@@ -128,6 +145,7 @@ namespace Shooter
         }
         private void UpdateEntities()
         {
+            /*
             for (int i = updateList.Count - 1; i >= 0; i--)
             {
                 
@@ -146,11 +164,12 @@ namespace Shooter
              
                 }
             }
+            */
         }
         private void GameLogic(GameTime gameTime)
         {
 
-            CollisionDetection();
+           // CollisionDetection();
             AddEnemies();
 
             // Fire only every interval we set as the fireTime
@@ -230,7 +249,7 @@ namespace Shooter
 
         private void AddPowerUp(Vector2 _position)
         {
-            PowerUp p = new PowerUp();
+            PowerUp p = new PowerUp(this);
             p.Initialize(sprite.extraLife, _position, sprite);
             updateList.Add(p);
             objectsToDraw.Add(p);
@@ -239,14 +258,14 @@ namespace Shooter
         private void AddProjectile(Vector2 position)
         {
             
-            Bullet projectile = new Bullet();
+            Bullet projectile = new Bullet(this);
             projectile.Initialize(GraphicsDevice.Viewport, sprite.bullet, position, player.speedX);
             updateList.Add(projectile);
             objectsToDraw.Add(projectile);
         }
         private void ShipTrail()
         {
-            Smoke smokeParticle = new Smoke();
+            Smoke smokeParticle = new Smoke(this);
             smokeParticle.Initialize(GraphicsDevice.Viewport, sprite.smoke, new Vector2( playerInput.mouse.X, playerInput.mouse.Y) + new Vector2(0, 32));
             updateList.Add(smokeParticle);
             objectsToDraw.Add(smokeParticle);
@@ -263,7 +282,7 @@ namespace Shooter
                 enemyNum = 7;
                 while (enemyNum > 0)
                 {
-                    Enemy enemy = new Enemy();
+                    Enemy enemy = new Enemy(this);
                     enemy.Initialize( sprite.enemy, new Vector2((64 + 38) * enemyNum, -32));
 
                     updateList.Add(enemy);

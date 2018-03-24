@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Shooter
+namespace GameEngine
 {
     public class PlayerInput
     {

@@ -2,10 +2,17 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Shooter
+namespace GameEngine
 {
     class Smoke : Entity
     {
+
+        public Smoke(Game game): base(game)
+        {
+
+        }
+
+
         public int damage;
         Viewport viewport;
         float projectileMoveSpeed;
@@ -21,7 +28,7 @@ namespace Shooter
             projectileMoveSpeed = 5f + Mathf.RandomRange(-2,2);
             rotation = Mathf.RandomRange(0, 360);
         }
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             if( alpha> 0.0f )
                alpha -= 0.02f;

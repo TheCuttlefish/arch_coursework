@@ -3,11 +3,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Shooter
+namespace GameEngine
 {
     class Background : Entity
     {
 
+        public Background(Game game): base(game)
+        {
+
+        }
         Vector2[] positions;
 
         float speed;
@@ -24,7 +28,7 @@ namespace Shooter
                 positions[i] = new Vector2(0, i * texture.Height);
             }
         }
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
 
             for (int i = 0; i < positions.Length; i++)

@@ -2,11 +2,16 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Shooter
+namespace GameEngine
 {
     class Bullet : Entity
     {
-        
+
+        public Bullet(Game game): base(game)
+        {
+
+        }
+
         public int damage;
         Viewport viewport;
         float speedY;
@@ -24,7 +29,7 @@ namespace Shooter
             speedY = 10f;
             
         }
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
 
             position.Y -= speedY;

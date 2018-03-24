@@ -2,10 +2,20 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Shooter
+namespace GameEngine
 {
-    class Entity
+    class Entity :  GameComponent
     {
+
+        public Entity(Game game) : base(game)
+        {
+            // add to update
+            game.Components.Add(this);
+        }
+
+
+
+
         //graphics
         public Texture2D texture;
         public int width { get { return texture.Width; } }
@@ -24,10 +34,7 @@ namespace Shooter
         {
             
         }
-        public virtual void Update()
-        {
 
-        }
         public virtual void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name = "")
         {
 

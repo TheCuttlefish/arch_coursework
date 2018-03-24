@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 
-namespace Shooter {
+namespace GameEngine {
   class PlayerInputData {
 
     public Dictionary<string, Keys> keyMap = new Dictionary<string, Keys> () { 

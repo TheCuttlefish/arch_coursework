@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
-namespace Shooter
+namespace GameEngine
 {
     public static class Mathf
     {

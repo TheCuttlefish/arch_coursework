@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-namespace Shooter
+namespace GameEngine
 {
     class Player : Entity
     {
@@ -15,7 +15,7 @@ namespace Shooter
         PlayerInput playerInput;
         Game game;
 
-        public Player(Game game){
+        public Player(Game game): base(game){
             this.game = game;
             playerInput = game.Services.GetService(typeof(PlayerInput)) as PlayerInput;
         }
@@ -34,7 +34,7 @@ namespace Shooter
         }
 
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             Movement();
         }
