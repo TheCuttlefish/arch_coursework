@@ -9,12 +9,10 @@ namespace GameEngine
 
         public Entity(Game game) : base(game)
         {
-            // add to update
+            DrawableGameComponent draw = new DrawableGameComponent(game);
+            game.Components.Add(draw);
             game.Components.Add(this);
         }
-
-
-
 
         //graphics
         public Texture2D texture;
@@ -30,9 +28,10 @@ namespace GameEngine
         public string name = "unnamed";
         public string tag = "none";
         public bool active = true;
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            
+            spriteBatch.Draw(texture, position, null, colour * alpha, rotation, new Vector2(32, 32), 1f, SpriteEffects.None, 0f);
         }
 
         public virtual void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name = "")

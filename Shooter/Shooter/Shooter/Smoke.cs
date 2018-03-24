@@ -37,11 +37,7 @@ namespace GameEngine
 
             position.Y += projectileMoveSpeed;
         }
-        public override void Draw( SpriteBatch spriteBatch )
-        {
-            spriteBatch.Draw(texture, position, null, colour * alpha, rotation,
-            new Vector2(width / 2, height / 2), scale, SpriteEffects.None, 0f);
-        }
+
 
     }
 }

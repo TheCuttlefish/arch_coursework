@@ -54,11 +54,7 @@ namespace GameEngine
 
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, position, null, colour * alpha, rotation,
-            new Vector2(width / 2, height / 2), scale, SpriteEffects.None, 0f);
-        }
+
         public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name="")
         {
 

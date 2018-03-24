@@ -70,15 +70,8 @@ namespace GameEngine
             // Clamp to screen
             position.X = MathHelper.Clamp(position.X, width / 2, screenLimitX - width/2);
             position.Y = MathHelper.Clamp(position.Y, height / 2, screenLimitY - height/2);
-
+            
         }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, position, null, colour * alpha, rotation, new Vector2(32,32), 1f, SpriteEffects.None, 0f);
-        }
-
-
         public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name = "")
         {
             switch (other_tag)
