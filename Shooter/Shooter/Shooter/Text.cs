@@ -18,15 +18,17 @@ namespace GameEngine
         Color color;
         Vector2 position;
         int size = 0;
-        public Text(Game game) : base(game)
+        public Text(Game main) : base(main)
         {
             text = "empty";
             color = Color.White;
-            game.Components.Add(this);
-            sb = game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
+            main.Components.Add(this);
+            sb = main.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
+            Load(main.Content);
         }
 
         public void Load( ContentManager c ) {
+           
             smallFont = c.Load< SpriteFont >( "EightBitMadness" );
             mediumFont = c.Load< SpriteFont >( "EightBitMadnessMedium" );
             largeFont = c.Load< SpriteFont >( "EightBitMadnessLarge" );
@@ -38,7 +40,7 @@ namespace GameEngine
 
            SpriteFont font;
             font = smallFont;
-           if ( size == 0 ) font = smallFont;
+            if ( size == 0 ) font = smallFont;
             else if ( size == 1 ) font = mediumFont;
             else font = largeFont;
 

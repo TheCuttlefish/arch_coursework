@@ -7,30 +7,35 @@ namespace GameEngine
     {
 
         // Position of the Player relative to the upper left side of the screen
-        public int health;
         public int screenLimitX;
         public int screenLimitY;
         public int bulletType = 0;
-        public bool clearAll = false;
         PlayerInput playerInput;
-        Game game;
+        Game main;
 
-        public Player(Game game): base(game){
-            this.game = game;
-            playerInput = game.Services.GetService(typeof(PlayerInput)) as PlayerInput;
+        public Player(Game _main): base(_main){
+
+            main = _main;
+            playerInput = main.Services.GetService(typeof(PlayerInput)) as PlayerInput;
+            Initialize();
         }
 
-        public void Initialize(Texture2D texture, Vector2 position, Vector2 screenLimit) {
+        public void Initialize(TextureAsset sprite) {
 
             //change this into vector 2 later
-            screenLimitX = (int)screenLimit.X;
-            screenLimitY = (int)screenLimit.Y;
+            screenLimitX = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Width;
+            screenLimitY = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Height;
             tag = "player";
-            this.texture = texture;
-            base.position = position;
-            active = true;
-            health = 0;
 
+            this.texture = sprite.player;
+
+            Vector2 playerPosition = new Vector2(
+                 main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2,
+                 main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32
+             );
+            base.position = playerPosition;
+            active = true;
+            
             base.Initialize();
             
         }
@@ -87,7 +92,7 @@ namespace GameEngine
                         if (other_name == "oneUp")
                         {
                             alpha = 1;
-                            health++;
+
                         }
                         else if (other_name == "bulletx1")
                             bulletType = 0;
@@ -95,8 +100,8 @@ namespace GameEngine
                             bulletType = 1;
                         else if (other_name == "bulletx3")
                             bulletType = 2;
-                        else if (other_name == "clear")
-                            clearAll = true;
+                        else if (other_name == "clear") { }
+                           
                     }
                     
                     break;

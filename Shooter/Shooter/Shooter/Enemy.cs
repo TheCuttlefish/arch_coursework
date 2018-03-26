@@ -8,18 +8,18 @@ namespace GameEngine
     {
 
 
-        public Enemy(Game game): base(game)
+        public Enemy(Game main): base(main)
         {
 
         }
         public int damage;
         float projectileMoveSpeed;
-        public void Initialize( Texture2D texture, Vector2 position)
+        public void Initialize( Texture2D texture)
         {
             
             tag = "enemy";
             this.texture = texture;
-            base.position = position + new Vector2(Mathf.RandomRange(-10, 10), 0);
+            base.position = position + new Vector2(400, 0);
             active = true;
             damage = 2;
             projectileMoveSpeed = -0.3f;

@@ -8,14 +8,14 @@ namespace GameEngine
     class Background : Entity
     {
 
-        public Background(Game game): base(game)
+        public Background(Game main): base(main)
         {
 
         }
         Vector2[] positions;
 
         float speed;
-        public void Initialize(Texture2D bg_texture, int screenWidth, float _speed)
+        public void Initialize(Texture2D bg_texture, float _speed)
         {
 
             texture = bg_texture;

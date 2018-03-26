@@ -6,7 +6,7 @@ namespace GameEngine
 {
     class PowerUp : Entity
     {
-        public PowerUp(Game game): base(game)
+        public PowerUp(Game main): base(main)
         {
 
         }

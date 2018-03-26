@@ -8,12 +8,13 @@ namespace GameEngine
     {
 
         protected SpriteBatch spriteBatch;
+        Game main;
 
-        public Entity(Game game) : base(game)
+        public Entity(Game _main) : base(_main)
         {
-
-            game.Components.Add(this);
-            spriteBatch = game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
+            main = _main;
+            main.Components.Add(this);
+            spriteBatch = main.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
         }
 
         //graphics
@@ -30,6 +31,14 @@ namespace GameEngine
         public string name = "unnamed";
         public string tag = "none";
         public bool active = true;
+
+        public virtual void Destroy()
+        {
+            
+            main.Components.Remove(this);
+        }
+
+
 
         override public void Draw(GameTime gameTime)
         {

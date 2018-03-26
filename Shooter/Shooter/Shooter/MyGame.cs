@@ -34,20 +34,18 @@ namespace GameEngine
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), spriteBatch);
-            //input
             playerInput = new PlayerInput();
             playerInput.Load(this);
             Services.AddService(typeof(PlayerInput), playerInput);
             sprite = new TextureAsset(Content);
+            spaceShooter = new SpaceShooter(this);
+            
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-
-            spaceShooter = new SpaceShooter(this);
             base.LoadContent();
-            
         }
         
         protected override void Update(GameTime gameTime)

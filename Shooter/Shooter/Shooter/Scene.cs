@@ -14,9 +14,9 @@ namespace GameEngine
     abstract class Scene : GameComponent
     {
         public MyGame main;
-        public Scene(MyGame game) : base(game)
+        public Scene(MyGame _main) : base(_main)
         {
-            main = game;
+            main = _main;
 
         }
 

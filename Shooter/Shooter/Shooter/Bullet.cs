@@ -7,7 +7,7 @@ namespace GameEngine
     class Bullet : Entity
     {
 
-        public Bullet(Game game): base(game)
+        public Bullet(Game main): base(main)
         {
 
         }

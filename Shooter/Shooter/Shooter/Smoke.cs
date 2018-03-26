@@ -7,7 +7,7 @@ namespace GameEngine
     class Smoke : Entity
     {
 
-        public Smoke(Game game): base(game)
+        public Smoke(Game main): base(main)
         {
 
         }
