@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace GameEngine
 {
-    public class PlayerInput
+    public class GameInput
     {
         //mouse
         public Vector2 mouse ;

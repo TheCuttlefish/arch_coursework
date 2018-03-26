@@ -10,17 +10,17 @@ namespace GameEngine
         public int screenLimitX;
         public int screenLimitY;
         public int bulletType = 0;
-        PlayerInput playerInput;
+        GameInput GameInput;
         Game main;
 
         public Player(Game _main): base(_main){
 
             main = _main;
-            playerInput = main.Services.GetService(typeof(PlayerInput)) as PlayerInput;
+            GameInput = main.Services.GetService(typeof(GameInput)) as GameInput;
             Initialize();
         }
 
-        public void Initialize(TextureAsset sprite) {
+        public void Initialize() {
 
             //change this into vector 2 later
             screenLimitX = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Width;
@@ -56,16 +56,16 @@ namespace GameEngine
         public void Movement()
         {
              // Joystick
-            if (playerInput.THUMBSTICK_LEFT_X < -0.1f )speedX -= (speedX - MAX_SPEED) / ACCEL;
-            if (playerInput.THUMBSTICK_LEFT_X > 0.1f) speedX -= (speedX + MAX_SPEED) / ACCEL;
-            if (playerInput.THUMBSTICK_LEFT_Y < -0.1f) speedY -= (speedY + MAX_SPEED) / ACCEL;
-            if (playerInput.THUMBSTICK_LEFT_Y > 0.1f) speedY -= (speedY - MAX_SPEED) / ACCEL;
+            if (GameInput.THUMBSTICK_LEFT_X < -0.1f )speedX -= (speedX - MAX_SPEED) / ACCEL;
+            if (GameInput.THUMBSTICK_LEFT_X > 0.1f) speedX -= (speedX + MAX_SPEED) / ACCEL;
+            if (GameInput.THUMBSTICK_LEFT_Y < -0.1f) speedY -= (speedY + MAX_SPEED) / ACCEL;
+            if (GameInput.THUMBSTICK_LEFT_Y > 0.1f) speedY -= (speedY - MAX_SPEED) / ACCEL;
 
              // Keyboard
-            if (playerInput.LEFT) speedX -= (speedX - MAX_SPEED) / ACCEL;
-            if (playerInput.RIGHT) speedX -= (speedX + MAX_SPEED) / ACCEL;
-            if (playerInput.UP) speedY -= (speedY - MAX_SPEED) / ACCEL;
-            if (playerInput.DOWN) speedY -= (speedY + MAX_SPEED) / ACCEL;
+            if (GameInput.LEFT) speedX -= (speedX - MAX_SPEED) / ACCEL;
+            if (GameInput.RIGHT) speedX -= (speedX + MAX_SPEED) / ACCEL;
+            if (GameInput.UP) speedY -= (speedY - MAX_SPEED) / ACCEL;
+            if (GameInput.DOWN) speedY -= (speedY + MAX_SPEED) / ACCEL;
 
             speedX -= (speedX - 0) / DEACCEL;
             position.X -= speedX;

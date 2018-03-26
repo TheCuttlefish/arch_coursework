@@ -10,15 +10,20 @@ namespace GameEngine
 
         public Background(Game main): base(main)
         {
-
+           
         }
         Vector2[] positions;
-
         float speed;
-        public void Initialize(Texture2D bg_texture, float _speed)
+        public void Initialize(int bg_type, float _speed)
         {
+            if (bg_type == 0)
+                texture = sprite.bg1;
+            if (bg_type == 1)
+                texture = sprite.bg2;
+            if (bg_type == 2)
+                texture = sprite.bg3;
 
-            texture = bg_texture;
+
             this.speed = _speed;
 
             positions = new Vector2[480 / texture.Height + 1];

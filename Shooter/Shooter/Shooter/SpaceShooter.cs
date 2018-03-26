@@ -33,11 +33,10 @@ namespace GameEngine {
             bgLayer3 = new Background(main);
             enemy = new Enemy(main);
 
-            player.Initialize(main.sprite);
             enemy.Initialize(main.sprite.enemy);
-            bgLayer1.Initialize(main.sprite.bg1, -0.2f);
-            bgLayer2.Initialize(main.sprite.bg2,  -0.3f);
-            bgLayer3.Initialize(main.sprite.bg3,  -0.4f);
+            bgLayer1.Initialize(0, -0.2f);
+            bgLayer2.Initialize(1,  -0.3f);
+            bgLayer3.Initialize(2,  -0.4f);
 
             //ui
             text = new Text(main);

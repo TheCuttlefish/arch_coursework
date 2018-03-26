@@ -7,17 +7,10 @@ namespace GameEngine
     class Entity :  DrawableGameComponent
     {
 
-        protected SpriteBatch spriteBatch;
         Game main;
-
-        public Entity(Game _main) : base(_main)
-        {
-            main = _main;
-            main.Components.Add(this);
-            spriteBatch = main.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
-        }
-
         //graphics
+        protected SpriteBatch spriteBatch;
+        public TextureAsset sprite;
         public Texture2D texture;
         public int width { get { return texture.Width; } }
         public int height { get { return texture.Height; } }
@@ -31,6 +24,15 @@ namespace GameEngine
         public string name = "unnamed";
         public string tag = "none";
         public bool active = true;
+
+        public Entity(Game _main) : base(_main)
+        {
+            main = _main;
+            sprite = main.Services.GetService(typeof(TextureAsset)) as TextureAsset;
+            main.Components.Add(this);
+            spriteBatch = main.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
+        }
+
 
         public virtual void Destroy()
         {

@@ -119,7 +119,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Mathf.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="PlayerInput.cs" />
+    <Compile Include="GameInput.cs" />
     <Compile Include="playerInput\PlayerInputData.cs" />
     <Compile Include="PowerUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
