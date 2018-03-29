@@ -55,17 +55,17 @@ namespace GameEngine
         }
 
 
-        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name="")
+        public override void OnCollision(Entity collider = default(Entity))
         {
 
 
-            switch (other_tag)
+            switch (collider.tag)
             {
 
                 case "player":
-                    position -= (position - other_position) / 7;
+                    position -= (position - collider.position) / 7;
                     if(scale>0) scale -= 0.1f;
-                    if (Mathf.Distance(position, other_position) < 15)
+                    if (Mathf.Distance(position, collider.position) < 15)
                     {
                         active = false;
                     }

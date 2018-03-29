@@ -26,8 +26,13 @@ namespace GameEngine {
 
         public override void Initialize()
         {
+           // List<Entity> list = new List<Entity>();
+           
 
-            player = new Player(main);
+
+        player = new Player(main);
+           
+            //  list.Add(player);
             bgLayer1 = new Background(main);
             bgLayer2 = new Background(main);
             bgLayer3 = new Background(main);

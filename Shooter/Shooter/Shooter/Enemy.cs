@@ -10,10 +10,12 @@ namespace GameEngine
 
         public Enemy(Game main): base(main)
         {
-
+            collision = main.Services.GetService(typeof(Collision)) as Collision;
+            collision.list.Add(this);
         }
         public int damage;
         float projectileMoveSpeed;
+        Collision collision;
         public void Initialize()
         {
             
@@ -56,16 +58,17 @@ namespace GameEngine
             new Vector2(width / 2, height / 2), scale, SpriteEffects.None, 0f);
         }
        
-        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name = "")
+        public override void OnCollision(Entity collider = default(Entity))
         {
 
             
-            switch (other_tag)
+            switch (collider.tag)
             {
                 
                 case "player":
                     projectileMoveSpeed = 0;
-                   position =  Mathf.LerpVector2(position, other_position, 15.0f);
+                   position =  Mathf.LerpVector2(position, collider.position, 15.0f);
+                    
                     break;
 
                 default:

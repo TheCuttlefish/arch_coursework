@@ -12,12 +12,16 @@ namespace GameEngine
         public int bulletType = 0;
         GameInput GameInput;
         Game main;
+        Collision collision;
 
         public Player(Game _main): base(_main){
 
             main = _main;
             GameInput = main.Services.GetService(typeof(GameInput)) as GameInput;
+            collision = main.Services.GetService(typeof(Collision)) as Collision;
+            collision.list.Add(this);
             Initialize();
+            
         }
 
         public void Initialize() {
@@ -29,6 +33,7 @@ namespace GameEngine
             this.texture = sprite.player;
             Vector2 playerPosition = new Vector2( main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
             position = playerPosition;
+           
             base.Initialize();
             
         }
@@ -73,27 +78,27 @@ namespace GameEngine
             position.Y = MathHelper.Clamp(position.Y, height / 2, screenLimitY - height/2);
             
         }
-        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name = "")
+        public override void OnCollision(Entity collider = default(Entity))
         {
-            switch (other_tag)
+            switch (collider.tag)
             {
 
                 case "powerup":
 
-                    if (Mathf.Distance(position, other_position) < 15)
+                    if (Mathf.Distance(position, collider.position) < 15)
                     {
-                        if (other_name == "oneUp")
+                        if (collider.name == "oneUp")
                         {
                             alpha = 1;
 
                         }
-                        else if (other_name == "bulletx1")
+                        else if (collider.name == "bulletx1")
                             bulletType = 0;
-                        else if (other_name == "bulletx2")
+                        else if (collider.name == "bulletx2")
                             bulletType = 1;
-                        else if (other_name == "bulletx3")
+                        else if (collider.name == "bulletx3")
                             bulletType = 2;
-                        else if (other_name == "clear") { }
+                        else if (collider.name == "clear") { }
                            
                     }
                     

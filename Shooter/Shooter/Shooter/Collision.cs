@@ -14,12 +14,38 @@ namespace GameEngine
 
         public Collision()
         {
-
+            list = new List<Entity>();
         }
 
         public void Update()
         {
-            //collision code
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+
+                if (!list[i].active)
+                {
+                    list.Remove(list[i]);
+                    return; // avoid checking the rest
+                }
+
+
+                for (int j = list.Count - 1; j >= 0; j--)
+                {
+
+                    if (list[i].tag == "enemy" && list[j].tag == "player")
+                    {
+                        Vector2 pos1 = list[i].position;
+                        Vector2 pos2 = list[j].position;
+                        if (Mathf.Distance(pos1, pos2) < 45)
+                        {
+                            list[i].OnCollision(list[j]); //enemy
+                            list[j].OnCollision(list[i]); //player
+                        }
+                    }
+
+                }
+            }
+            
         }
 
     }

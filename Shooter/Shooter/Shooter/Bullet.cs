@@ -38,9 +38,9 @@ namespace GameEngine
         }
 
 
-        public override void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name = "")
+        public override void OnCollision(Entity collider = default(Entity))
         {
-            if(other_tag == "enemy")
+            if(collider.tag == "enemy")
                 active = false;
         }
     }

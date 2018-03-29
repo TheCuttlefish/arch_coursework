@@ -47,7 +47,7 @@ namespace GameEngine
             spriteBatch.Draw(texture, position, null, colour * alpha, rotation, new Vector2(32, 32), 1f, SpriteEffects.None, 0f);
         }
 
-        public virtual void OnCollision(String other_tag = "", Vector2 other_position = default(Vector2), String other_name = "")
+        public virtual void OnCollision(Entity collider = default(Entity))
         {
 
         }
