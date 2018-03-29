@@ -15,10 +15,11 @@ namespace GameEngine
     
     public class MyGame : Microsoft.Xna.Framework.Game
     {
-
+        
         public GameInput GameInput;
         public SpriteBatch spriteBatch;
         public TextureAsset sprite;
+        public Collision collision;
         GraphicsDeviceManager graphics;
 
         public MyGame()
@@ -38,10 +39,11 @@ namespace GameEngine
             GameInput.Load(this);
             Services.AddService(typeof(GameInput), GameInput);
 
-           
             sprite = new TextureAsset(Content);
             Services.AddService(typeof(TextureAsset), sprite);
 
+            collision = new Collision();
+            Services.AddService(typeof(Collision), collision);
 
             spaceShooter = new SpaceShooter(this);
             
@@ -57,6 +59,7 @@ namespace GameEngine
         {
             spaceShooter.Update(gameTime);
             GameInput.Update();
+            collision.Update();
             if (GameInput.QUIT) this.Exit();
             base.Update(gameTime);
         }

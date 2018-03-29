@@ -26,16 +26,9 @@ namespace GameEngine
             screenLimitX = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Width;
             screenLimitY = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Height;
             tag = "player";
-
             this.texture = sprite.player;
-
-            Vector2 playerPosition = new Vector2(
-                 main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2,
-                 main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32
-             );
-            base.position = playerPosition;
-            active = true;
-            
+            Vector2 playerPosition = new Vector2( main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
+            position = playerPosition;
             base.Initialize();
             
         }

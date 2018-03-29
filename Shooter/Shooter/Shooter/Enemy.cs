@@ -14,11 +14,11 @@ namespace GameEngine
         }
         public int damage;
         float projectileMoveSpeed;
-        public void Initialize( Texture2D texture)
+        public void Initialize()
         {
             
             tag = "enemy";
-            this.texture = texture;
+            this.texture = sprite.enemy;
             base.position = position + new Vector2(400, 0);
             active = true;
             damage = 2;
@@ -45,6 +45,10 @@ namespace GameEngine
            
             position.Y -= projectileMoveSpeed;
             if (projectileMoveSpeed > -0.3f) projectileMoveSpeed -= 0.001f;
+
+
+
+            if (!active) Destroy();
         }
         public override void Draw(GameTime gameTime)
         {

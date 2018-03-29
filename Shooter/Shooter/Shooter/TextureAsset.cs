@@ -13,7 +13,7 @@ namespace GameEngine
         public Texture2D enemy2;
         public Texture2D bullet;
         public Texture2D smoke;
-
+        
         public Texture2D bg1;
         public Texture2D bg2;
         public Texture2D bg3;

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine
 {
-    class Entity :  DrawableGameComponent
+  public  class Entity :  DrawableGameComponent
     {
 
         Game main;
