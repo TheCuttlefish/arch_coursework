@@ -118,6 +118,7 @@
     <Compile Include="Collision.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="formation\DifficultyData.cs" />
     <Compile Include="Mathf.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="GameInput.cs" />

@@ -51,7 +51,7 @@ namespace GameEngine
 
             var mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             var viewport = new Vector2(game.Window.ClientBounds.X, game.Window.ClientBounds.Y);
-            Console.WriteLine(viewport);
+           // Console.WriteLine(viewport);
             mouse = mousePos - viewport;
             previousGamePadState = currentGamePadState;
             previousKeyboardState = currentKeyboardState;
