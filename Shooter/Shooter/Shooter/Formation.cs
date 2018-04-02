@@ -50,6 +50,7 @@ namespace GameEngine {
             {
                 Enemy e = new Enemy(main);
                 e.Initialize();
+                e.SelectType((currentFormations[i * 3]).ToString());
                 e.position.X = int.Parse((currentFormations[(i * 3) + 1]).ToString()) * (64 + 10) + 64;
                 e.position.Y = int.Parse((currentFormations[(i * 3) + 2]).ToString()) * (64 + 10) - 400;
                 Console.WriteLine(currentFormations[i * 3] + "x" + currentFormations[(i * 3) + 1] + "x" + currentFormations[(i * 3) + 2]);

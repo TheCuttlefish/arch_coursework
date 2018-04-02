@@ -10,7 +10,10 @@ namespace GameEngine
 
         public Texture2D player;
         public Texture2D enemy;
-        public Texture2D enemy2;
+        public Texture2D eater;
+        public Texture2D slider;
+        public Texture2D spitter;
+        public Texture2D splitter;
         public Texture2D bullet;
         public Texture2D smoke;
         
@@ -27,8 +30,11 @@ namespace GameEngine
         public TextureAsset(ContentManager c)
         {
             player = c.Load<Texture2D>("ship4");
-            enemy = c.Load<Texture2D>("enemy2");
-            enemy2 = c.Load<Texture2D>("enemyvar2");
+            enemy = c.Load<Texture2D>("eater2");
+            eater = c.Load<Texture2D>("eater2");
+            slider = c.Load<Texture2D>("slider");
+            spitter = c.Load<Texture2D>("spitter");
+            splitter = c.Load<Texture2D>("splitter2");
             bullet = c.Load<Texture2D>("bullet");
             smoke = c.Load<Texture2D>("smoke2");
 
@@ -41,7 +47,8 @@ namespace GameEngine
             power3 = c.Load<Texture2D>("power3");
             extraLife = c.Load<Texture2D>("extra");
             clearScreen = c.Load<Texture2D>("clear");
-
+          
+            
         }
 
         

@@ -44,7 +44,7 @@ namespace GameEngine
 
         override public void Draw(GameTime gameTime)
         {
-            spriteBatch.Draw(texture, position, null, colour * alpha, rotation, new Vector2(32, 32), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position, null, colour * alpha, rotation, new Vector2(32, 32), scale, SpriteEffects.None, 0f);
         }
 
         public virtual void OnCollision(Entity collider = default(Entity))

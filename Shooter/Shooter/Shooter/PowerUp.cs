@@ -6,13 +6,16 @@ namespace GameEngine
 {
     class PowerUp : Entity
     {
+        Collision collision;
         public PowerUp(Game main): base(main)
         {
-
+            collision = main.Services.GetService(typeof(Collision)) as Collision;
+            collision.list.Add(this);
         }
 
-        public void Initialize(Texture2D _texture, Vector2 _position, TextureAsset sprite)
+        public void Initialize()
         {
+            tag = "powerup";
             int rnd = 0;
 
             rnd = Mathf.RandomRange(0, 5);
@@ -41,8 +44,8 @@ namespace GameEngine
             }
 
 
-            tag = "powerup";
-            base.position = _position;
+         
+         
         }
         float alphaFlash;
         public override void Update(GameTime gameTime)
@@ -51,7 +54,7 @@ namespace GameEngine
             alphaFlash -= 0.01f;
             if (alphaFlash < 0) alphaFlash = 1;
             alpha = Math.Abs( (float)Math.Cos(position.Y/20));
-
+            if (scale < 0.1f) Destroy();
         }
 
 
@@ -65,16 +68,16 @@ namespace GameEngine
                 case "player":
                     position -= (position - collider.position) / 7;
                     if(scale>0) scale -= 0.1f;
-                    if (Mathf.Distance(position, collider.position) < 15)
+
+                    if (Mathf.Distance(position, collider.position) < 20)
                     {
-                        active = false;
+                        position = collider.position;
+                        Destroy();
                     }
+                    else
+                        scale = 1;
                     break;
 
-                default:
-                    alpha -= 0.5f;
-                    position = position + new Vector2(Mathf.RandomRange(-10, 10), -10);
-                    break;
 
 
             }

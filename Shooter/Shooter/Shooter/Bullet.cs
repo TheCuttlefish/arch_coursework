@@ -6,42 +6,53 @@ namespace GameEngine
 {
     class Bullet : Entity
     {
-
-        public Bullet(Game main): base(main)
+        Collision collision;
+        Game main;
+        public Bullet(Game _main): base(_main)
         {
-
+            main = _main;
         }
 
         public int damage;
-        Viewport viewport;
+
         float speedY;
 
-        public void Initialize(Viewport viewport, Texture2D texture, Vector2 position, float angle)
+        public void Initialize(Vector2 position, float angle)
         {
             
             tag = "bullet";
             rotation = angle;
-            this.texture = texture;
+            this.texture = sprite.bullet;
             base.position = position;
-            this.viewport = viewport;
+          
             active = true;
             damage = 2;
             speedY = 10f;
-            
+
+            collision = main.Services.GetService(typeof(Collision)) as Collision;
+            collision.list.Add(this);
+
         }
         public override void Update(GameTime gameTime)
         {
 
             position.Y -= speedY;
             position.X -= rotation/2;
-            if (position.Y + texture.Height / 2 < -50) active = false;
+            if (position.Y < 0) active = false;
+
+            if (!active) Destroy();
         }
 
 
         public override void OnCollision(Entity collider = default(Entity))
         {
-            if(collider.tag == "enemy")
+            if (collider.tag == "enemy")
+            {
                 active = false;
+                
+            }
+            if (collider.tag == "player") { }
+
         }
     }
 }

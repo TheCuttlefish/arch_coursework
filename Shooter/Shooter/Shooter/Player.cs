@@ -41,6 +41,7 @@ namespace GameEngine
 
         public override void Update(GameTime gameTime)
         {
+            UpdateBullets();
             Movement();
             base.Update(gameTime);
         }
@@ -78,19 +79,51 @@ namespace GameEngine
             position.Y = MathHelper.Clamp(position.Y, height / 2, screenLimitY - height/2);
             
         }
+
+        int bTimer = 100;
+        void UpdateBullets()
+        {
+            bTimer++;
+            if (bTimer > 10)//20
+            {
+                if (bulletType == 0)
+                {
+                    Bullet b = new Bullet(main);
+                    b.Initialize(position, 0);
+                } else if (bulletType == 1)
+                {
+
+                    Bullet b;
+                    b = new Bullet(main);
+                    b.Initialize(position + new Vector2(-20, 0), 0);
+                    b = new Bullet(main);
+                    b.Initialize(position + new Vector2(20, 0), 0);
+                    
+                } else if( bulletType == 2) {
+                    Bullet b;
+                    b = new Bullet(main);
+                    b.Initialize(position + new Vector2(-30, 0), 0);
+                    b = new Bullet(main);
+                    b.Initialize(position, 0);
+                    b = new Bullet(main);
+                    b.Initialize(position + new Vector2(30, 0), 0);
+                }
+
+                    bTimer = 0;
+            }
+        }
         public override void OnCollision(Entity collider = default(Entity))
         {
             switch (collider.tag)
             {
 
                 case "powerup":
-
+                    
                     if (Mathf.Distance(position, collider.position) < 15)
                     {
                         if (collider.name == "oneUp")
                         {
                             alpha = 1;
-
                         }
                         else if (collider.name == "bulletx1")
                             bulletType = 0;
@@ -104,9 +137,14 @@ namespace GameEngine
                     
                     break;
 
+                case "bullet":
+
+                    break;
+
                 default:
-                    alpha = 0.5f;
-                    position = position + new Vector2(Mathf.RandomRange(-10, 10), +10);
+                    //alpha = 0.5f;
+                   // position = position + new Vector2(Mathf.RandomRange(-10, 10), 0);
+                   // speedY = -10;
                     break;
 
 

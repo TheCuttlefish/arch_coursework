@@ -11,19 +11,13 @@ namespace GameEngine
         {
 
         }
-
-
-        public int damage;
-        Viewport viewport;
         float projectileMoveSpeed;
 
-        public void Initialize(Viewport viewport, Texture2D texture, Vector2 position)
+        public void Initialize(Vector2 position)
         {
-            this.texture = texture;
+            texture = sprite.smoke;
             base.position = position + new Vector2(Mathf.RandomRange(-10,10),0);
-            this.viewport = viewport;
             active = true;
-            damage = 2;
             alpha = 0.5f;
             projectileMoveSpeed = 5f + Mathf.RandomRange(-2,2);
             rotation = Mathf.RandomRange(0, 360);

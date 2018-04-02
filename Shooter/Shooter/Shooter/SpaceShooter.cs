@@ -37,7 +37,7 @@ namespace GameEngine {
             bgLayer3 = new Background (main);
 
             formation = new Formation(main);
-            formation.InitEnemies();
+            
 
             bgLayer1.Initialize (0, -0.2f);
             bgLayer2.Initialize (1, -0.3f);
@@ -48,8 +48,22 @@ namespace GameEngine {
 
         }
 
-        public override void Update (GameTime gameTime) {
+        int timer = 1500;
+        void UpdateEnemies()
+        {
+            timer++;
+            if (timer > 1100)
+            {
+                formation.InitEnemies();
+                timer = 0;
+            }
+        }
 
+       
+
+        public override void Update (GameTime gameTime) {
+            
+            UpdateEnemies();
             text.Display ("score" + player.position.X, 0, Color.White, new Vector2 (10, 10));
 
         }
