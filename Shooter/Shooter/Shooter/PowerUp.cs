@@ -7,8 +7,10 @@ namespace GameEngine
     class PowerUp : Entity
     {
         Collision collision;
-        public PowerUp(Game main): base(main)
+        Game main;
+        public PowerUp(Game _main): base(_main)
         {
+            main = _main;
             collision = main.Services.GetService(typeof(Collision)) as Collision;
             collision.list.Add(this);
         }
@@ -16,9 +18,7 @@ namespace GameEngine
         public void Initialize()
         {
             tag = "powerup";
-            int rnd = 0;
-
-            rnd = Mathf.RandomRange(0, 5);
+            int rnd = Mathf.RandomRange(0, 4);
             if (rnd == 0) {
                 name = "oneUp";
                 texture = sprite.extraLife;
@@ -50,14 +50,18 @@ namespace GameEngine
         float alphaFlash;
         public override void Update(GameTime gameTime)
         {
-            position.Y += 2f;
+            position.Y += 3f;
             alphaFlash -= 0.01f;
             if (alphaFlash < 0) alphaFlash = 1;
-            alpha = Math.Abs( (float)Math.Cos(position.Y/20));
+            alpha = Math.Abs( (float)Math.Cos(position.Y/30));
             if (scale < 0.1f) Destroy();
         }
 
-
+        public override void Destroy()
+        {
+            collision.list.Remove(this);
+            base.Destroy();
+        }
         public override void OnCollision(Entity collider = default(Entity))
         {
 
@@ -66,18 +70,15 @@ namespace GameEngine
             {
 
                 case "player":
-                    position -= (position - collider.position) / 7;
+                    position -= (position - collider.position) / 5;
                     if(scale>0) scale -= 0.1f;
-
+                   //
                     if (Mathf.Distance(position, collider.position) < 20)
                     {
                         position = collider.position;
                         Destroy();
-                    }
-                    else
-                        scale = 1;
+                     }
                     break;
-
 
 
             }

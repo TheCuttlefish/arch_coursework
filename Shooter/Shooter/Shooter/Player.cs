@@ -119,8 +119,8 @@ namespace GameEngine
 
                 case "powerup":
                     
-                    if (Mathf.Distance(position, collider.position) < 15)
-                    {
+                    //if (Mathf.Distance(position, collider.position) < 15)
+                    //{
                         if (collider.name == "oneUp")
                         {
                             alpha = 1;
@@ -133,7 +133,7 @@ namespace GameEngine
                             bulletType = 2;
                         else if (collider.name == "clear") { }
                            
-                    }
+                    //}
                     
                     break;
 

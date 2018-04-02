@@ -28,22 +28,10 @@ namespace GameEngine
                     return; // avoid checking the rest
                 }
 
-
+                //maybe check if null?? ( there is some error with lists once a while)
                 for (int j = list.Count - 1; j >= 0; j--)
                 {
-
-                    //if (list[i].tag == "enemy" && list[j].tag == "player")
-                   // {
-                        Vector2 pos1 = list[i].position;
-                        Vector2 pos2 = list[j].position;
-                        if (Mathf.Distance(pos1, pos2) < 45)
-                        {
-                            list[i].OnCollision(list[j]); //enemy
-                            list[j].OnCollision(list[i]); //player
-                        }
-                   // }
-                
-                    /*
+                    
                     if (list[i].tag == "enemy" && list[j].tag == "bullet")
                     {
                         Vector2 pos1 = list[i].position;
@@ -54,7 +42,30 @@ namespace GameEngine
                             list[j].OnCollision(list[i]); //player
                         }
                     }
-                    */
+                
+                    
+                    if (list[i].tag == "player" && list[j].tag == "powerup")
+                    {
+                        Vector2 pos1 = list[i].position;
+                        Vector2 pos2 = list[j].position;
+                        if (Mathf.Distance(pos1, pos2) < 45)
+                        {
+                            list[i].OnCollision(list[j]); //enemy
+                            list[j].OnCollision(list[i]); //player
+                        }
+                    }
+
+                    if (list[i].tag == "player" && list[j].tag == "enemy")
+                    {
+                        Vector2 pos1 = list[i].position;
+                        Vector2 pos2 = list[j].position;
+                        if (Mathf.Distance(pos1, pos2) < 45)
+                        {
+                            list[i].OnCollision(list[j]); //enemy
+                            list[j].OnCollision(list[i]); //player
+                        }
+                    }
+
                 }
             }
             

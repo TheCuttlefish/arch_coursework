@@ -31,21 +31,12 @@ namespace GameEngine {
         {
             var json = File.ReadAllText("Content/data/formations.json");
             var difficulties = JsonConvert.DeserializeObject<DifficultyData>(json);
-
             var formations = difficulties.difficulties[0];
-
-
-            for (int i = 0; i < formations[0].Length; i++)
-            {
-                Console.WriteLine(formations[0][i]);
-            }
-
-
             string currentFormations;
             currentFormations = formations[0];
 
             int amount = formations[0].Length / 3;
-            Console.WriteLine(amount + " length");
+
             for (int i = 0; i < amount; i++)
             {
                 Enemy e = new Enemy(main);

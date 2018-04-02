@@ -77,8 +77,6 @@ namespace GameEngine
             scale -= (scale -  1.0f)/10;
 
 
-
-
             position.Y -= projectileMoveSpeed;
             if (projectileMoveSpeed > -0.4f) projectileMoveSpeed -= 0.001f;
 
@@ -95,6 +93,9 @@ namespace GameEngine
 
         public override void Destroy()
         {
+
+
+
             int total = 5;
             while (total > 0)
             {
@@ -103,11 +104,17 @@ namespace GameEngine
                 total--;
             }
 
-            PowerUp p = new PowerUp(main);
-            p.Initialize();
-            p.position = position;
+            if (Mathf.RandomRange(0, 5) == 0) { 
+                PowerUp p = new PowerUp(main);
+                p.Initialize();
+                p.position = position;
+            }
+
+            collision.list.Remove(this);
             base.Destroy();
         }
+
+
         public override void OnCollision(Entity collider = default(Entity))
         {
 

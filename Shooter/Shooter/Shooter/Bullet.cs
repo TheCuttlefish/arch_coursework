@@ -43,6 +43,12 @@ namespace GameEngine
             if (!active) Destroy();
         }
 
+        public override void Destroy()
+        {
+
+            collision.list.Remove(this);
+            base.Destroy();
+        }
 
         public override void OnCollision(Entity collider = default(Entity))
         {
