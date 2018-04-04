@@ -15,11 +15,11 @@ namespace GameEngine {
     class SpaceShooter : Scene {
 
         Player player;
-        
+        Earth earth;
         Background bgLayer1;
         Background bgLayer2;
         Background bgLayer3;
-        Text text;
+        
         Formation formation;
 
         public SpaceShooter (MyGame main) : base (main) {
@@ -29,6 +29,8 @@ namespace GameEngine {
         }
 
         public override void Initialize () {
+
+            earth = new Earth(main);
 
             player = new Player (main);
 
@@ -44,11 +46,12 @@ namespace GameEngine {
             bgLayer3.Initialize (2, -0.4f);
 
             //ui
-            text = new Text (main);
-
+            score = new Text (main);
+            lives = new Text(main);
+            planet = new Text(main);
         }
 
-        int timer = 1500;
+        int timer = 800;
         void UpdateEnemies()
         {
             timer++;
@@ -59,13 +62,16 @@ namespace GameEngine {
             }
         }
 
-       
 
+        Text score;
+        Text lives;
+        Text planet;
         public override void Update (GameTime gameTime) {
             
             UpdateEnemies();
-            text.Display ("score" + player.position.X, 0, Color.White, new Vector2 (10, 10));
-
+            score.Display ("Score " + "000000", 0, Color.White, new Vector2 (10, 10));
+            lives.Display("Lives x " + player.lives, 0, Color.White, new Vector2(10, 420));
+            planet.Display("Planet " +100 + "%", 0, Color.White, new Vector2(10, 440));
         }
     }
 }

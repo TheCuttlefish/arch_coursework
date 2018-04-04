@@ -26,6 +26,7 @@ namespace GameEngine
         public Texture2D power3;
         public Texture2D extraLife;
         public Texture2D clearScreen;
+        public Texture2D earth;
 
         public TextureAsset(ContentManager c)
         {
@@ -47,8 +48,8 @@ namespace GameEngine
             power3 = c.Load<Texture2D>("power3");
             extraLife = c.Load<Texture2D>("extra");
             clearScreen = c.Load<Texture2D>("clear");
-          
-            
+            earth = c.Load<Texture2D>("earth");
+
         }
 
         

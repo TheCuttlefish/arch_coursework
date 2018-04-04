@@ -62,12 +62,12 @@ namespace GameEngine
             timer++;
             if (timer > 30)
             {
-                timer = 0;
                 rotInc = -rotInc;
+                timer = 0;
             }
                 rotation -= rotInc;
 
-            if (alpha < 1) alpha += 0.01f;
+            if (alpha < 1) alpha += 0.005f;
 
             if(position.Y > 450) active = false;
 
@@ -78,6 +78,14 @@ namespace GameEngine
 
 
             position.Y -= projectileMoveSpeed;
+
+
+            if(name == "slider")
+            {
+
+                position.X -= (rotation + 0.0465f) * 50;
+            }
+
             if (projectileMoveSpeed > -0.4f) projectileMoveSpeed -= 0.001f;
 
 
@@ -93,7 +101,7 @@ namespace GameEngine
 
         public override void Destroy()
         {
-
+            
 
 
             int total = 5;
@@ -131,7 +139,7 @@ namespace GameEngine
                     scale = 1.2f;
                     //active = false;
                     position = position + new Vector2(Mathf.RandomRange(-10, 10), -10);
-                    alpha -= 0.5f;
+                    alpha -= 0.4f;
                     break;
                 default:
                    // alpha -= 0.5f;

@@ -10,6 +10,7 @@ namespace GameEngine
         public int screenLimitX;
         public int screenLimitY;
         public int bulletType = 0;
+        public int lives;
         GameInput GameInput;
         Game main;
         Collision collision;
@@ -30,6 +31,7 @@ namespace GameEngine
             screenLimitX = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Width;
             screenLimitY = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Height;
             tag = "player";
+            lives = 3;
             this.texture = sprite.player;
             Vector2 playerPosition = new Vector2( main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
             position = playerPosition;
@@ -123,7 +125,12 @@ namespace GameEngine
                     //{
                         if (collider.name == "oneUp")
                         {
-                            alpha = 1;
+                            if (collider.scale > 0.9f)
+                            {
+                                lives++;
+                                collider.scale = 0.8f;
+                            }
+
                         }
                         else if (collider.name == "bulletx1")
                             bulletType = 0;
@@ -137,9 +144,13 @@ namespace GameEngine
                     
                     break;
 
-                case "bullet":
+                case "enemy":
+                    //add some tolorance before killing player
+                    speedX = speedY = 0;
+                    position = new Vector2(main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
+                    lives--;
 
-                    break;
+                 break;
 
                 default:
                     //alpha = 0.5f;

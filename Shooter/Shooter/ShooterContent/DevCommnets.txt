@@ -21,3 +21,5 @@
 - player values can affect UI
 - powerups flashing animation
 - on active false = destroy function, events can happen on destoy.
+- added earth , score, planet health etc
+- collision can be strange sometimes, not sure why( maybe it needs more loops)

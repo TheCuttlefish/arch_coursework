@@ -13,6 +13,7 @@ namespace GameEngine
            
         }
         Vector2[] positions;
+        
         float speed;
         public void Initialize(int bg_type, float _speed)
         {
@@ -23,7 +24,7 @@ namespace GameEngine
             if (bg_type == 2)
                 texture = sprite.bg3;
 
-
+            alpha = 0;
             this.speed = _speed;
 
             positions = new Vector2[480 / texture.Height + 1];
@@ -35,6 +36,12 @@ namespace GameEngine
         }
         public override void Update(GameTime gameTime)
         {
+
+
+            if(alpha < 1)
+            {
+                alpha += 0.002f;
+            }
 
             for (int i = 0; i < positions.Length; i++)
             {
@@ -60,7 +67,7 @@ namespace GameEngine
         {
             for (int i = 0; i < positions.Length; i++)
             {
-                spriteBatch.Draw(texture, positions[i], Color.White);
+                spriteBatch.Draw(texture, positions[i], Color.White * alpha);
             }
         }
     }
