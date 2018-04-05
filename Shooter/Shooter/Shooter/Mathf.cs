@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace GameEngine
 {
@@ -16,11 +17,15 @@ namespace GameEngine
         private static readonly object syncLock = new object();
         public static int RandomRange(int min, int max)
         {
+
             lock (syncLock)
             { // synchronize
-                return random.Next(min, max);
+                return  random.Next(min, max);
             }
+
+           
         }
+
         public static Vector2 LerpVector2(Vector2 from, Vector2 to, float steps)
         {
             return from -= (to - from) / steps;

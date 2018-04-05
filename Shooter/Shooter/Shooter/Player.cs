@@ -32,6 +32,7 @@ namespace GameEngine
             screenLimitY = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Height;
             tag = "player";
             lives = 3;
+            
             this.texture = sprite.player;
             Vector2 playerPosition = new Vector2( main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
             position = playerPosition;

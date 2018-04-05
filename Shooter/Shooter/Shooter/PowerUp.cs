@@ -57,7 +57,7 @@ namespace GameEngine
             if (scale < 0.1f) Destroy();
         }
 
-        public override void Destroy()
+        protected override void Destroy()
         {
             collision.list.Remove(this);
             base.Destroy();

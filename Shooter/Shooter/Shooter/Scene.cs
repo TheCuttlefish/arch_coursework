@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GameEngine
 {
-    abstract class Scene : GameComponent
+    public abstract class Scene : GameComponent
     {
         public MyGame main;
         public Scene(MyGame _main) : base(_main)

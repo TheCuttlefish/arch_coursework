@@ -38,6 +38,7 @@ namespace GameEngine
                     if (Mathf.Distance(pos1, pos2) < 45)
                     {
                         list[i].OnCollision(list[j]); //enemy
+                        if (list[i] == null) return;
                         list[j].OnCollision(list[i]); //player
                     }
                     /*

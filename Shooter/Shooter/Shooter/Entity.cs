@@ -10,15 +10,15 @@ namespace GameEngine
         Game main;
         //graphics
         protected SpriteBatch spriteBatch;
-        public TextureAsset sprite;
-        public Texture2D texture;
-        public int width { get { return texture.Width; } }
-        public int height { get { return texture.Height; } }
-        public Color colour = Color.White;
-        public float alpha = 1.0f;
+        protected TextureAsset sprite;
+        protected Texture2D texture;
+        protected int width { get { return texture.Width; } }
+        protected int height { get { return texture.Height; } }
+        protected Color colour = Color.White;
+        protected float alpha = 1.0f;
         //transform
         public Vector2 position;
-        public float rotation = 0.0f;
+        protected float rotation = 0.0f;
         public float scale = 1.0f;
         //other
         public string name = "unnamed";
@@ -34,7 +34,7 @@ namespace GameEngine
         }
 
 
-        public virtual void Destroy()
+        protected virtual void Destroy()
         {
             
             main.Components.Remove(this);

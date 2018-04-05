@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine
 {
-    class Text : DrawableGameComponent
+   public class Text : DrawableGameComponent
     {
         SpriteFont smallFont;
         SpriteFont mediumFont;

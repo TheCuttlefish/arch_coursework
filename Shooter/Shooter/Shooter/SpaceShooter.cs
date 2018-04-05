@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using Newtonsoft.Json;
 
 namespace GameEngine {
-    class SpaceShooter : Scene {
+    public class SpaceShooter : Scene {
 
         Player player;
         Earth earth;
@@ -62,14 +62,18 @@ namespace GameEngine {
             }
         }
 
-
+        public string getScore()
+        {
+            return string.Format("score: {0}", showScore);
+        }
         Text score;
+        internal int showScore;
         Text lives;
         Text planet;
         public override void Update (GameTime gameTime) {
             
             UpdateEnemies();
-            score.Display ("Score " + "000000", 0, Color.White, new Vector2 (10, 10));
+            score.Display (getScore(), 0, Color.White, new Vector2 (10, 10));
             lives.Display("Lives x " + player.lives, 0, Color.White, new Vector2(10, 420));
             planet.Display("Planet " +100 + "%", 0, Color.White, new Vector2(10, 440));
         }

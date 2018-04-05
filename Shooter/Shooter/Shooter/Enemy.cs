@@ -6,9 +6,9 @@ namespace GameEngine
 {
     class Enemy : Entity
     {
-        Game main;
+        MyGame main;
 
-        public Enemy(Game _main): base(_main)
+        public Enemy(MyGame _main): base(_main)
         {
             main = _main;
         }
@@ -99,7 +99,7 @@ namespace GameEngine
         }
 
 
-        public override void Destroy()
+        protected override void Destroy()
         {
             
 
@@ -119,6 +119,7 @@ namespace GameEngine
             }
 
             collision.list.Remove(this);
+            main.spaceShooter.showScore += 200;
             base.Destroy();
         }
 

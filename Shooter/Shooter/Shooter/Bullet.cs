@@ -43,7 +43,7 @@ namespace GameEngine
             if (!active) Destroy();
         }
 
-        public override void Destroy()
+        protected override void Destroy()
         {
 
             collision.list.Remove(this);

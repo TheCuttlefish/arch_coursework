@@ -29,7 +29,7 @@ namespace GameEngine
         }
 
 
-        SpaceShooter spaceShooter;
+       internal SpaceShooter spaceShooter;
 
         protected override void Initialize()
         {
