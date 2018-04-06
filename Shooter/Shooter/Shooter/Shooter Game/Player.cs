@@ -149,6 +149,7 @@ namespace GameEngine
                     //add some tolorance before killing player
                     speedX = speedY = 0;
                     position = new Vector2(main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
+                    if(lives>0)
                     lives--;
 
                  break;

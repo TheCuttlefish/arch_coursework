@@ -69,7 +69,13 @@ namespace GameEngine
 
             if (alpha < 1) alpha += 0.005f;
 
-            if(position.Y > 450) active = false;
+            if (position.Y > 450)
+            {
+                if(main.spaceShooter.earthHealth>1)
+                main.spaceShooter.earthHealth -= 20;
+                active = false;
+
+            }
 
             if (alpha<0.1f) { active = false;  }
 
@@ -83,7 +89,7 @@ namespace GameEngine
             if(name == "slider")
             {
 
-                position.X -= (rotation + 0.0465f) * 50;
+                position.X -= (rotation + 0.0455f) * 50;
             }
 
             if (projectileMoveSpeed > -0.4f) projectileMoveSpeed -= 0.001f;
@@ -119,6 +125,7 @@ namespace GameEngine
             }
 
             collision.list.Remove(this);
+            
             main.spaceShooter.showScore += 200;
             base.Destroy();
         }

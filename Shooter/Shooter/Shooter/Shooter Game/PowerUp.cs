@@ -74,13 +74,11 @@ namespace GameEngine
 
                 case "player":
                     position -= (position - collider.position) / 5;
-                    if(scale>0 && scale < 0.9f) scale -= 0.1f;
+                    if (scale > 0 && scale < 0.9f) { scale -= 0.1f; }
                    //
                     if (Mathf.Distance(position, collider.position) < 20)
                     {
-                        
                         position = collider.position;
-                        
                         Destroy();
                      }
                     break;

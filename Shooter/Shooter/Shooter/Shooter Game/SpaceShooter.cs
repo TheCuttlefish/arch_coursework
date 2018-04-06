@@ -29,7 +29,7 @@ namespace GameEngine {
         }
 
         public override void Initialize () {
-
+            earthHealth = 100;
             earth = new Earth(main);
 
             player = new Player (main);
@@ -52,6 +52,7 @@ namespace GameEngine {
         }
 
         int timer = 800;
+        
         void UpdateEnemies()
         {
             timer++;
@@ -69,13 +70,14 @@ namespace GameEngine {
         Text score;
         internal int showScore;
         Text lives;
+        internal int earthHealth;
         Text planet;
         public override void Update (GameTime gameTime) {
             
             UpdateEnemies();
             score.Display (getScore(), 0, Color.White, new Vector2 (10, 10));
             lives.Display("Lives x " + player.lives, 0, Color.White, new Vector2(10, 420));
-            planet.Display("Planet " +100 + "%", 0, Color.White, new Vector2(10, 440));
+            planet.Display("Planet " + earthHealth + "%", 0, Color.White, new Vector2(10, 440));
         }
     }
 }
