@@ -42,57 +42,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bgLayer1.png">
+    <Compile Include="Sprites\bgLayer1.png">
       <Name>bgLayer1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="bgLayer2.png">
+    <Compile Include="Sprites\bgLayer2.png">
       <Name>bgLayer2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="endMenu.png">
+    <Compile Include="Sprites\endMenu.png">
       <Name>endMenu</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="explosion.png">
+    <Compile Include="Sprites\explosion.png">
       <Name>explosion</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="laser.png">
+    <Compile Include="Sprites\laser.png">
       <Name>laser</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="mainbackground.png">
+    <Compile Include="Sprites\mainbackground.png">
       <Name>mainbackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="mainMenu.png">
+    <Compile Include="Sprites\mainMenu.png">
       <Name>mainMenu</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="mine.png">
+    <Compile Include="Sprites\mine.png">
       <Name>mine</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="mineAnimation.png">
+    <Compile Include="Sprites\mineAnimation.png">
       <Name>mineAnimation</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="player.png">
+    <Compile Include="Sprites\player.png">
       <Name>player</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="shipAnimation.png">
+    <Compile Include="Sprites\shipAnimation.png">
       <Name>shipAnimation</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -119,108 +119,101 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gameFont.spritefont">
-      <Name>gameFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ship.png">
+    <Compile Include="Sprites\ship.png">
       <Name>ship</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="enemy.png">
+    <Compile Include="Sprites\enemy.png">
       <Name>enemy</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bullet.png">
+    <Compile Include="Sprites\bullet.png">
       <Name>bullet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bg_1.png">
+    <Compile Include="Sprites\bg_1.png">
       <Name>bg_1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="bg_2.png">
+    <Compile Include="Sprites\bg_2.png">
       <Name>bg_2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="bg_3.png">
+    <Compile Include="Sprites\bg_3.png">
       <Name>bg_3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bg_4.png">
+    <Compile Include="Sprites\bg_4.png">
       <Name>bg_4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bg_5.png">
+    <Compile Include="Sprites\bg_5.png">
       <Name>bg_5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ship2.png">
+    <Compile Include="Sprites\ship2.png">
       <Name>ship2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="smoke.png">
+    <Compile Include="Sprites\smoke.png">
       <Name>smoke</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="smoke2.png">
+    <Compile Include="Sprites\smoke2.png">
       <Name>smoke2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="smoke3.png">
+    <Compile Include="Sprites\smoke3.png">
       <Name>smoke3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="smoke4.png">
+    <Compile Include="Sprites\smoke4.png">
       <Name>smoke4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="enemy2.png">
+    <Compile Include="Sprites\enemy2.png">
       <Name>enemy2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EightBitMadness.spritefont">
+    <Compile Include="SpriteFonts\EightBitMadness.spritefont">
       <Name>EightBitMadness</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
@@ -229,7 +222,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EightBitMadnessMedium.spritefont">
+    <Compile Include="SpriteFonts\EightBitMadnessMedium.spritefont">
       <Name>EightBitMadnessMedium</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
@@ -238,7 +231,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EightBitMadnessLarge.spritefont">
+    <Compile Include="SpriteFonts\EightBitMadnessLarge.spritefont">
       <Name>EightBitMadnessLarge</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
@@ -247,100 +240,101 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="enemyvar2.png">
+    <Compile Include="Sprites\enemyvar2.png">
       <Name>enemyvar2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ship3.png">
+    <Compile Include="Sprites\ship3.png">
       <Name>ship3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ship4.png">
+    <Compile Include="Sprites\ship4.png">
       <Name>ship4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clear.png">
+    <Compile Include="Sprites\clear.png">
       <Name>clear</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="extra.png">
+    <Compile Include="Sprites\extra.png">
       <Name>extra</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="power1.png">
+    <Compile Include="Sprites\power1.png">
       <Name>power1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="power2.png">
+    <Compile Include="Sprites\power2.png">
       <Name>power2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="power3.png">
+    <Compile Include="Sprites\power3.png">
       <Name>power3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\formations.json">
+    <Content Include="Data\formations.json">
       <Name>formations</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Compile Include="eater.png">
+    <Compile Include="Sprites\eater.png">
       <Name>eater</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="eater2.png">
+    <Compile Include="Sprites\eater2.png">
       <Name>eater2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="slider.png">
+    <Compile Include="Sprites\slider.png">
       <Name>slider</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="spitter.png">
+    <Compile Include="Sprites\spitter.png">
       <Name>spitter</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="splitter.png">
+    <Compile Include="Sprites\splitter.png">
       <Name>splitter</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="splitter2.png">
+    <Compile Include="Sprites\splitter2.png">
       <Name>splitter2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="earth.png">
+    <Compile Include="Sprites\earth.png">
       <Name>earth</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\input.json">
+    <Content Include="Data\input.json">
       <Name>input</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

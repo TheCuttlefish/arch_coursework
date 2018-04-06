@@ -52,6 +52,9 @@ namespace GameEngine
         {
             position.Y += 3f;
             alphaFlash -= 0.01f;
+            if(position.Y > 550)Destroy();
+
+
             if (alphaFlash < 0) alphaFlash = 1;
             alpha = Math.Abs( (float)Math.Cos(position.Y/30));
             if (scale < 0.1f) Destroy();

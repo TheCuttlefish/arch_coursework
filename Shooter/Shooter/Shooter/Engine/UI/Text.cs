@@ -28,10 +28,10 @@ namespace GameEngine
         }
 
         public void Load( ContentManager c ) {
-           
-            smallFont = c.Load< SpriteFont >( "EightBitMadness" );
-            mediumFont = c.Load< SpriteFont >( "EightBitMadnessMedium" );
-            largeFont = c.Load< SpriteFont >( "EightBitMadnessLarge" );
+
+            smallFont = c.Load< SpriteFont >("SpriteFonts/EightBitMadness");
+            mediumFont = c.Load< SpriteFont >("SpriteFonts/EightBitMadnessMedium");
+            largeFont = c.Load< SpriteFont >("SpriteFonts/EightBitMadnessLarge");
         }
       
         override public void Draw(GameTime gameTime) {
