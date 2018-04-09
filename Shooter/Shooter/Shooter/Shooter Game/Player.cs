@@ -11,6 +11,7 @@ namespace GameEngine
         public int screenLimitY;
         public int bulletType = 0;
         public int lives;
+        int health;
         GameInput GameInput;
         MyGame main;
         Collision collision;
@@ -34,7 +35,7 @@ namespace GameEngine
             screenLimitY = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Height;
             tag = "player";
             lives = 3;
-            
+            health = 1;
             this.texture = sprite.player;
             Vector2 playerPosition = new Vector2( main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
             position = playerPosition;
@@ -48,7 +49,11 @@ namespace GameEngine
         {
 
             if (main.utility.paused) return;
-
+            Respawn();
+            if (dead) return;
+            damageTimeOut++;
+            DamageSmoke();
+            
             UpdateBullets();
             Movement();
             base.Update(gameTime);
@@ -89,8 +94,10 @@ namespace GameEngine
         }
 
         int bTimer = 100;
+        int damageTimeOut = 0;
         void UpdateBullets()
         {
+
             bTimer++;
             if (bTimer > 10)//20
             {
@@ -120,6 +127,71 @@ namespace GameEngine
                     bTimer = 0;
             }
         }
+
+        public void DamageSmoke()
+        {
+            if (health < 1)
+            {
+                Explosion exp = new Explosion(main);
+                exp.Initialize(position);
+                exp.Trail();
+            }
+        }
+
+        
+        public void Kill(int amount)
+        {
+            dead = true;
+            tag = "dead";
+            alpha = 0;
+            respawnTimer = 100;
+
+            //particles
+            while (amount > 0)
+            {
+                Explosion exp = new Explosion(main);
+                exp.Initialize(position);
+                amount--;
+            }
+        }
+        int respawnTimer = 0;
+        bool dead = false;
+        void Respawn()
+        {
+            respawnTimer--;
+            if (respawnTimer == 0)
+            {
+                bulletType = 0;
+                alpha = 1;
+                speedX = speedY = 0;
+                position = new Vector2(main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
+                tag = "player";
+                dead = false;
+            }
+        }
+        public void TakeDamage()
+        {
+            if (damageTimeOut > 20)
+            {
+               
+                health--;
+                speedY = -10;
+                
+                if (health < 0)
+                {
+                    Kill(10);
+                    
+                    
+                    if (lives > 0) lives--;
+
+                    health = 1;
+
+                }
+                damageTimeOut = 0;
+            }
+
+        }
+
         public override void OnCollision(Entity collider = default(Entity))
         {
             switch (collider.tag)
@@ -151,18 +223,16 @@ namespace GameEngine
                     break;
 
                 case "enemy":
-                    //add some tolorance before killing player
-                    speedX = speedY = 0;
-                    position = new Vector2(main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
-                    if(lives>0)
-                    lives--;
+                    
+                    TakeDamage();
+                    
 
                  break;
 
                 default:
-                    //alpha = 0.5f;
+                    
                    // position = position + new Vector2(Mathf.RandomRange(-10, 10), 0);
-                   // speedY = -10;
+                   // 
                     break;
 
 

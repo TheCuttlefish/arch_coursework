@@ -29,7 +29,6 @@ namespace GameEngine {
         Text livesText;
         Text planetText;
         Text pauseText;
-        public bool paused;
         public SpaceShooter (MyGame main) : base (main) {
 
             Initialize ();
@@ -56,7 +55,6 @@ namespace GameEngine {
             planetText = new Text(main);
             pauseText = new Text(main);
             earthHealth = 100;
-            paused = true;
 
         }
 

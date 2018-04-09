@@ -13,7 +13,6 @@ namespace GameEngine
         }
         float ySpeed;
         float xSpeed;
-
         public void Initialize(Vector2 position)
         {
             
@@ -26,6 +25,14 @@ namespace GameEngine
             ySpeed = 0.1f * Mathf.RandomRange(-10, 20);
             rotation = Mathf.RandomRange(0, 360);
         }
+        
+        public void Trail()
+        {
+            alpha = 0.1f * Mathf.RandomRange(4, 5);
+            ySpeed = 0.1f * Mathf.RandomRange(20, 60);
+            scale = 0.1f * Mathf.RandomRange(5, 7);
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (main.utility.paused) return;
