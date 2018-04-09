@@ -22,7 +22,7 @@ namespace GameEngine
         {
             if (main.GameInput.PAUSE) paused =! paused;
 
-            if (paused) background = Color.Black;
+            if (paused) background = Color.Gray * 0.3f;
             else background = Color.Cyan * 0.3f;
             //Color.Cyan * 0.3f;
             //Color.BlueViolet * 0.3f;

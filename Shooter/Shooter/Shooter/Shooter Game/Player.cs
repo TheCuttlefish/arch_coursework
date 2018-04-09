@@ -79,6 +79,8 @@ namespace GameEngine
             if (GameInput.UP) speedY -= (speedY - MAX_SPEED) / ACCEL;
             if (GameInput.DOWN) speedY -= (speedY + MAX_SPEED) / ACCEL;
 
+            if (GameInput.CLEAR) ClearEnemies();
+
             speedX -= (speedX - 0) / DEACCEL;
             position.X -= speedX;
             speedY -= (speedY - 0) / DEACCEL;
@@ -192,6 +194,15 @@ namespace GameEngine
 
         }
 
+        void ClearEnemies()
+        {
+            for (int i = 0; i < collision.list.Count; i++)
+            {
+                if (collision.list[i].tag == "enemy" && collision.list[i].position.Y > 0)
+                    collision.list[i].active = false;
+            }
+        }
+
         public override void OnCollision(Entity collider = default(Entity))
         {
             switch (collider.tag)
@@ -216,7 +227,10 @@ namespace GameEngine
                             bulletType = 1;
                         else if (collider.name == "bulletx3")
                             bulletType = 2;
-                        else if (collider.name == "clear") { }
+                        else if (collider.name == "clear") 
+                            ClearEnemies();
+                        
+                    
                            
                     //}
                     

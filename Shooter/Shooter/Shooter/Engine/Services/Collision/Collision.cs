@@ -40,7 +40,8 @@ namespace GameEngine
 
                         if (list[j] == null || list[i] == null) return;
                         list[i].OnCollision(list[j]); //enemy
-                       // if (list[i] == null) return;//--error still happens here
+                                                      // if (list[i] == null) return;//--error still happens here
+                        if (list[j] == null) return;
                         list[j].OnCollision(list[i]); //player
                        // if (list[j] == null) return;
                     }

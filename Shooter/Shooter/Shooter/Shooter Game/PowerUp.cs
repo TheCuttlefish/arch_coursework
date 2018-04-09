@@ -18,7 +18,7 @@ namespace GameEngine
         public void Initialize()
         {
             tag = "powerup";
-            int rnd = Mathf.RandomRange(0, 4);
+            int rnd = Mathf.RandomRange(0, 5);
             if (rnd == 0) {
                 name = "oneUp";
                 texture = sprite.extraLife;
