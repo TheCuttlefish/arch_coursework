@@ -120,7 +120,7 @@
     <Compile Include="Shooter Game\Enemy.cs" />
     <Compile Include="Engine\Object\Entity.cs" />
     <Compile Include="Shooter Game\Explosion.cs" />
-    <Compile Include="Engine\Services\Formations\Formation.cs" />
+    <Compile Include="Shooter Game\Formation.cs" />
     <Compile Include="Engine\Services\Formations\DifficultyData.cs" />
     <Compile Include="Engine\Services\Mathf.cs" />
     <Compile Include="Shooter Game\Player.cs" />
@@ -135,6 +135,7 @@
     <Compile Include="Shooter Game\SpaceShooter.cs" />
     <Compile Include="Engine\UI\Text.cs" />
     <Compile Include="Engine\Services\Graphics\TextureAsset.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Engine\Services\Graphics\Game.ico" />

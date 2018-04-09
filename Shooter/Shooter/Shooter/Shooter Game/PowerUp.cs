@@ -7,8 +7,8 @@ namespace GameEngine
     class PowerUp : Entity
     {
         Collision collision;
-        Game main;
-        public PowerUp(Game _main): base(_main)
+        MyGame main;
+        public PowerUp(MyGame _main): base(_main)
         {
             main = _main;
             collision = main.Services.GetService(typeof(Collision)) as Collision;
@@ -50,6 +50,7 @@ namespace GameEngine
         float alphaFlash;
         public override void Update(GameTime gameTime)
         {
+            if (main.utility.paused) return;
             position.Y += 3f;
             alphaFlash -= 0.01f;
             if(position.Y > 550)Destroy();

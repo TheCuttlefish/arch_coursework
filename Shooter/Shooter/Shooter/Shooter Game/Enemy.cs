@@ -59,6 +59,7 @@ namespace GameEngine
 
         public override void Update(GameTime gameTime)
         {
+            if (main.utility.paused) return;
             timer++;
             if (timer > 30)
             {
@@ -89,7 +90,7 @@ namespace GameEngine
             if(name == "slider")
             {
 
-                position.X -= (rotation + 0.0455f) * 50;
+                position.X -= (rotation + 0.0452f) * 50;
             }
 
             if (projectileMoveSpeed > -0.4f) projectileMoveSpeed -= 0.001f;
@@ -126,7 +127,7 @@ namespace GameEngine
 
             collision.list.Remove(this);
             
-            main.spaceShooter.showScore += 200;
+            main.spaceShooter.currentScore += 200;
             base.Destroy();
         }
 

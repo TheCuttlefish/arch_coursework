@@ -7,8 +7,8 @@ namespace GameEngine
     class Bullet : Entity
     {
         Collision collision;
-        Game main;
-        public Bullet(Game _main): base(_main)
+        MyGame main;
+        public Bullet(MyGame _main): base(_main)
         {
             main = _main;
         }
@@ -35,7 +35,7 @@ namespace GameEngine
         }
         public override void Update(GameTime gameTime)
         {
-
+            if (main.utility.paused) return;
             position.Y -= speedY;
             position.X -= rotation/2;
             if (position.Y < 0) active = false;

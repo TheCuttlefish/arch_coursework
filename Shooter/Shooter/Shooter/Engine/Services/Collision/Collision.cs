@@ -30,6 +30,7 @@ namespace GameEngine
 
                 for (int j = list.Count - 1; j >= 0; j--)
                 {
+                   
                     if (list[j] == null || list[i] == null) return;
                     
                     Vector2 pos1 = list[i].position;

@@ -25,7 +25,7 @@ namespace GameEngine
         public string tag = "none";
         public bool active = true;
 
-        public Entity(Game _main) : base(_main)
+        public Entity(MyGame _main) : base(_main)
         {
             main = _main;
             sprite = main.Services.GetService(typeof(TextureAsset)) as TextureAsset;

@@ -12,14 +12,16 @@ namespace GameEngine
         public int bulletType = 0;
         public int lives;
         GameInput GameInput;
-        Game main;
+        MyGame main;
         Collision collision;
+       
 
-        public Player(Game _main): base(_main){
+        public Player(MyGame _main): base(_main){
 
             main = _main;
             GameInput = main.Services.GetService(typeof(GameInput)) as GameInput;
             collision = main.Services.GetService(typeof(Collision)) as Collision;
+          
             collision.list.Add(this);
             Initialize();
             
@@ -44,6 +46,9 @@ namespace GameEngine
 
         public override void Update(GameTime gameTime)
         {
+
+            if (main.utility.paused) return;
+
             UpdateBullets();
             Movement();
             base.Update(gameTime);

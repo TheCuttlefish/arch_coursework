@@ -6,10 +6,10 @@ namespace GameEngine
 {
     class Explosion : Entity
     {
-
-        public Explosion(Game main) : base(main)
+        MyGame main;
+        public Explosion(MyGame _main) : base(_main)
         {
-            
+            main = _main;
         }
         float ySpeed;
         float xSpeed;
@@ -28,6 +28,7 @@ namespace GameEngine
         }
         public override void Update(GameTime gameTime)
         {
+            if (main.utility.paused) return;
             position.X += xSpeed;
             position.Y += ySpeed;
 

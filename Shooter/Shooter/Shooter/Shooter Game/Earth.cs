@@ -7,9 +7,9 @@ namespace GameEngine
     public class Earth : Entity
     {
 
-        Game main;
+        MyGame main;
 
-        public Earth(Game _main): base(_main)
+        public Earth(MyGame _main): base(_main)
         {
             main = _main;
             texture = sprite.earth;
@@ -20,6 +20,7 @@ namespace GameEngine
 
         public override void Update(GameTime gameTime)
         {
+            if (main.utility.paused) return;
             timer--;
             if (timer < 0)
             {

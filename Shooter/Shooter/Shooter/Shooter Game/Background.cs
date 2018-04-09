@@ -7,10 +7,10 @@ namespace GameEngine
 {
     class Background : Entity
     {
-
-        public Background(Game main): base(main)
+        MyGame main;
+        public Background(MyGame _main): base(_main)
         {
-           
+            main = _main;  
         }
         Vector2[] positions;
         
@@ -36,9 +36,8 @@ namespace GameEngine
         }
         public override void Update(GameTime gameTime)
         {
-
-
-            if(alpha < 1)
+            if (main.utility.paused) return;
+            if (alpha < 1)
             {
                 alpha += 0.002f;
             }

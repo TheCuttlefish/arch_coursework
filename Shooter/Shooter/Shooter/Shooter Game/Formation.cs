@@ -16,26 +16,31 @@ namespace GameEngine {
     {
 
         MyGame main;
+        int difficulty;
+        int fType;
+        int maxFormationLength;
+
         public Formation(MyGame _main){
             main = _main;
+            timer = 800;
+            difficulty = 0;// 0,1,2
+            //fType = 0;
+            maxFormationLength = 0;
         }
 
-
-
-
-
-
-
-
-        public void InitEnemies()
-        {
+       
+        public void InitEnemies()  {
             var json = File.ReadAllText("Content/data/formations.json");
             var difficulties = JsonConvert.DeserializeObject<DifficultyData>(json);
-            var formations = difficulties.difficulties[0];
+            var formations = difficulties.difficulties[difficulty];
+            maxFormationLength = difficulties.difficulties[difficulty].Length;
+            fType = Mathf.RandomRange(0, maxFormationLength);// maybe it should be - 1? ... 
+            Console.WriteLine(maxFormationLength);
+            
             string currentFormations;
-            currentFormations = formations[0];
-
-            int amount = formations[0].Length / 3;
+            currentFormations = formations[fType];
+            
+            int amount = formations[fType].Length / 3;
 
             for (int i = 0; i < amount; i++)
             {
@@ -44,9 +49,20 @@ namespace GameEngine {
                 e.SelectType((currentFormations[i * 3]).ToString());
                 e.position.X = int.Parse((currentFormations[(i * 3) + 1]).ToString()) * (64 + 10) + 64;
                 e.position.Y = int.Parse((currentFormations[(i * 3) + 2]).ToString()) * (64 + 10) - 400;
-                //Console.WriteLine(currentFormations[i * 3] + "x" + currentFormations[(i * 3) + 1] + "x" + currentFormations[(i * 3) + 2]);
             }
 
+        }
+        int timer;
+        public void Update()
+        {
+
+            if (main.utility.paused) return;
+            timer++;
+            if (timer > 1100)
+            {
+                InitEnemies();
+                timer = 0;
+            }
         }
 
 

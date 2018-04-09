@@ -20,6 +20,7 @@ namespace GameEngine
         public SpriteBatch spriteBatch;
         public TextureAsset sprite;
         public Collision collision;
+        public Utility utility;
         GraphicsDeviceManager graphics;
 
         public MyGame()
@@ -45,6 +46,9 @@ namespace GameEngine
             collision = new Collision();
             Services.AddService(typeof(Collision), collision);
 
+            utility = new Utility(this);
+            Services.AddService(typeof(Utility), utility);
+
             spaceShooter = new SpaceShooter(this);
             
             base.Initialize();
@@ -60,15 +64,16 @@ namespace GameEngine
             spaceShooter.Update(gameTime);
             GameInput.Update();
             collision.Update();
+            utility.Update();
             if (GameInput.QUIT) this.Exit();
             base.Update(gameTime);
         }
 
-        Color backgroundColour = Color.DarkCyan;
+       
 
         protected override bool BeginDraw()
         {
-            GraphicsDevice.Clear(backgroundColour);
+            GraphicsDevice.Clear(utility.background);
             spriteBatch.Begin();
             return base.BeginDraw();
         }
