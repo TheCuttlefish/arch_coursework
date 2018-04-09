@@ -22,7 +22,7 @@ namespace GameEngine {
 
         public Formation(MyGame _main){
             main = _main;
-            timer = 800;
+            timer = 0;
             difficulty = 0;// 0,1,2
             //fType = 0;
             maxFormationLength = 0;
@@ -58,7 +58,7 @@ namespace GameEngine {
 
             if (main.utility.paused) return;
             timer++;
-            if (timer > 1100)
+            if (timer > 550)
             {
                 InitEnemies();
                 timer = 0;

@@ -13,7 +13,7 @@ namespace GameEngine
             main = _main;
         }
         public int damage;
-        float projectileMoveSpeed;
+        float speedY;
         Collision collision;
         public void Initialize()
         {
@@ -23,7 +23,7 @@ namespace GameEngine
             base.position = position + new Vector2(400, 0);
             active = true;
             damage = 2;
-            projectileMoveSpeed = -0.4f;
+            speedY = -0.8f;
             rotation = 0.1f;
 
             collision = main.Services.GetService(typeof(Collision)) as Collision;
@@ -84,7 +84,7 @@ namespace GameEngine
             scale -= (scale -  1.0f)/10;
 
 
-            position.Y -= projectileMoveSpeed;
+            position.Y -= speedY;
 
 
             if(name == "slider")
@@ -93,7 +93,7 @@ namespace GameEngine
                 position.X -= (rotation + 0.0452f) * 50;
             }
 
-            if (projectileMoveSpeed > -0.4f) projectileMoveSpeed -= 0.001f;
+            if (speedY > -0.4f) speedY -= 0.001f;
 
 
 
@@ -140,7 +140,7 @@ namespace GameEngine
             {
                 
                 case "player":
-                    projectileMoveSpeed = 0;
+                    speedY = 0;
                    position =  Mathf.LerpVector2(position, collider.position, 15.0f);
                     
                     break;
