@@ -25,10 +25,15 @@ namespace GameEngine {
         internal int currentScore;
         internal int earthHealth;
 
+        Image earthIcon;
+        Image lifeIcon;
+
         Text scoreText;
         Text livesText;
         Text planetText;
         Text pauseText;
+
+        
         public SpaceShooter (MyGame main) : base (main) {
 
             Initialize ();
@@ -50,6 +55,8 @@ namespace GameEngine {
             bgLayer3.Initialize (2, -0.4f);
 
             //ui
+            earthIcon = new Image(main.sprite.icon_earth, new Vector2(45, 475), main);
+            lifeIcon = new Image(main.sprite.icon_live, new Vector2(45, 455), main);
             scoreText = new Text (main);
             livesText = new Text(main);
             planetText = new Text(main);
@@ -62,8 +69,8 @@ namespace GameEngine {
 
             formation.Update();
             scoreText.Display (getScore(), 0, Color.White, new Vector2 (10, 10));
-            livesText.Display("Lives x " + player.lives, 0, Color.White, new Vector2(10, 420));
-            planetText.Display("Planet " + earthHealth + "%", 0, Color.White, new Vector2(10, 440));
+            livesText.Display(player.lives.ToString(), 0, Color.White, new Vector2(40, 420));
+            planetText.Display(earthHealth + "%", 0, Color.White, new Vector2(40, 440));
             pauseText.Display("", 2, Color.White, new Vector2(300, 200));
             if (main.utility.paused) pauseText.Display("Paused", 2, Color.White, new Vector2(290, 200));
             

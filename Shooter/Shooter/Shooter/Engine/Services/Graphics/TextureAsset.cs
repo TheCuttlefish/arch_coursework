@@ -28,9 +28,11 @@ namespace GameEngine
         public Texture2D clearScreen;
         public Texture2D earth;
 
+        //icons
+        public Texture2D icon_earth;
+        public Texture2D icon_live;
 
 
-       
         public TextureAsset(ContentManager c)
         {
             player = c.Load<Texture2D>("Sprites/ship4");
@@ -52,6 +54,9 @@ namespace GameEngine
             extraLife = c.Load<Texture2D>("Sprites/extra");
             clearScreen = c.Load<Texture2D>("Sprites/clear");
             earth = c.Load<Texture2D>("Sprites/earth");
+
+            icon_earth = c.Load<Texture2D>("Sprites/earth_icon");
+            icon_live = c.Load<Texture2D>("Sprites/live_icon");
 
         }
 
