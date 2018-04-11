@@ -7,14 +7,18 @@ namespace GameEngine
     class Enemy : Entity
     {
         MyGame main;
+        Collision collision;
+
+        float knockBack;
+        float speedY;
+        float rotInc = 0.01f;
+        int timer = 0;
 
         public Enemy(MyGame _main): base(_main)
         {
             main = _main;
         }
-        public int damage;
-        float speedY;
-        Collision collision;
+        
         public void Initialize()
         {
             
@@ -22,15 +26,14 @@ namespace GameEngine
             this.texture = sprite.eater;
             base.position = position + new Vector2(400, 0);
             active = true;
-            damage = 2;
+           
             speedY = -0.8f;
             rotation = 0.1f;
-
+            knockBack = -0.3f;
             collision = main.Services.GetService(typeof(Collision)) as Collision;
             collision.list.Add(this);
         }
-        float rotInc = 0.01f;
-        int timer = 0;
+        
 
         public void SelectType(string enemyType)
         {
@@ -140,19 +143,19 @@ namespace GameEngine
             {
                 
                 case "player":
-                    speedY = 0;
-                   position =  Mathf.LerpVector2(position, collider.position, 15.0f);
-                    
-                    break;
+                    speedY = knockBack;
+                    position =  Mathf.LerpVector2(position, collider.position, 15.0f);
+                break;
+
                 case "bullet":
                     scale = 1.2f;
-                    //active = false;
+                    speedY = knockBack;
                     position = position + new Vector2(Mathf.RandomRange(-10, 10), -10);
                     alpha -= 0.4f;
-                    break;
+                break;
+
                 default:
-                   // alpha -= 0.5f;
-                  //  position = position + new Vector2(Mathf.RandomRange(-10, 10), -10);
+
                 break;
 
                     

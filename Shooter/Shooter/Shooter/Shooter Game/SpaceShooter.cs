@@ -27,11 +27,14 @@ namespace GameEngine {
 
         Image earthIcon;
         Image lifeIcon;
+        Image weaponIcon;
+       
 
         Text scoreText;
         Text livesText;
         Text planetText;
         Text pauseText;
+        Text ammoText;
 
         
         public SpaceShooter (MyGame main) : base (main) {
@@ -55,12 +58,18 @@ namespace GameEngine {
             bgLayer3.Initialize (2, -0.4f);
 
             //ui
-            earthIcon = new Image(main.sprite.icon_earth, new Vector2(45, 475), main);
+            weaponIcon = new Image(main.sprite.icon_bullet, new Vector2(45, 435), main);
             lifeIcon = new Image(main.sprite.icon_live, new Vector2(45, 455), main);
+            earthIcon = new Image(main.sprite.icon_earth, new Vector2(45, 475), main);
+            
+            
+           
+            //ammoInfinity.scale = 1.3f;
             scoreText = new Text (main);
             livesText = new Text(main);
             planetText = new Text(main);
             pauseText = new Text(main);
+            ammoText = new Text(main);
             earthHealth = 100;
 
         }
@@ -69,10 +78,14 @@ namespace GameEngine {
 
             formation.Update();
             scoreText.Display (getScore(), 0, Color.White, new Vector2 (10, 10));
+            ammoText.Display(player.ammoText, 0, Color.White, new Vector2(40, 400));
+            weaponIcon.Display(player.currentWeapon);
             livesText.Display(player.lives.ToString(), 0, Color.White, new Vector2(40, 420));
             planetText.Display(earthHealth + "%", 0, Color.White, new Vector2(40, 440));
             pauseText.Display("", 2, Color.White, new Vector2(300, 200));
             if (main.utility.paused) pauseText.Display("Paused", 2, Color.White, new Vector2(290, 200));
+
+            
             
         }
     }

@@ -31,6 +31,10 @@ namespace GameEngine
         //icons
         public Texture2D icon_earth;
         public Texture2D icon_live;
+        public Texture2D icon_bullet;
+        public Texture2D icon_bullet2;
+        public Texture2D icon_bullet3;
+        public Texture2D icon_infinity;
 
 
         public TextureAsset(ContentManager c)
@@ -57,6 +61,10 @@ namespace GameEngine
 
             icon_earth = c.Load<Texture2D>("Sprites/earth_icon");
             icon_live = c.Load<Texture2D>("Sprites/live_icon");
+            icon_bullet = c.Load<Texture2D>("Sprites/icon_bullet");
+            icon_bullet2 = c.Load<Texture2D>("Sprites/icon_bullet2");
+            icon_bullet3 = c.Load<Texture2D>("Sprites/icon_bullet3");
+            icon_infinity = c.Load<Texture2D>("Sprites/infinity");
 
         }
 

@@ -12,6 +12,9 @@ namespace GameEngine
         public int bulletType = 0;
         public int lives;
         int health;
+        internal string ammoText;
+        int ammoNumber;
+        internal Texture2D currentWeapon;
         GameInput GameInput;
         MyGame main;
         Collision collision;
@@ -36,10 +39,12 @@ namespace GameEngine
             tag = "player";
             lives = 3;
             health = 1;
+            ammoText = "full";
+            ammoNumber = 0;
             this.texture = sprite.player;
             Vector2 playerPosition = new Vector2( main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
             position = playerPosition;
-           
+            currentWeapon = sprite.icon_bullet;
             base.Initialize();
             
         }
@@ -99,17 +104,31 @@ namespace GameEngine
         int damageTimeOut = 0;
         void UpdateBullets()
         {
-
             bTimer++;
+            //update icon
+            if(bulletType == 0) currentWeapon = sprite.icon_bullet;
+            else if ( bulletType == 1) currentWeapon = sprite.icon_bullet2;
+            else if ( bulletType == 2) currentWeapon = sprite.icon_bullet3;
+            
+            //update text
+            ammoText = ammoNumber.ToString();
+            if (ammoNumber < 1 && bulletType == 2) bulletType = 0;
+            if (ammoNumber < 1 && bulletType == 1) bulletType = 0;
+            if (bulletType == 0) ammoText = "full";
+
+            if (!GameInput.FIRE) return;
+
             if (bTimer > 10)//20
             {
                 if (bulletType == 0)
                 {
+                    
                     Bullet b = new Bullet(main);
                     b.Initialize(position, 0);
                 } else if (bulletType == 1)
                 {
-
+                    
+                    ammoNumber -=2;
                     Bullet b;
                     b = new Bullet(main);
                     b.Initialize(position + new Vector2(-20, 0), 0);
@@ -117,6 +136,8 @@ namespace GameEngine
                     b.Initialize(position + new Vector2(20, 0), 0);
                     
                 } else if( bulletType == 2) {
+                   
+                    ammoNumber -=3;
                     Bullet b;
                     b = new Bullet(main);
                     b.Initialize(position + new Vector2(-30, 0), 0);
@@ -209,26 +230,32 @@ namespace GameEngine
             {
 
                 case "powerup":
-                    
+
                     //if (Mathf.Distance(position, collider.position) < 15)
                     //{
-                        if (collider.name == "oneUp")
+                    if (collider.name == "oneUp")
+                    {
+                        if (collider.scale > 0.9f)
                         {
-                            if (collider.scale > 0.9f)
-                            {
-                                lives++;
-                                collider.scale = 0.8f;
-                            }
-
+                            lives++;
+                            collider.scale = 0.8f;
                         }
-                        else if (collider.name == "bulletx1")
-                            bulletType = 0;
-                        else if (collider.name == "bulletx2")
-                            bulletType = 1;
-                        else if (collider.name == "bulletx3")
-                            bulletType = 2;
-                        else if (collider.name == "clear") 
-                            ClearEnemies();
+
+                    }
+                    else if (collider.name == "bulletx1")
+                    {
+
+                        bulletType = 0;
+                    } else if (collider.name == "bulletx2")
+                    {
+                        bulletType = 1;
+                        ammoNumber = 100;
+                    } else if (collider.name == "bulletx3")
+                    {
+                        bulletType = 2;
+                        ammoNumber = 100;
+                    } else if (collider.name == "clear")
+                        ClearEnemies();
                         
                     
                            

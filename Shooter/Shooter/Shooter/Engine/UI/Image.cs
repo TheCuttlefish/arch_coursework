@@ -15,6 +15,9 @@ namespace GameEngine
 
         }
 
-
+        public void Display(Texture2D _texture)
+        {
+            texture = _texture;
+        }
     }
 }
