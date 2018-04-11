@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="Engine\Services\Graphics\Animation.cs" />
     <Compile Include="Engine\UI\Image.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Shooter Game\Background.cs" />
     <Compile Include="Shooter Game\Bullet.cs" />
     <Compile Include="Engine\Services\Collision\Collision.cs" />

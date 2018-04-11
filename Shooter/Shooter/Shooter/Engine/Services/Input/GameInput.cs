@@ -35,6 +35,10 @@ namespace GameEngine
         public bool PAUSE;
         public bool CLEAR;
 
+        public bool SELECT_UP;
+        public bool SELECT_DOWN;
+        public bool SELECT_BUTTON;
+
         PlayerInputData data;
 
         Game game;
@@ -68,6 +72,11 @@ namespace GameEngine
             CLEAR = IsDown(data.clear);
             QUIT = IsDown(data.quit);
             PAUSE = IsDown(data.pause, false) && !IsDown(data.pause);
+
+            SELECT_UP = IsDown(data.up, false) && !IsDown(data.up);
+            SELECT_DOWN = IsDown(data.down, false) && !IsDown(data.down);
+            SELECT_BUTTON = IsDown(data.fire, false) && !IsDown(data.fire);
+
 
             THUMBSTICK_LEFT_X = currentGamePadState.ThumbSticks.Left.X;
             THUMBSTICK_LEFT_Y = currentGamePadState.ThumbSticks.Left.Y;

@@ -19,12 +19,12 @@ namespace GameEngine {
         int difficulty;
         int fType;
         int maxFormationLength;
+        int timer;
 
         public Formation(MyGame _main){
             main = _main;
-            timer = 0;
+            timer = 400;
             difficulty = 0;// 0,1,2
-            //fType = 0;
             maxFormationLength = 0;
         }
 
@@ -52,12 +52,14 @@ namespace GameEngine {
             }
 
         }
-        int timer;
+       
         public void Update()
         {
-
             if (main.utility.paused) return;
-            timer++;
+
+
+                timer++;
+
             if (timer > 550)
             {
                 InitEnemies();

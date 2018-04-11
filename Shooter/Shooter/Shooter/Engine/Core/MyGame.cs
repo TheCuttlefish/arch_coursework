@@ -23,14 +23,18 @@ namespace GameEngine
         public Utility utility;
         GraphicsDeviceManager graphics;
 
+        public int gameState;
+
         public MyGame()
         {
+            gameState = 0;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
 
        internal SpaceShooter spaceShooter;
+       internal Menu menu;
 
         protected override void Initialize()
         {
@@ -49,7 +53,8 @@ namespace GameEngine
             utility = new Utility(this);
             Services.AddService(typeof(Utility), utility);
 
-            spaceShooter = new SpaceShooter(this);
+            //add shooter
+            menu = new Menu(this);
             
             base.Initialize();
         }
@@ -61,15 +66,38 @@ namespace GameEngine
         
         protected override void Update(GameTime gameTime)
         {
-            spaceShooter.Update(gameTime);
+
+
+            ManageGameStates(gameTime);
             GameInput.Update();
             collision.Update();
             utility.Update();
-            if (GameInput.QUIT) this.Exit();
+            
             base.Update(gameTime);
         }
 
-       
+
+      
+           
+        
+
+       void ManageGameStates(GameTime gameTime) {
+            if (gameState == 0)
+                menu.Update(gameTime);
+            if (gameState == 1)
+                spaceShooter.Update(gameTime);
+        }
+
+
+        public void ChangeGameState(int number)
+        {
+           
+            menu = null;
+            
+            gameState = number;
+            if(number == 1)
+                spaceShooter = new SpaceShooter(this);
+        }
 
         protected override bool BeginDraw()
         {

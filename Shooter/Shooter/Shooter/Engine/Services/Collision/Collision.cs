@@ -22,11 +22,7 @@ namespace GameEngine
             for (int i = list.Count - 1; i >= 0; i--)
             {
 
-                if (!list[i].active)
-                {
-                    list.Remove(list[i]);
-                    return;
-                }
+                
 
                 for (int j = list.Count - 1; j >= 0; j--)
                 {
@@ -42,11 +38,20 @@ namespace GameEngine
                         list[i].OnCollision(list[j]); //enemy
                                                       
                         if (list[j] == null) return;
-                        list[j].OnCollision(list[i]); //player
+                             list[j].OnCollision(list[i]); //player
                        // if (list[j] == null) return;
                     }
                   
                 }
+
+                if (!list[i].active)
+                {
+                    list.Remove(list[i]);
+                    return;
+                }
+
+
+
             }
             
         }
