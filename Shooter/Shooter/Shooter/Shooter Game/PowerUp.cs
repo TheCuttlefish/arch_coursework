@@ -20,25 +20,27 @@ namespace GameEngine
             tag = "powerup";
             int rnd = Mathf.RandomRange(0, 5);
             if (rnd == 0) {
+
                 name = "oneUp";
                 texture = sprite.extraLife;
-            } else if (rnd == 1)
-            {
+
+            } else if (rnd == 1) {
+
                 name = "bulletx1";
                 texture = sprite.power1;
             }
-            else if (rnd == 2)
-            {
+            else if (rnd == 2) {
+
                 name = "bulletx2";
                 texture = sprite.power2;
             }
-            else if (rnd == 3)
-            {
+            else if (rnd == 3) {
+
                 name = "bulletx3";
                 texture = sprite.power3;
             }
-            else if (rnd == 4)
-            {
+            else if (rnd == 4) {
+
                 name = "clear";
                 texture = sprite.clearScreen;
             }

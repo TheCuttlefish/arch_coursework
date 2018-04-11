@@ -46,8 +46,8 @@ namespace GameEngine
 
                 if (!list[i].active)
                 {
-                    list.Remove(list[i]);
-                    return;
+                   // list.Remove(list[i]);
+                   // return;
                 }
 
 

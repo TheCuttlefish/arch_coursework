@@ -64,6 +64,12 @@ namespace GameEngine
                 main.ChangeGameState(1);
             }
 
+            if(selected == 1)
+            {
+                ClearAll();
+                main.ChangeGameState(2);
+            }
+
             if (selected == 2)
                 main.Exit();
         }
@@ -111,6 +117,7 @@ namespace GameEngine
             playText.Dispose();
             scoreText.Dispose();
             exitText.Dispose();
+            this.Dispose();
         }
 
     }

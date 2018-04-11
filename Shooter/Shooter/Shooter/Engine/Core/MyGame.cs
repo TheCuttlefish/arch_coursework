@@ -33,8 +33,9 @@ namespace GameEngine
         }
 
 
-       internal SpaceShooter spaceShooter;
-       internal Menu menu;
+        internal SpaceShooter spaceShooter;
+        internal Menu menu;
+        internal ScoreMenu scoreMenu;
 
         protected override void Initialize()
         {
@@ -53,9 +54,7 @@ namespace GameEngine
             utility = new Utility(this);
             Services.AddService(typeof(Utility), utility);
 
-            //add shooter
             menu = new Menu(this);
-            
             base.Initialize();
         }
 
@@ -86,17 +85,25 @@ namespace GameEngine
                 menu.Update(gameTime);
             if (gameState == 1)
                 spaceShooter.Update(gameTime);
+            if (gameState == 2)
+                scoreMenu.Update(gameTime);
         }
 
 
         public void ChangeGameState(int number)
         {
-           
-            menu = null;
-            
             gameState = number;
-            if(number == 1)
+            menu = null;
+            scoreMenu = null;
+            spaceShooter = null;
+            
+            
+            if (number == 0)
+                menu = new Menu(this);
+            if (number == 1)
                 spaceShooter = new SpaceShooter(this);
+            if (number == 2)
+                scoreMenu = new ScoreMenu(this);
         }
 
         protected override bool BeginDraw()
