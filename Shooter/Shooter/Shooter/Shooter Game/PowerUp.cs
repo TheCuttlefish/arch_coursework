@@ -67,6 +67,7 @@ namespace GameEngine
         {
             collision.list.Remove(this);
             base.Destroy();
+            System.GC.Collect();
         }
         public override void OnCollision(Entity collider = default(Entity))
         {

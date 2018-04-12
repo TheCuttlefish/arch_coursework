@@ -54,6 +54,7 @@ namespace GameEngine
         {
 
             if (main.utility.paused) return;
+            if (main.spaceShooter.gameOver) return;
             Respawn();
             if (dead) return;
             damageTimeOut++;
@@ -203,7 +204,6 @@ namespace GameEngine
                 if (health < 0)
                 {
                     Kill(10);
-                    
                     
                     if (lives > 0) lives--;
 

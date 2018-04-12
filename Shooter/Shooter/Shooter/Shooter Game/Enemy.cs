@@ -122,7 +122,7 @@ namespace GameEngine
                 total--;
             }
 
-            if (Mathf.RandomRange(0, 5) == 0) { 
+            if (Mathf.RandomRange(0, 10) == 0) { 
                 PowerUp p = new PowerUp(main);
                 p.Initialize();
                 p.position = position;
@@ -132,6 +132,8 @@ namespace GameEngine
             
             main.spaceShooter.currentScore += 200;
             base.Destroy();
+
+            System.GC.Collect();
         }
 
 

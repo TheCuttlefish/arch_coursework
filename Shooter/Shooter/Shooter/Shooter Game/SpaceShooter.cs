@@ -36,7 +36,7 @@ namespace GameEngine {
         Text pauseText;
         Text ammoText;
         Text gameOverText;
-        bool gameOver;
+        public bool gameOver;
         
         public SpaceShooter (MyGame main) : base (main) {
 
