@@ -66,7 +66,6 @@ namespace GameEngine
         protected override void Update(GameTime gameTime)
         {
 
-
             ManageGameStates(gameTime);
             GameInput.Update();
             collision.Update();
@@ -75,10 +74,6 @@ namespace GameEngine
             base.Update(gameTime);
         }
 
-
-      
-           
-        
 
        void ManageGameStates(GameTime gameTime) {
             if (gameState == 0)
@@ -96,8 +91,7 @@ namespace GameEngine
             menu = null;
             scoreMenu = null;
             spaceShooter = null;
-            
-            
+
             if (number == 0)
                 menu = new Menu(this);
             if (number == 1)
@@ -117,6 +111,7 @@ namespace GameEngine
             spriteBatch.End();
             base.EndDraw();
         }
+
 
 
     }

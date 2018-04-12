@@ -56,6 +56,9 @@ namespace GameEngine
 
             backText = new Text(main);
             backText.Display(">  Back", 1, Color.White, new Vector2(150, 420));
+
+
+            main.utility.newColour = Color.BlueViolet * 0.3f;
         }
 
         public override void Update(GameTime gameTime)

@@ -35,6 +35,7 @@ namespace GameEngine
         }
 
         public override void Initialize() {
+            main.utility.newColour = Color.BlueViolet * 0.3f;
             selected = 0;
             titleText = new Text(main);
 
