@@ -18,7 +18,8 @@ namespace GameEngine
         GameInput GameInput;
         MyGame main;
         Collision collision;
-       
+        int respawnTimer = 0;
+        bool dead = false;
 
         public Player(MyGame _main): base(_main){
 
@@ -178,8 +179,7 @@ namespace GameEngine
                 amount--;
             }
         }
-        int respawnTimer = 0;
-        bool dead = false;
+    
         void Respawn()
         {
             respawnTimer--;
@@ -215,66 +215,40 @@ namespace GameEngine
 
         }
 
-        void ClearEnemies()
-        {
-            for (int i = 0; i < collision.list.Count; i++)
-            {
+        void ClearEnemies() {
+            for (int i = 0; i < collision.list.Count; i++) {
                 if (collision.list[i].tag == "enemy" && collision.list[i].position.Y > 0)
                     collision.list[i].active = false;
             }
         }
 
-        public override void OnCollision(Entity collider = default(Entity))
-        {
-            switch (collider.tag)
-            {
+        public override void OnCollision( Entity collider = default(Entity) ) {
 
+            switch ( collider.tag ) {
                 case "powerup":
-
-                    //if (Mathf.Distance(position, collider.position) < 15)
-                    //{
-                    if (collider.name == "oneUp")
-                    {
-                        if (collider.scale > 0.9f)
-                        {
+                    if ( collider.name == "oneUp" ) {
+                        if ( collider.scale > 0.9f ) {
                             lives++;
                             collider.scale = 0.8f;
                         }
-
                     }
-                    else if (collider.name == "bulletx1")
-                    {
+                    else if (collider.name == "bulletx1") {
 
                         bulletType = 0;
-                    } else if (collider.name == "bulletx2")
-                    {
+                    } else if (collider.name == "bulletx2") {
                         bulletType = 1;
                         ammoNumber = 100;
-                    } else if (collider.name == "bulletx3")
-                    {
+                    } else if (collider.name == "bulletx3") {
                         bulletType = 2;
                         ammoNumber = 100;
                     } else if (collider.name == "clear")
                         ClearEnemies();
-                        
-                    
-                           
-                    //}
-                    
+
                     break;
 
                 case "enemy":
-                    
                     TakeDamage();
-                    
-
                  break;
-
-                default:
-                    
-                   // position = position + new Vector2(Mathf.RandomRange(-10, 10), 0);
-                   // 
-                    break;
 
 
             }

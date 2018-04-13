@@ -25,30 +25,28 @@ namespace GameEngine
         public string tag = "none";
         public bool active = true;
 
-        public Entity(MyGame _main) : base(_main)
-        {
+        public Entity( MyGame _main ) : base( _main ) {
+
             main = _main;
-            sprite = main.Services.GetService(typeof(TextureAsset)) as TextureAsset;
-            main.Components.Add(this);
-            spriteBatch = main.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
+            sprite = main.Services.GetService( typeof( TextureAsset ) ) as TextureAsset;
+            main.Components.Add( this );
+            spriteBatch = main.Services.GetService( typeof (SpriteBatch ) ) as SpriteBatch;
         }
 
 
-        protected virtual void Destroy()
-        {
-            
-            main.Components.Remove(this);
+        protected virtual void Destroy() {
+
+            main.Components.Remove( this );
         }
 
 
 
-        override public void Draw(GameTime gameTime)
-        {
-            spriteBatch.Draw(texture, position, null, colour * alpha, rotation, new Vector2(32, 32), scale, SpriteEffects.None, 0f);
+        override public void Draw( GameTime gameTime ) {
+
+            spriteBatch.Draw( texture, position, null, colour * alpha, rotation, new Vector2(32, 32), scale, SpriteEffects.None, 0f );
         }
 
-        public virtual void OnCollision(Entity collider = default(Entity))
-        {
+        public virtual void OnCollision( Entity collider = default( Entity ) ) {
 
         }
     }

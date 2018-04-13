@@ -6,21 +6,21 @@ namespace GameEngine
 {
     class Smoke : Entity
     {
-
-        public Smoke(MyGame main): base(main)
+        MyGame main;
+        public Smoke(MyGame _main): base(_main)
         {
-
+            main = _main;
         }
         float projectileMoveSpeed;
 
         public void Initialize(Vector2 position)
         {
             texture = sprite.smoke;
-            base.position = position + new Vector2(Mathf.RandomRange(-10,10),0);
+            base.position = position + new Vector2(main.utility.RandomRange(-10,10),0);
             active = true;
             alpha = 0.5f;
-            projectileMoveSpeed = 5f + Mathf.RandomRange(-2,2);
-            rotation = Mathf.RandomRange(0, 360);
+            projectileMoveSpeed = 5f + main.utility.RandomRange(-2,2);
+            rotation = main.utility.RandomRange(0, 360);
         }
         public override void Update(GameTime gameTime)
         {

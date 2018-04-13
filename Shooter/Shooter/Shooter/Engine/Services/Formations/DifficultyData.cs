@@ -1,5 +1,4 @@
-﻿
-namespace GameEngine
+﻿namespace GameEngine
 {
     class DifficultyData
     {

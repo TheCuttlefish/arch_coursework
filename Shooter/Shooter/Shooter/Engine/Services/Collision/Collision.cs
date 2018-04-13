@@ -9,59 +9,32 @@ namespace GameEngine
     public class Collision : Microsoft.Xna.Framework.Game
     {
 
-
         public List<Entity> list;
 
-        public Collision()
-        {
-            list = new List<Entity>();
+        public Collision() {
+
+            list = new List< Entity >();
         }
 
-        public void Update()
-        {
-            try
-            {
-                foreach (Entity i in list)
-                // for (int i = list.Count - 1; i >= 0; i--)
-                {
+        public void Update() {
 
-
-                    foreach (Entity j in list)
-                    //for (int j = list.Count - 1; j >= 0; j--)
-                    {
-
+            try {
+                foreach (Entity i in list) {
+                    foreach (Entity j in list) {
                         if (j == null || i == null) return;
-
-                        Vector2 pos1 = i.position;
-                        Vector2 pos2 = j.position;
-                        if (Mathf.Distance(pos1, pos2) < 45)
-                        {
-
-                           // if (j == null || i == null) return;
-                            i.OnCollision(j); //enemy
-
-                            //if (j == null || i == null) return;
-                            j.OnCollision(i); //player
-                                              // if (list[j] == null) return;
+                            Vector2 pos1 = i.position;
+                            Vector2 pos2 = j.position;
+                        if ((pos1 - pos2).Length() < 45) {
+                            
+                            i.OnCollision(j);
+                            j.OnCollision(i);
                         }
-
                     }
-
-                    // if (!list[i].active)
-                    //  {
-                    // list.Remove(list[i]);
-                    // return;
-                    //  }
                 }
             }
-            catch (InvalidOperationException ex)
-            {
+            catch ( InvalidOperationException ex ) {
                 return;
             }
-
-
-
-
         }
 
     }

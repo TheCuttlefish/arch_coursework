@@ -17,20 +17,20 @@ namespace GameEngine
         {
             
             texture = sprite.smoke;
-            base.position = position + new Vector2(Mathf.RandomRange(-20, 20), Mathf.RandomRange(-20, 20));
+            base.position = position + new Vector2(main.utility.RandomRange(-20, 20), main.utility.RandomRange(-20, 20));
             active = true;
-            alpha = 0.1f * Mathf.RandomRange(6, 10);
-            scale = 0.1f * Mathf.RandomRange(5, 15);
-            xSpeed = 0.1f * Mathf.RandomRange(-10, 10);
-            ySpeed = 0.1f * Mathf.RandomRange(-10, 20);
-            rotation = Mathf.RandomRange(0, 360);
+            alpha = 0.1f * main.utility.RandomRange(6, 10);
+            scale = 0.1f * main.utility.RandomRange(5, 15);
+            xSpeed = 0.1f * main.utility.RandomRange(-10, 10);
+            ySpeed = 0.1f * main.utility.RandomRange(-10, 20);
+            rotation = main.utility.RandomRange(0, 360);
         }
         
         public void Trail()
         {
-            alpha = 0.1f * Mathf.RandomRange(4, 5);
-            ySpeed = 0.1f * Mathf.RandomRange(20, 60);
-            scale = 0.1f * Mathf.RandomRange(5, 7);
+            alpha = 0.1f * main.utility.RandomRange(4, 5);
+            ySpeed = 0.1f * main.utility.RandomRange(20, 60);
+            scale = 0.1f * main.utility.RandomRange(5, 7);
         }
 
         public override void Update(GameTime gameTime)

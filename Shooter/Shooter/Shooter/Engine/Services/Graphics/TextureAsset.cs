@@ -16,18 +16,15 @@ namespace GameEngine
         public Texture2D splitter;
         public Texture2D bullet;
         public Texture2D smoke;
-        
         public Texture2D bg1;
         public Texture2D bg2;
         public Texture2D bg3;
-
         public Texture2D power1;
         public Texture2D power2;
         public Texture2D power3;
         public Texture2D extraLife;
         public Texture2D clearScreen;
         public Texture2D earth;
-
         //icons
         public Texture2D icon_earth;
         public Texture2D icon_live;
@@ -47,18 +44,15 @@ namespace GameEngine
             splitter = c.Load<Texture2D>("Sprites/splitter2");
             bullet = c.Load<Texture2D>("Sprites/bullet");
             smoke = c.Load<Texture2D>("Sprites/smoke2");
-
             bg1 = c.Load<Texture2D>("Sprites/bg_4");
             bg2 = c.Load<Texture2D>("Sprites/bg_3");
             bg3 = c.Load<Texture2D>("Sprites/bg_5");
-
             power1 = c.Load<Texture2D>("Sprites/power1");
             power2 = c.Load<Texture2D>("Sprites/power2");
             power3 = c.Load<Texture2D>("Sprites/power3");
             extraLife = c.Load<Texture2D>("Sprites/extra");
             clearScreen = c.Load<Texture2D>("Sprites/clear");
             earth = c.Load<Texture2D>("Sprites/earth");
-
             icon_earth = c.Load<Texture2D>("Sprites/earth_icon");
             icon_live = c.Load<Texture2D>("Sprites/live_icon");
             icon_bullet = c.Load<Texture2D>("Sprites/icon_bullet");

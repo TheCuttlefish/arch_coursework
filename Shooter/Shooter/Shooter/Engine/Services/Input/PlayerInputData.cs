@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace GameEngine {
   class PlayerInputData {
 
-    public Dictionary<string, Keys> keyMap = new Dictionary<string, Keys> () { 
+    public Dictionary< string, Keys > keyMap = new Dictionary< string, Keys > () { 
       { "Left", Keys.Left },
       { "A", Keys.A },
       { "Right", Keys.Right },
@@ -20,7 +20,7 @@ namespace GameEngine {
       {"Back", Keys.Back }
     };
 
-    public Dictionary<string, Buttons> buttonMap = new Dictionary<string, Buttons>() {
+    public Dictionary< string, Buttons > buttonMap = new Dictionary< string, Buttons >() {
 
         {"Left" , Buttons.DPadLeft  },
         {"Right" , Buttons.DPadRight  },
@@ -30,7 +30,6 @@ namespace GameEngine {
         {"RightTrigger" , Buttons.RightTrigger },
         {"Start" , Buttons.Start },
         {"Back" , Buttons.Back }
-
     };
 
         public KeyData left;
@@ -44,6 +43,7 @@ namespace GameEngine {
     }
 
   class KeyData {
+
     public string[] keys;
     public string[] buttons;
   }

@@ -8,6 +8,8 @@ namespace GameEngine
     {
         Collision collision;
         MyGame main;
+        float alphaFlash;
+
         public PowerUp(MyGame _main): base(_main)
         {
             main = _main;
@@ -18,7 +20,8 @@ namespace GameEngine
         public void Initialize()
         {
             tag = "powerup";
-            int rnd = Mathf.RandomRange(0, 5);
+            
+            int rnd = main.utility.RandomRange(0, 5);
             if (rnd == 0) {
 
                 name = "oneUp";
@@ -45,18 +48,15 @@ namespace GameEngine
                 texture = sprite.clearScreen;
             }
 
-
-         
-         
         }
-        float alphaFlash;
+
+        
         public override void Update(GameTime gameTime)
         {
             if (main.utility.paused) return;
             position.Y += 3f;
             alphaFlash -= 0.01f;
             if(position.Y > 550)Destroy();
-
 
             if (alphaFlash < 0) alphaFlash = 1;
             alpha = Math.Abs( (float)Math.Cos(position.Y/30));
@@ -79,14 +79,13 @@ namespace GameEngine
                 case "player":
                     position -= (position - collider.position) / 5;
                     if (scale > 0 && scale < 0.9f) { scale -= 0.1f; }
-                   //
-                    if (Mathf.Distance(position, collider.position) < 20)
+                   
+                    if ((position - collider.position).Length() < 20)
                     {
                         position = collider.position;
                         Destroy();
                      }
                     break;
-
 
             }
         }

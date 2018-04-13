@@ -17,6 +17,7 @@ namespace GameEngine
         public Enemy(MyGame _main): base(_main)
         {
             main = _main;
+            Initialize();
         }
         
         public void Initialize()
@@ -122,7 +123,7 @@ namespace GameEngine
                 total--;
             }
 
-            if (Mathf.RandomRange(0, 10) == 0) { 
+            if (main.utility.RandomRange(0, 10) == 0) { 
                 PowerUp p = new PowerUp(main);
                 p.Initialize();
                 p.position = position;
@@ -146,13 +147,13 @@ namespace GameEngine
                 
                 case "player":
                     speedY = knockBack;
-                    position =  Mathf.LerpVector2(position, collider.position, 15.0f);
+                    position -= (position - collider.position) / 15;
                 break;
 
                 case "bullet":
                     scale = 1.2f;
                     speedY = knockBack;
-                    position = position + new Vector2(Mathf.RandomRange(-10, 10), -10);
+                    position = position + new Vector2(main.utility.RandomRange(-10, 10), -10);
                     alpha -= 0.4f;
                 break;
 
