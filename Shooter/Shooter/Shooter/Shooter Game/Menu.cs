@@ -76,7 +76,7 @@ namespace GameEngine
         }
         
         void UpdateText() {
-            titleText.Display("SUPER SPACE SHOOTER", 2, Color.White, new Vector2(80, 80));
+            titleText.Display("SUPER SPACE SHOOTER", 3, Color.White, new Vector2(80, 80));
             playText.Display(playString, 1, Color.White, new Vector2(80, 220));
             scoreText.Display(scoreString, 1, Color.White, new Vector2(80, 250));
             exitText.Display(exitString, 1, Color.White, new Vector2(80, 280));

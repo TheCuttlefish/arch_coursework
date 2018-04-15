@@ -19,14 +19,18 @@ namespace GameEngine {
         private int difficulty;
         private int fType;
         private int maxFormationLength;
-        private int timer;
 
         public Formation( MyGame _main ) {
 
             main = _main;
-            timer = 400;
             difficulty = 0;// 0,1,2 - easy, normal, hard
             maxFormationLength = 0;
+
+            main.utility.CallAfter(3.0f, () => {
+                InitEnemies();
+                main.utility.RepeatEvery(9.1666f, InitEnemies);
+            });
+
         }
 
        
@@ -53,12 +57,6 @@ namespace GameEngine {
         public void Update() {
 
             if ( main.utility.paused ) return;
-                timer++;
-
-            if ( timer > 550 ) {
-                InitEnemies();
-                timer = 0;
-            }
         }
     }
 

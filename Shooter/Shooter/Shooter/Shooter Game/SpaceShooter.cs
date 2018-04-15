@@ -106,6 +106,7 @@ namespace GameEngine {
                 player.Visible = false;
                 gameOverText.Display("GAME OVER", 2, Color.White, new Vector2(230, 200));
 
+                main.utility.DeleteTimers();
 
                
                 sceneTimeOut++;
@@ -121,6 +122,7 @@ namespace GameEngine {
 
         void ClearAll()
         {
+            main.utility.DeleteTimers();
             clearScene = true;
             formation = null;
             for (int i = 0; i < main.collision.list.Count; i++)
