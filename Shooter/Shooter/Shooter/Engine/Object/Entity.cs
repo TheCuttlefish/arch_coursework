@@ -37,6 +37,7 @@ namespace GameEngine
         protected virtual void Destroy() {
 
             main.Components.Remove( this );
+            System.GC.Collect();
         }
 
 

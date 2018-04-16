@@ -133,7 +133,6 @@
     <Compile Include="Engine\Core\MyGame.cs" />
     <Compile Include="Engine\Scene\Scene.cs" />
     <Compile Include="Shooter Game\ScoreMenu.cs" />
-    <Compile Include="Shooter Game\Smoke.cs" />
     <Compile Include="Shooter Game\SpaceShooter.cs" />
     <Compile Include="Engine\UI\Text.cs" />
     <Compile Include="Engine\Services\Graphics\TextureAsset.cs" />

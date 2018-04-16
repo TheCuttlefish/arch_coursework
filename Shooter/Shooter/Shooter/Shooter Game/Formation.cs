@@ -56,7 +56,6 @@ namespace GameEngine {
        
         public void Update() {
 
-            if ( main.utility.paused ) return;
         }
     }
 

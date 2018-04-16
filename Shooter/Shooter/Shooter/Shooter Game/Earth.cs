@@ -9,38 +9,33 @@ namespace GameEngine
     {
 
         MyGame main;
-
         float speedY = 1f;
         bool canMoveEarth = false;
 
-        public Earth(MyGame _main): base(_main)
-        {
+        public Earth( MyGame _main ): base( _main ) {
+
             main = _main;
             texture = sprite.earth;
-            position = new Vector2(32, 32);
-
-            main.utility.CallAfter(1.0f, EnableMoveEarth);
+            position = new Vector2( 32, 32 );
+            main.utility.CallAfter( 0.6f , EnableMoveEarth );
 
         }
 
-        void EnableMoveEarth()
-        {
+        void EnableMoveEarth() {
+
             canMoveEarth = true;
         }
         
-        public override void Update(GameTime gameTime)
-        {
+        public override void Update(GameTime gameTime) {
 
             if (main.utility.paused) return;
             if (canMoveEarth) MoveEarth();
             
         }
 
-        void MoveEarth()
-        {
-            if (position.Y < 480)
-            {
+        void MoveEarth() {
 
+            if ( position.Y < 480 ) {
                 speedY += 0.05f;
                 position.Y += speedY;
             }

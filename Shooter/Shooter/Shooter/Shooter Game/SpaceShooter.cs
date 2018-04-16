@@ -28,7 +28,6 @@ namespace GameEngine {
         Image earthIcon;
         Image lifeIcon;
         Image weaponIcon;
-       
 
         Text scoreText;
         Text livesText;
@@ -51,9 +50,7 @@ namespace GameEngine {
             bgLayer1 = new Background (main);
             bgLayer2 = new Background (main);
             bgLayer3 = new Background (main);
-
             formation = new Formation(main);
-
             bgLayer1.Initialize (0, -0.2f);
             bgLayer2.Initialize (1, -0.3f);
             bgLayer3.Initialize (2, -0.4f);
@@ -62,7 +59,6 @@ namespace GameEngine {
             weaponIcon = new Image(main.sprite.icon_bullet, new Vector2(45, 435), main);
             lifeIcon = new Image(main.sprite.icon_live, new Vector2(45, 455), main);
             earthIcon = new Image(main.sprite.icon_earth, new Vector2(45, 475), main);
-            
             scoreText = new Text (main);
             livesText = new Text(main);
             planetText = new Text(main);
@@ -71,13 +67,11 @@ namespace GameEngine {
             gameOverText = new Text(main);
             earthHealth = 100;
             gameOver = false;
-
             main.utility.newColour = Color.Cyan * 0.8f;
         }
 
         public override void Update (GameTime gameTime) {
 
-           
             if (clearScene) return;
             formation.Update();
             scoreText.Display (getScore(), 0, Color.White, new Vector2 (10, 10));
@@ -90,29 +84,20 @@ namespace GameEngine {
             if (main.utility.paused) pauseText.Display("Paused", 2, Color.White, new Vector2(290, 200));
             if (main.GameInput.CLEAR) ClearAll();
             GameOverCheck();
-
-
         }
 
-        int sceneTimeOut = 0;
-        void GameOverCheck()
-        {
-            if (player.lives == 0 || earthHealth == 0)
+        void GameOverCheck() {
+
+            if ( player.lives == 0 || earthHealth == 0 )
             {
                 main.utility.newColour = Color.White;
+                if( !gameOver ) main.utility.CallAfter( 3.0f, ClearAll ); // creates timer once
                 gameOver = true;
-                main.collision.list.Remove(player);
+                main.collision.list.Remove( player );
                 player.tag = "dead";
                 player.Visible = false;
-                gameOverText.Display("GAME OVER", 2, Color.White, new Vector2(230, 200));
-
-                main.utility.DeleteTimers();
-
-               
-                sceneTimeOut++;
-                if (sceneTimeOut > 300) ClearAll();
-
-
+                gameOverText.Display("GAME OVER", 2, Color.White, new Vector2( 230, 200 ));
+                
 
             }
         }
@@ -127,7 +112,7 @@ namespace GameEngine {
             formation = null;
             for (int i = 0; i < main.collision.list.Count; i++)
             {
-                main.collision.list[i].Dispose();
+                main.collision.list[ i ].Dispose();
             }
             main.collision.list.Clear();
 
@@ -147,8 +132,8 @@ namespace GameEngine {
             bgLayer1.Dispose();
             bgLayer2.Dispose();
             bgLayer3.Dispose();
-
-            main.ChangeGameState(2);
+            main.utility.DeleteTimers();
+            main.ChangeGameState( 2 );
             
         }
     }

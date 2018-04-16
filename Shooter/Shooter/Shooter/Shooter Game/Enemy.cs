@@ -134,7 +134,7 @@ namespace GameEngine
             main.spaceShooter.currentScore += 200;
             base.Destroy();
 
-            System.GC.Collect();
+            
         }
 
 

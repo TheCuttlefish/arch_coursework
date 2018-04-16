@@ -8,7 +8,7 @@ namespace GameEngine
     {
         Collision collision;
         MyGame main;
-        public Bullet(MyGame _main): base(_main)
+        public Bullet( MyGame _main ): base( _main )
         {
             main = _main;
         }
@@ -17,7 +17,7 @@ namespace GameEngine
 
         float speedY;
 
-        public void Initialize(Vector2 position, float angle)
+        public void Initialize( Vector2 position, float angle )
         {
             
             tag = "bullet";
@@ -29,11 +29,11 @@ namespace GameEngine
             damage = 2;
             speedY = 10f;
 
-            collision = main.Services.GetService(typeof(Collision)) as Collision;
-            collision.list.Add(this);
+            collision = main.Services.GetService( typeof( Collision ) ) as Collision;
+            collision.list.Add( this );
 
         }
-        public override void Update(GameTime gameTime)
+        public override void Update( GameTime gameTime )
         {
             if (main.utility.paused) return;
             position.Y -= speedY;
@@ -48,10 +48,10 @@ namespace GameEngine
 
             collision.list.Remove(this);
             base.Destroy();
-            System.GC.Collect();
+           
         }
 
-        public override void OnCollision(Entity collider = default(Entity))
+        public override void OnCollision( Entity collider = default( Entity ) )
         {
             if (collider.tag == "enemy")
             {
