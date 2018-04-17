@@ -43,7 +43,7 @@ namespace GameEngine
             ammoText = "full";
             ammoNumber = 0;
             this.texture = sprite.player;
-            Vector2 playerPosition = new Vector2( main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
+            Vector2 playerPosition = new Vector2( main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 64);
             position = playerPosition;
             currentWeapon = sprite.icon_bullet;
             base.Initialize();
@@ -188,7 +188,7 @@ namespace GameEngine
                 bulletType = 0;
                 alpha = 1;
                 speedX = speedY = 0;
-                position = new Vector2(main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 32);
+                position = new Vector2(main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 64);
                 tag = "player";
                 dead = false;
             }

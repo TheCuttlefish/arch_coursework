@@ -10,36 +10,36 @@ namespace GameEngine
         Animation fire;
         float ySpeed;
         Collision collision;
+
         public Rocket(MyGame _main) : base(_main) {
             main = _main;
-            ySpeed = 1.5f;
+            collision = main.Services.GetService(typeof(Collision)) as Collision;
+            collision.list.Add(this);
             fire = new Animation();
-            position = new Vector2(main.utility.RandomRange(64,736), - 50);
-            
+            position = new Vector2(main.utility.RandomRange(64, 736), -50);
+            ySpeed = 1.5f;
             tag = "enemy";
             fire.Initialize(sprite.fire, position + new  Vector2(0,-50), 64, 64, 4, 100, Color.White, 1.2f, true);
             this.texture = sprite.rocket;
-            collision = main.Services.GetService(typeof(Collision)) as Collision;
-            collision.list.Add(this);
+            
 
         }
 
 
         public override void Update(GameTime gameTime) {
-
+            if (main.utility.paused) return;
             Movement();
             fire.Update(gameTime);
         }
 
-        void Movement()
-        {
+        void Movement() {
+            
             fire.position = position + new Vector2(0, -50);
             fire.position.Y += ySpeed;
             position.Y += ySpeed;
             fire.alpha = alpha;
 
-            if (position.Y > 450)
-            {
+            if (position.Y > 450) {
                 if (main.spaceShooter.earthHealth > 1)
                     main.spaceShooter.earthHealth -= 20;
                 Destroy();

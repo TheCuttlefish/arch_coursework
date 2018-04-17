@@ -33,17 +33,12 @@ namespace GameEngine {
             main.utility.RepeatEvery(30, InitRocket);
         }
 
-       void InitRocket()
-       {
+       void InitRocket() {
             Rocket r = new Rocket(main);
-            
-           
+
         }
         public void InitEnemies()  {
-
-
-
-
+            
             var json = File.ReadAllText( "Content/data/formations.json" );
             var difficulties = JsonConvert.DeserializeObject< DifficultyData >( json );
             var formations = difficulties.difficulties[ difficulty ];

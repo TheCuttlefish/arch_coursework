@@ -42,7 +42,7 @@ namespace GameEngine
         }
 
         public void Update(GameTime gameTime) {
-
+            
             if (active == false)
                 return;
 
