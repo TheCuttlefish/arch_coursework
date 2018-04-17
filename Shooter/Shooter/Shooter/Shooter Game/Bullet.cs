@@ -8,8 +8,7 @@ namespace GameEngine
     {
         Collision collision;
         MyGame main;
-        public Bullet( MyGame _main ): base( _main )
-        {
+        public Bullet( MyGame _main ): base( _main ) {
             main = _main;
         }
 

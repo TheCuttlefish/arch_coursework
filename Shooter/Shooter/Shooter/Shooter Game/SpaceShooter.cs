@@ -20,7 +20,7 @@ namespace GameEngine {
         Background bgLayer2;
         Background bgLayer3;
         Formation formation;
-
+        
         public string getScore() { return string.Format("score: {0}", currentScore); }
         internal int currentScore;
         internal int earthHealth;

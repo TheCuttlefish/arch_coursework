@@ -15,9 +15,9 @@ namespace GameEngine
         public Color newColour;
         MyGame main;
 
-        List<Timer> timers = new List<Timer>();
+        List< Timer > timers = new List< Timer >();
 
-        public Utility( MyGame _main )  {
+        public Utility( MyGame _main ) {
 
             main = _main;
             background = Color.DarkCyan;
@@ -29,8 +29,8 @@ namespace GameEngine
 
             main.utility.currentColour = Color.Lerp( main.utility.currentColour, newColour, 0.01f );
 
-            if ( main.GameInput.PAUSE )
-            {
+            if ( main.GameInput.PAUSE ) {
+
                 paused = !paused;
                 if (paused) PauseTimers();
                 if (!paused) StartTimers();
@@ -40,33 +40,27 @@ namespace GameEngine
             else background = currentColour;
         }
 
-        public void PauseTimers()
-        {
+        public void PauseTimers() {
             foreach(var timer in timers)
             {
                 timer.Stop();
             }
         }
 
-        public void StartTimers()
-        {
-            foreach(var timer in timers)
-            {
+        public void StartTimers() {
+            foreach(var timer in timers) {
                 timer.Start();
             }
         }
 
-        public void DeleteTimers()
-        {
-            foreach(var timer in timers)
-            {
+        public void DeleteTimers() {
+            foreach(var timer in timers) {
                 timer.Stop();
             }
             timers.Clear();
         }
 
-        public void CallAfter(float timeInSeconds, Action myMethod)
-        {
+        public void CallAfter(float timeInSeconds, Action myMethod) {
             var myTimer = new Timer(timeInSeconds * 1000.0f);
             myTimer.Elapsed += (sender, eventParams) => {
                 myMethod();
@@ -78,8 +72,8 @@ namespace GameEngine
         }
 
 
-        public void RepeatEvery(float timeInSeconds, Action myMethod)
-        {
+        public void RepeatEvery(float timeInSeconds, Action myMethod) {
+
             var myTimer = new Timer(timeInSeconds * 1000.0f);
             myTimer.Elapsed += (sender, eventParams) => {
                 myMethod();
@@ -92,11 +86,9 @@ namespace GameEngine
         private readonly Random random = new Random();
         private  readonly object syncLock = new object();
 
-        public int RandomRange(int min, int max)
-        {
+        public int RandomRange(int min, int max) {
 
-            lock (syncLock)
-            { // synchronize
+            lock (syncLock) {
                 return random.Next(min, max);
             }
         }

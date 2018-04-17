@@ -25,6 +25,9 @@ namespace GameEngine
         public Texture2D extraLife;
         public Texture2D clearScreen;
         public Texture2D earth;
+        public Texture2D nebula;
+        public Texture2D fire;
+        public Texture2D rocket;
         //icons
         public Texture2D icon_earth;
         public Texture2D icon_live;
@@ -59,7 +62,9 @@ namespace GameEngine
             icon_bullet2 = c.Load<Texture2D>("Sprites/icon_bullet2");
             icon_bullet3 = c.Load<Texture2D>("Sprites/icon_bullet3");
             icon_infinity = c.Load<Texture2D>("Sprites/infinity");
-
+            nebula = c.Load<Texture2D>("Sprites/nebula2");
+            fire = c.Load<Texture2D>("Sprites/fire2");
+            rocket = c.Load<Texture2D>("Sprites/rocket");
         }
 
         

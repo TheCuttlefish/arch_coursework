@@ -19,7 +19,6 @@ namespace GameEngine {
         private int difficulty;
         private int fType;
         private int maxFormationLength;
-
         public Formation( MyGame _main ) {
 
             main = _main;
@@ -31,10 +30,19 @@ namespace GameEngine {
                 main.utility.RepeatEvery(9.1666f, InitEnemies);
             });
 
+            main.utility.RepeatEvery(30, InitRocket);
         }
 
-       
+       void InitRocket()
+       {
+            Rocket r = new Rocket(main);
+            
+           
+        }
         public void InitEnemies()  {
+
+
+
 
             var json = File.ReadAllText( "Content/data/formations.json" );
             var difficulties = JsonConvert.DeserializeObject< DifficultyData >( json );
