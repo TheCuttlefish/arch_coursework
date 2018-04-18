@@ -44,7 +44,7 @@ namespace GameEngine
                     main.spaceShooter.earthHealth -= 20;
                 Destroy();
             }
-            if (alpha < 0) Destroy();
+            if (alpha < 0 || !active) Destroy();
         }
 
         public override void Draw(GameTime gameTime) {
@@ -63,10 +63,6 @@ namespace GameEngine
                 case "bullet":
                     position = position + new Vector2(main.utility.RandomRange(-10, 10), -10);
                     alpha -= 0.1f;
-                    break;
-
-                default:
-
                     break;
             }
         }

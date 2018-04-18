@@ -20,20 +20,13 @@ namespace GameEngine
         Collision collision;
         int respawnTimer = 0;
         bool dead = false;
-
+        private Vector2 originalPos;
         public Player(MyGame _main): base(_main){
 
             main = _main;
             GameInput = main.Services.GetService(typeof(GameInput)) as GameInput;
             collision = main.Services.GetService(typeof(Collision)) as Collision;
-          
             collision.list.Add(this);
-            Initialize();
-            
-        }
-
-        public void Initialize() {
-
             //change this into vector 2 later
             screenLimitX = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Width;
             screenLimitY = (int)main.GraphicsDevice.Viewport.TitleSafeArea.Height;
@@ -43,24 +36,22 @@ namespace GameEngine
             ammoText = "full";
             ammoNumber = 0;
             this.texture = sprite.player;
-            Vector2 playerPosition = new Vector2( main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 64);
+            originalPos = new Vector2(main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 64);
+            Vector2 playerPosition = originalPos;
             position = playerPosition;
             currentWeapon = sprite.icon_bullet;
-            base.Initialize();
-            
+
         }
 
 
-        public override void Update(GameTime gameTime)
-        {
+        public override void Update(GameTime gameTime) {
 
             if (main.utility.paused) return;
             if (main.spaceShooter.gameOver) return;
             Respawn();
             if (dead) return;
             damageTimeOut++;
-            DamageSmoke();
-            
+            DamageParticles();
             UpdateBullets();
             Movement();
             base.Update(gameTime);
@@ -72,8 +63,7 @@ namespace GameEngine
         const float ACCEL = 5.0f;
         const float DEACCEL = 10.0f;
 
-        public void Movement()
-        {
+        public void Movement() {
              // Joystick
             if (GameInput.THUMBSTICK_LEFT_X < -0.1f )speedX -= (speedX - MAX_SPEED) / ACCEL;
             if (GameInput.THUMBSTICK_LEFT_X > 0.1f) speedX -= (speedX + MAX_SPEED) / ACCEL;
@@ -104,8 +94,7 @@ namespace GameEngine
 
         int bTimer = 100;
         int damageTimeOut = 0;
-        void UpdateBullets()
-        {
+        void UpdateBullets() {
             bTimer++;
             //update icon
             if(bulletType == 0) currentWeapon = sprite.icon_bullet;
@@ -120,15 +109,11 @@ namespace GameEngine
 
             if (!GameInput.FIRE) return;
 
-            if (bTimer > 10)//20
-            {
-                if (bulletType == 0)
-                {
-                    
+            if (bTimer > 10) {
+                if (bulletType == 0) {
                     Bullet b = new Bullet(main);
                     b.Initialize(position, 0);
-                } else if (bulletType == 1)
-                {
+                } else if (bulletType == 1) {
                     
                     ammoNumber -=2;
                     Bullet b;
@@ -153,10 +138,8 @@ namespace GameEngine
             }
         }
 
-        public void DamageSmoke()
-        {
-            if (health < 1)
-            {
+        public void DamageParticles() {
+            if (health < 1) {
                 Explosion exp = new Explosion(main);
                 exp.Initialize(position);
                 exp.Trail();
@@ -164,55 +147,44 @@ namespace GameEngine
         }
 
         
-        public void Kill(int amount)
-        {
+        public void Kill(int amount) {
             dead = true;
             tag = "dead";
             alpha = 0;
             respawnTimer = 100;
 
             //particles
-            while (amount > 0)
-            {
+            while (amount > 0) {
                 Explosion exp = new Explosion(main);
                 exp.Initialize(position);
                 amount--;
             }
         }
     
-        void Respawn()
-        {
+        void Respawn() {
+
             respawnTimer--;
-            if (respawnTimer == 0)
-            {
+            if (respawnTimer == 0) {
                 bulletType = 0;
                 alpha = 1;
                 speedX = speedY = 0;
-                position = new Vector2(main.GraphicsDevice.Viewport.TitleSafeArea.Width / 2, main.GraphicsDevice.Viewport.TitleSafeArea.Height - 64);
+                position = originalPos;
                 tag = "player";
                 dead = false;
             }
         }
-        public void TakeDamage()
-        {
-            if (damageTimeOut > 20)
-            {
-               
+        public void TakeDamage() {
+
+            if (damageTimeOut > 20)  {
                 health--;
                 speedY = -10;
-                
-                if (health < 0)
-                {
-                    Kill(10);
-                    
-                    if (lives > 0) lives--;
-
-                    health = 1;
-
-                }
+                    if (health < 0) {
+                        Kill(10);
+                        if (lives > 0) lives--;
+                        health = 1;
+                    }
                 damageTimeOut = 0;
             }
-
         }
 
         void ClearEnemies() {
